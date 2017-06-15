@@ -2,11 +2,10 @@ FOR CSS:
 Basic Pages, List of Sections
 
 #### HOMEPAGE:
-  Sections:
-    1. List of Campaign Categories
-    2. 3-5 "Recent" or "Trending" Campaigns
-    3. Search By Campaign Name 
-    4. Links Section (How It Works, Login, Sign-Up, Account Settings)
+   1. List of Campaign Categories
+   2. 3-5 "Recent" or "Trending" Campaigns
+   3. Search By Campaign Name 
+   4. Links Section (How It Works, Login, Sign-Up, Account Settings)
     
 #### SIGN-UP PAGE:
   Form inputs to gather "User" properties
