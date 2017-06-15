@@ -1,28 +1,28 @@
 FOR CSS:
 Basic Pages, List of Sections
 
-HOMEPAGE:
+#### HOMEPAGE:
   Sections:
     1. List of Campaign Categories
     2. 3-5 "Recent" or "Trending" Campaigns
     3. Search By Campaign Name 
     4. Links Section (How It Works, Login, Sign-Up, Account Settings)
     
-SIGN-UP PAGE:
+#### SIGN-UP PAGE:
   Form inputs to gather "User" properties
   
-USER PROFILE:
+#### USER PROFILE:
   1. Profile Picture
   2. Name
   3. Recent Donations/List of All Donations
   
-EDIT USER PROFILE (ACCOUNT SETTINGS):
+#### EDIT USER PROFILE (ACCOUNT SETTINGS):
   Form inputs to update any information or cancel account.
   
-CREATE/EDIT CAMPAIGN PAGE:
+#### CREATE/EDIT CAMPAIGN PAGE:
   Form inputs to gather "Campaign" properties/Update photos, description, etc. (for c#: create backend relationships category-campaign
   
-CAMPAIGN PAGE:
+#### CAMPAIGN PAGE:
   1. Photos
   2. Description
   3. Donate Link
@@ -31,10 +31,10 @@ CAMPAIGN PAGE:
   6. Comments
   7. Option to Edit Campaign Page 
 
-HOW IT WORKS PAGE:
+#### HOW IT WORKS PAGE:
   Screenshots of process with a description for each step.  
   
-DONATION PAGE:
+#### DONATION PAGE:
   Form inputs to gather amount, user, campaign info (for c#: create backend relationships user-campaign)
 
 # Go Fund Me
