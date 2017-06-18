@@ -16,13 +16,12 @@ namespace Charity.Objects
 
     public User(int roleId, string name, string login, string password, ContactInformation contactInfo, int id = 0)
     {
-      int RoleId = roleId;
-      string Name = name;
-      string Loging = login;
-      string Password = password;
-      // int DonateAmout = donateAmout;
-      ContactInformation ContactInfo = contactInfo;
-      int Id = id;
+      RoleId = roleId;
+      Name = name;
+      Login = login;
+      Password = password;
+      ContactInfo = contactInfo;
+      Id = id;
     }
 
     public override bool Equals(System.Object otherUser)
@@ -38,11 +37,78 @@ namespace Charity.Objects
                 this.RoleId == newUser.RoleId &&
                 this.Name == newUser.Name &&
                 this.Login == newUser.Login &&
-                this.Password == newUser.Login &&
-                // this.DonateAmout == newUser.DonateAmout &&
-                this.ContactInfo == newUser.ContactInfo &&
-                this.Id == newUser.Id);
+                this.Password == newUser.Password &&
+                this.ContactInfo.Equals(newUser.ContactInfo));
       }
+    }
+
+    public static List<User> GetAll()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM users;", DB.GetConnection());
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<User> users = new List<User>{};
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        int roleId = rdr.GetInt32(1);
+        string name = rdr.GetString(2);
+        string login = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string address = rdr.GetString(5);
+        string phoneNumber = rdr.GetString(6);
+        string email = rdr.GetString(7);
+
+        ContactInformation info = new ContactInformation(address, phoneNumber, email);
+        User user = new User(roleId, name, login, password, info, id);
+        users.Add(user);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return users;
+    }
+
+    public void Save()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO users (role_id, name, login, password, address, phone_number, email) OUTPUT INSERTED.id VALUES (@RoleId, @Name, @Login, @Password, @Address, @PhoneNumber, @Email)", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@RoleId", this.RoleId));
+      cmd.Parameters.Add(new SqlParameter("@Name", this.Name));
+      cmd.Parameters.Add(new SqlParameter("@Login", this.Login));
+      cmd.Parameters.Add(new SqlParameter("@Password", this.Password));
+      Console.WriteLine(this.ContactInfo.Address);
+      cmd.Parameters.Add(new SqlParameter("@Address", this.ContactInfo.Address));
+      cmd.Parameters.Add(new SqlParameter("@PhoneNumber", this.ContactInfo.PhoneNumber));
+      cmd.Parameters.Add(new SqlParameter("@Email", this.ContactInfo.Email));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        this.Id = rdr.GetInt32(0);
+      }
+      DB.CloseConnection();
+    }
+
+    public static void DeleteAll()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM users;", DB.GetConnection());
+
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
     }
   }
 }

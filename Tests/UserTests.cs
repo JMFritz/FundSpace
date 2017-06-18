@@ -25,8 +25,30 @@ namespace Charity
       Assert.Equal(controlUser, testUser);
     }
 
+    [Fact]
+    public void User_GetAll_DatabaseEmptyOnLoad()
+    {
+      List<User> testList = User.GetAll();
+      List<User> controlList = new List<User>{};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void User_SaveUser_SaveToDB()
+    {
+      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
+      User controlUser = new User(2, "Anna", "anna123", "123",  info);
+      Console.WriteLine(controlUser.ContactInfo.Address);
+      controlUser.Save();
+      User testUser = User.GetAll()[0];
+
+      Assert.Equal(controlUser, testUser);
+    }
+
     public void Dispose()
     {
+      User.DeleteAll();
     }
   }
 }
