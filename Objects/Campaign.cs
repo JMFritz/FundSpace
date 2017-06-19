@@ -106,6 +106,49 @@ namespace Charity.Objects
       }
       DB.CloseConnection();
     }
+
+    public static Campaign Find(int id)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM campaigns WHERE id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundCampaignId = 0;
+      string foundCampaignName = null;
+      string foundCampaignDescription = null;
+      int foundCampaignGoal = 0;
+      int foundCampaignBalance = 0;
+      DateTime foundCampaignStart = default(DateTime);
+      DateTime foundCampaignEnd = default(DateTime);
+      int foundCampaignCategoryId = 0;
+
+      while(rdr.Read())
+      {
+        foundCampaignId = rdr.GetInt32(0);
+        foundCampaignName = rdr.GetString(1);
+        foundCampaignDescription = rdr.GetString(2);
+        foundCampaignGoal = rdr.GetInt32(3);
+        foundCampaignBalance = rdr.GetInt32(4);
+        foundCampaignStart = rdr.GetDateTime(5);
+        foundCampaignEnd = rdr.GetDateTime(6);
+        foundCampaignCategoryId = rdr.GetInt32(7);
+      }
+
+      Campaign foundCampaign = new Campaign(foundCampaignName, foundCampaignDescription, foundCampaignGoal, foundCampaignBalance, foundCampaignStart, foundCampaignEnd, foundCampaignCategoryId, foundCampaignId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      DB.CloseConnection();
+      return foundCampaign;
+    }
+
     public static void DeleteAll()
     {
       DB.CreateConnection();
