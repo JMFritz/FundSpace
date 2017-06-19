@@ -46,6 +46,15 @@ namespace Charity
       Assert.Equal(controlUser, testUser);
     }
 
+    [Fact]
+    public void User_ValidUser_ReturnsUser()
+    {
+        ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
+        User testUser = new User(2, "Anna", "anna123", "123",  info);
+        testUser.Save();
+
+        Assert.Equal(testUser, User.ValiateUser("anna123", "123"));
+    }
     public void Dispose()
     {
       User.DeleteAll();

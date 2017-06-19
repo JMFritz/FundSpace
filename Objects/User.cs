@@ -87,7 +87,6 @@ namespace Charity.Objects
       cmd.Parameters.Add(new SqlParameter("@Name", this.Name));
       cmd.Parameters.Add(new SqlParameter("@Login", this.Login));
       cmd.Parameters.Add(new SqlParameter("@Password", this.Password));
-      Console.WriteLine(this.ContactInfo.Address);
       cmd.Parameters.Add(new SqlParameter("@Address", this.ContactInfo.Address));
       cmd.Parameters.Add(new SqlParameter("@PhoneNumber", this.ContactInfo.PhoneNumber));
       cmd.Parameters.Add(new SqlParameter("@Email", this.ContactInfo.Email));
@@ -98,6 +97,36 @@ namespace Charity.Objects
         this.Id = rdr.GetInt32(0);
       }
       DB.CloseConnection();
+    }
+
+    public static User ValiateUser(string inputLogin, string inputPassword)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE login = @Login AND password = @Password", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@Login", inputLogin));
+      cmd.Parameters.Add(new SqlParameter("@Password", inputPassword));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      User result = null;
+
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        int roleId = rdr.GetInt32(1);
+        string name = rdr.GetString(2);
+        string login = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string address = rdr.GetString(5);
+        string phoneNumber = rdr.GetString(6);
+        string email = rdr.GetString(7);
+
+        ContactInformation info = new ContactInformation(address, phoneNumber, email);
+        result = new User(roleId, name, login, password, info, id);
+      }
+      return result;
     }
 
     public static void DeleteAll()
