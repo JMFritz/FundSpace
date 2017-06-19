@@ -25,7 +25,7 @@ namespace Charity.Objects
       {
         Category newCategory = (Category)otherCategory;
         return (this.Id == newCategory.Id &&
-                this.Name == newCategory.Name &&);
+                this.Name == newCategory.Name);
       }
     }
 
@@ -54,6 +54,67 @@ namespace Charity.Objects
       DB.CloseConnection();
 
       return categories;
+    }
+
+    public void Save()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO categories (name) OUTPUT INSERTED.id VALUES (@Name)", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@Name", this.Name));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        this.Id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
+    public static Category Find(int id)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM categories WHERE id = @CategoryId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CategoryId", id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundCategoryId = 0;
+      string foundCategoryName = null;
+
+      while(rdr.Read())
+      {
+        foundCategoryId = rdr.GetInt32(0);
+        foundCategoryName = rdr.GetString(1);
+      }
+
+      Category foundCategory = new Category(foundCategoryName, foundCategoryId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      DB.CloseConnection();
+      return foundCategory;
+    }
+    public static void DeleteAll()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM categories;", DB.GetConnection());
+
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
     }
   }
 }

@@ -61,52 +61,6 @@ namespace Charity
       Campaign foundCampaign = Campaign.Find(testCampaign.Id);
       Assert.Equal(testCampaign, foundCampaign);
     }
-
-    [Fact]
-    public void CampaignAddDonation_AddDonationToCampaign_ReturnUser()
-    {
-      DateTime start = new DateTime(2017,1,1);
-      DateTime end = new DateTime(2018,1,1);
-
-      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
-      testCampaign.Save();
-
-      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
-      User testUser = new User(2, "Anna", "anna123", "123",  info);
-      testUser.Save();
-
-      testCampaign.AddDonation(testUser);
-
-      List<User> result = testCampaign.GetDonations();
-      List<User> testList = new List<User>{testUser};
-
-      Assert.Equal(testList, result);
-    }
-
-    [Fact]
-    public void CampaignGetDonations_RetrieveAllDonations_ReturnMatchingUser()
-    {
-      DateTime start = new DateTime(2017,1,1);
-      DateTime end = new DateTime(2018,1,1);
-
-      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
-      testCampaign.Save();
-
-      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
-      User testUser = new User(2, "Anna", "anna123", "123",  info);
-      testUser.Save();
-
-      ContactInformation info2 = new ContactInformation("1900 SW Gilligan, Portland", "useremail@gmail.com", "(123)456-7890");
-      User testUser2 = new User(2, "John", "john123", "123",  info2);
-      testUser2.Save();
-
-      testCampaign.AddDonation(testUser);
-      List<User> result = testCampaign.GetDonations();
-      List<User> testList = new List<User> {testUser};
-
-      Assert.Equal(testList, result);
-    }
-
     public void Dispose()
     {
       User.DeleteAll();

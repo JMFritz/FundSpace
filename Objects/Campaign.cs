@@ -165,16 +165,18 @@ namespace Charity.Objects
       int newDonationAmount = 0;
       DateTime newDonationDate = default(DateTime);
 
+      List<Donation> donations = new List<Donation> {};
       while(rdr.Read())
       {
-        int newId = rdr.GetInt32(0);
-        int newUserId = rdr.GetInt32(1);
-        int newCampaignId = rdr.GetInt32(2);
-        int newDonationAmount = rdr.GetInt32(3);
-        DateTime newDonationDate = rdr.GetDateTime(4);
+        newId = rdr.GetInt32(0);
+        newUserId = rdr.GetInt32(1);
+        newCampaignId = rdr.GetInt32(2);
+        newDonationAmount = rdr.GetInt32(3);
+        newDonationDate = rdr.GetDateTime(4);
       }
 
-      Donation donations = new Donation(newUserId, newCampaignId, newDonationAmount, newDonationDate, newId);
+      Donation newDonation = new Donation(newUserId, newCampaignId, newDonationAmount, newDonationDate, newId);
+      donations.Add(newDonation);
 
       if(rdr != null)
       {

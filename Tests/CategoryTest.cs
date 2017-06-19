@@ -32,5 +32,29 @@ namespace Charity
 
       Assert.Equal(categoryList, categoryList2);
     }
+
+    [Fact]
+    public void CategorySave_SavesToDatabase_ReturnCategory()
+    {
+      Category testCategory = new Category("Medical");
+      testCategory.Save();
+      Category testCategory2 = Category.GetAll()[0];
+
+      Assert.Equal(testCategory, testCategory2);
+    }
+
+    [Fact]
+    public void CategoryFind_FindSingleCategory_ReturnFoundCategory()
+    {
+      Category testCategory = new Category("Medical");
+      testCategory.Save();
+
+      Category foundCategory = Category.Find(testCategory.Id);
+      Assert.Equal(testCategory, foundCategory);
+    }
+    public void Dispose()
+    {
+      Category.DeleteAll();
+    }
   }
 }
