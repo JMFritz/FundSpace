@@ -1,0 +1,36 @@
+*, *:before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  height: 800px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+nav {
+  height: 100px;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+nav ul {
+  width: 35%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+nav ul li {
+  margin: 0 20px;
+}
+nav #navLeft {
+  justify-content: flex-start;
+}
+nav #navRight {
+  justify-content: flex-end;
+}
+
+/*# sourceMappingURL=main.css.map */
