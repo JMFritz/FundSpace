@@ -80,25 +80,25 @@ namespace Charity.Objects
       return donations;
     }
 
-    public void Save()
-    {
-      DB.CreateConnection();
-      DB.OpenConnection();
-
-      SqlCommand cmd = new SqlCommand("INSERT INTO donations (user_id, campaign_id, donation_amount, donation_date) OUTPUT INSERTED.id VALUES (@UserId, @CampaignId, @DonationAmount, @DonationDate)", DB.GetConnection());
-
-      cmd.Parameters.Add(new SqlParameter("@UserId", this.UserId));
-      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.CampaignId));
-      cmd.Parameters.Add(new SqlParameter("@DonationAmount", this.DonationAmount));
-      cmd.Parameters.Add(new SqlParameter("@DonationDate", this.DonationDate));
-
-      SqlDataReader rdr = cmd.ExecuteReader();
-      while (rdr.Read())
-      {
-        this.Id = rdr.GetInt32(0);
-      }
-      DB.CloseConnection();
-    }
+    // public void Save()
+    // {
+    //   DB.CreateConnection();
+    //   DB.OpenConnection();
+    //
+    //   SqlCommand cmd = new SqlCommand("INSERT INTO donations (user_id, campaign_id, donation_amount, donation_date) OUTPUT INSERTED.id VALUES (@UserId, @CampaignId, @DonationAmount, @DonationDate)", DB.GetConnection());
+    //
+    //   cmd.Parameters.Add(new SqlParameter("@UserId", this.UserId));
+    //   cmd.Parameters.Add(new SqlParameter("@CampaignId", this.CampaignId));
+    //   cmd.Parameters.Add(new SqlParameter("@DonationAmount", this.DonationAmount));
+    //   cmd.Parameters.Add(new SqlParameter("@DonationDate", this.DonationDate));
+    //
+    //   SqlDataReader rdr = cmd.ExecuteReader();
+    //   while (rdr.Read())
+    //   {
+    //     this.Id = rdr.GetInt32(0);
+    //   }
+    //   DB.CloseConnection();
+    // }
 
     public static Donation Find(int searchId)
     {
