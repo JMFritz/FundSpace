@@ -7,11 +7,10 @@ using Charity.Objects;
 namespace Charity
 {
   [Collection("Charity")]
-  public class CharityTest : IDisposable
+  public class UserTest : IDisposable
   {
-    public CharityTest()
+    public UserTest()
     {
-      // Console.WriteLine("Hello");
       DBConfiguration.ConnectionString = "Data Source=DESKTOP-6CVACGR\\SQLEXPRESS;Initial Catalog=charity_test;Integrated Security=SSPI;";
     }
 
@@ -39,7 +38,6 @@ namespace Charity
     {
       ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
       User controlUser = new User(2, "Anna", "anna123", "123",  info);
-      Console.WriteLine(controlUser.ContactInfo.Address);
       controlUser.Save();
       User testUser = User.GetAll()[0];
 
