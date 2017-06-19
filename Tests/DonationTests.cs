@@ -43,6 +43,7 @@ namespace Charity
     {
       Donation.DeleteAll();
       User.DeleteAll();
+      Campaign.DeleteAll();
     }
   }
 }
