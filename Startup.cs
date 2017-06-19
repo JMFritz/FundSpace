@@ -40,6 +40,6 @@ namespace Charity
   }
   public static class DBConfiguration
   {
-    public static string ConnectionString = "Data Source=DESKTOP-6CVACGR\\SQLEXPRESS;Initial Catalog=charity;Integrated Security=SSPI;";
+    public static string ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=charity;Integrated Security=SSPI;";
   }
 }
