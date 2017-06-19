@@ -149,53 +149,42 @@ namespace Charity.Objects
       return foundCampaign;
     }
 
-    public void AddDonation(User newUser)
+    public List<Donation> GetDonations()
     {
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO donations (campaign_id, user_id) VALUES (@CampaignId, @UserId);", DB.GetConnection());
-
-      cmd.Parameters.Add(new SqlParameter("@CampiagnId", this.id));
-      cmd.Parameters.Add(new SqlParameter("UserId", newUser.Id));
-
-      cmd.ExecuteNonQuery();
-      DB.CloseConnection();
-    }
-    public List<User> GetDonations()
-    {
-      DB.CreateConnection();
-      DB.OpenConnection();
-
-      SqlCommand cmd = new SqlCommand("SELECT users.* FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users ON (donations.user_id = users.id) WHERE campaigns.id = @CampaignId ORDER BY name;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("SELECT * FROM donations WHERE campaign_id = @CampaignId;", DB.GetConnection());
 
       cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
-
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Users> users = new List<users> {};
+      int newId = 0;
+      int newUserId = 0;
+      int newCampaignId = 0;
+      int newDonationAmount = 0;
+      DateTime newDonationDate = default(DateTime);
 
+      List<Donation> donations = new List<Donation> {};
       while(rdr.Read())
       {
-        int thisUserId = rdr.GetInt32(0);
-        int roleId = rdr.GetInt32(1);
-        string name = rdr.GetString(2);
-        string login = rdr.GetString(3);
-        string password = rdr.GetString(4);
-        string address = rdr.GetString(5);
-        string phoneNumber = rdr.GetString(6);
-        string email = rdr.GetString(7);
-
-        ContactInformation info = new ContactInformation(address, phoneNumber, email);
-        result = new User(roleId, name, login, password, info, thisUserId);
+        newId = rdr.GetInt32(0);
+        newUserId = rdr.GetInt32(1);
+        newCampaignId = rdr.GetInt32(2);
+        newDonationAmount = rdr.GetInt32(3);
+        newDonationDate = rdr.GetDateTime(4);
       }
-      if (rdr != null)
+
+      Donation newDonation = new Donation(newUserId, newCampaignId, newDonationAmount, newDonationDate, newId);
+      donations.Add(newDonation);
+
+      if(rdr != null)
       {
         rdr.Close();
       }
 
       DB.CloseConnection();
-      return users;
+      return donations;
     }
 
     public static void DeleteAll()

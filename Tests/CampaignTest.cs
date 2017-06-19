@@ -63,6 +63,7 @@ namespace Charity
     }
     public void Dispose()
     {
+      User.DeleteAll();
       Campaign.DeleteAll();
     }
   }

@@ -11,7 +11,7 @@ namespace Charity
   {
     public DonationTest()
     {
-      DBConfiguration.ConnectionString = "Data Source=DESKTOP-6CVACGR\\SQLEXPRESS;Initial Catalog=charity_test;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;;Initial Catalog=charity_test;Integrated Security=SSPI;";
     }
 
     [Fact]
@@ -43,6 +43,7 @@ namespace Charity
     {
       Donation.DeleteAll();
       User.DeleteAll();
+      Campaign.DeleteAll();
     }
   }
 }
