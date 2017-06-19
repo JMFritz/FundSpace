@@ -126,6 +126,11 @@ namespace Charity.Objects
         ContactInformation info = new ContactInformation(address, phoneNumber, email);
         result = new User(roleId, name, login, password, info, id);
       }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
       return result;
     }
 

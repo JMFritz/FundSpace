@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+
+namespace Charity.Objects
+{
+  public class Campaign
+  {
+    public int Id {get; set;}
+    public string Name {get; set;}
+    public string Description {get; set;}
+    public int Goal {get; set;}
+    public int Balance {get; set;}
+    public DateTime Start {get; set;}
+    public DateTime End {get; set;}
+    public int CategoryId {get; set;}
+
+    public Campaign(string name, string description, int goal, int balance, DateTime start, DateTime end, int categoryId, int id = 0)
+    {
+      Name = name;
+      Description = description;
+      Goal = goal;
+      Balance = balance;
+      Start = start;
+      End = end;
+      CategoryId = categoryId;
+      Id = id;
+    }
+
+    public override bool Equals(System.Object otherCampaign)
+    {
+      if (!(otherCampaign is Campaign))
+      {
+        return false;
+      }
+      else
+      {
+        Campaign newCampaign = (Campaign)otherCampaign;
+        return (this.Id == newCampaign.Id &&
+                this.Name == newCampaign.Name &&
+                this.Description == newCampaign.Description &&
+                this.Goal == newCampaign.Goal &&
+                this.Balance == newCampaign.Balance &&
+                this.Start == newCampaign.Start &&
+                this.End == newCampaign.End &&
+                this.CategoryId == newCampaign.CategoryId);
+      }
+    }
+
+    public static List<Campaign> GetAll()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM campaigns;", DB.GetConnection());
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Campaign> campaigns = new List<Campaign>{};
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string description = rdr.GetString(2);
+        int goal = rdr.GetInt32(3);
+        int balance = rdr.GetInt32(4);
+        DateTime start = rdr.GetDateTime(5);
+        DateTime end = rdr.GetDateTime(6);
+        int categoryId = rdr.GetInt32(7);
+
+        Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, id);
+        campaigns.Add(newCampaign);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return campaigns;
+    }
+
+  }
+}
