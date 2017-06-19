@@ -16,7 +16,7 @@ namespace Charity
     }
 
     [Fact]
-    public void Campaign_Equals_CampaignEqualsCampaign()
+    public void CampaignEquals_CompareCampaigns_ReturnCampaignsAreEqual()
     {
       DateTime start = DateTime.Now;
       DateTime end = new DateTime(2018,1,1);
@@ -25,6 +25,15 @@ namespace Charity
       Campaign testCampaign2 = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
 
       Assert.Equal(testCampaign, testCampaign2);
+    }
+
+    [Fact]
+    public void CampaignGetAll_RetrieveAllCampaigns_ReturnEmptyList()
+    {
+      List<Campaign> campaignList = Campaign.GetAll();
+      List<Campaign> campaignList2 = new List<Campaign>{};
+
+      Assert.Equal(campaignList, campaignList2);
     }
   }
 }
