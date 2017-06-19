@@ -38,7 +38,6 @@ namespace Charity
     {
       ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
       User controlUser = new User(2, "Anna", "anna123", "123",  info);
-      Console.WriteLine(controlUser.ContactInfo.Address);
       controlUser.Save();
       User testUser = User.GetAll()[0];
 
