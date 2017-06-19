@@ -11,7 +11,6 @@ namespace Charity
   {
     public UserTest()
     {
-      // Console.WriteLine("Hello");
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=charity_test;Integrated Security=SSPI;";
     }
 
@@ -19,8 +18,8 @@ namespace Charity
     public void User_Equals_UserEqualsUser()
     {
       ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
-      User testUser = new User(2, "Anna", "anna123", "123",  info, 1);
-      User controlUser = new User(2, "Anna", "anna123", "123",  info, 1);
+      User testUser = new User("Anna", "anna123", "123",  info, 1);
+      User controlUser = new User("Anna", "anna123", "123",  info, 1);
 
       Assert.Equal(controlUser, testUser);
     }
@@ -38,7 +37,7 @@ namespace Charity
     public void User_SaveUser_SaveToDB()
     {
       ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
-      User controlUser = new User(2, "Anna", "anna123", "123",  info);
+      User controlUser = new User("Anna", "anna123", "123",  info);
       controlUser.Save();
       User testUser = User.GetAll()[0];
 
@@ -46,18 +45,30 @@ namespace Charity
     }
 
     [Fact]
+    public void User_Find_FindsUserInDB()
+    {
+      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
+      User controlUser = new User("Anna", "anna123", "123",  info);
+      controlUser.Save();
+
+      User testUser = User.Find(controlUser.Id);
+
+      Assert.Equal(controlUser, testUser);
+    }
+
+
+    [Fact]
     public void User_ValidUser_ReturnsUser()
     {
         ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
-        User testUser = new User(2, "Anna", "anna123", "123",  info);
+        User testUser = new User("Anna", "anna123", "123",  info);
         testUser.Save();
 
         Assert.Equal(testUser, User.ValiateUser("anna123", "123"));
     }
     public void Dispose()
     {
-      Campaign.DeleteAll();
-      Donation.DeleteAll();
+      Category.DeleteAll();
       User.DeleteAll();
     }
   }

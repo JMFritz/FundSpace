@@ -14,6 +14,14 @@ namespace Charity.Objects
     public int DonationAmount {get; set;}
     public DateTime DonationDate {get; set;}
 
+    public Donation()
+    {
+      UserId = 0;
+      CampaignId = 0;
+      DonationAmount = 0;
+      DonationDate = default(DateTime);
+      Id = 0;
+    }
     public Donation(int userId, int campaignId, int donationAmount, DateTime donationDate, int id = 0)
     {
       UserId = userId;
@@ -90,6 +98,36 @@ namespace Charity.Objects
         this.Id = rdr.GetInt32(0);
       }
       DB.CloseConnection();
+    }
+
+    public static Donation Find(int searchId)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM donations WHERE id = @DonationId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@DonationId", searchId));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      Donation foundDonation = new Donation();
+      while (rdr.Read())
+      {
+        foundDonation.Id = rdr.GetInt32(0);
+        foundDonation.UserId = rdr.GetInt32(1);
+        foundDonation.CampaignId = rdr.GetInt32(2);
+        foundDonation.DonationAmount = rdr.GetInt32(3);
+        foundDonation.DonationDate = rdr.GetDateTime(4);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return foundDonation;
     }
 
     public static void DeleteAll()
