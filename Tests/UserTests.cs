@@ -7,9 +7,9 @@ using Charity.Objects;
 namespace Charity
 {
   [Collection("Charity")]
-  public class CharityTest : IDisposable
+  public class UserTest : IDisposable
   {
-    public CharityTest()
+    public UserTest()
     {
       // Console.WriteLine("Hello");
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=charity_test;Integrated Security=SSPI;";

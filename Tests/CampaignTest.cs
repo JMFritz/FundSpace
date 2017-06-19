@@ -7,7 +7,7 @@ using Charity.Objects;
 namespace Charity
 {
   [Collection("Charity")]
-  public class CampaignTest
+  public class CampaignTest : IDisposable
   {
     public CampaignTest()
     {
@@ -34,6 +34,23 @@ namespace Charity
       List<Campaign> campaignList2 = new List<Campaign>{};
 
       Assert.Equal(campaignList, campaignList2);
+    }
+
+    [Fact]
+    public void CampaignSave_SavesToDatabase_ReturnCampaign()
+    {
+      DateTime start = new DateTime(2017,1,1);
+      DateTime end = new DateTime(2018,1,1);
+
+      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      testCampaign.Save();
+      Campaign testCampaign2 = Campaign.GetAll()[0];
+
+      Assert.Equal(testCampaign, testCampaign2);
+    }
+    public void Dispose()
+    {
+      Campaign.DeleteAll();
     }
   }
 }

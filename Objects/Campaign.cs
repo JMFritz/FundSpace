@@ -80,5 +80,41 @@ namespace Charity.Objects
       return campaigns;
     }
 
+    public void Save()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO campaigns (name, description, goal_amt, current_amt, start_date, end_date, category_id) OUTPUT INSERTED.id VALUES (@Name, @Description, @Goal, @Balance, @Start, @End, @CategoryId)", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@Name", this.Name));
+      cmd.Parameters.Add(new SqlParameter("@Description", this.Description));
+      cmd.Parameters.Add(new SqlParameter("@Goal", this.Goal));
+      cmd.Parameters.Add(new SqlParameter("@Balance", this.Balance));
+      cmd.Parameters.Add(new SqlParameter("@Start", this.Start));
+      cmd.Parameters.Add(new SqlParameter("@End", this.End));
+      cmd.Parameters.Add(new SqlParameter("@CategoryId", this.CategoryId));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        this.Id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+    public static void DeleteAll()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM campaigns;", DB.GetConnection());
+
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
+    }
   }
 }
