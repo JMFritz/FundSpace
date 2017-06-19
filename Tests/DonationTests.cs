@@ -18,7 +18,7 @@ namespace Charity
     public void Donation_Equals_DonationEqualsDonation()
     {
       ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
-      User newUser = new User(2, "Anna", "anna123", "123",  info, 1);
+      User newUser = new User("Anna", "anna123", "123",  info, 1);
       newUser.Save();
       Donation testDonation = new Donation(newUser.Id, 1, 25, new DateTime(2017, 05, 21), 2);
 
@@ -30,7 +30,7 @@ namespace Charity
     public void Donation_SaveDonation_SaveToDB()
     {
       ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
-      User newUser = new User(2, "Anna", "anna123", "123",  info);
+      User newUser = new User("Anna", "anna123", "123",  info);
       newUser.Save();
       Donation controlDonation = new Donation(newUser.Id, 1, 25, new DateTime(2017, 05, 21), 2);
       controlDonation.Save();

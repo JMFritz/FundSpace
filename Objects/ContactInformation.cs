@@ -10,6 +10,12 @@ namespace Charity.Objects
     public string PhoneNumber {get; set;}
     public string Email {get; set;}
 
+    public ContactInformation()
+    {
+      Address = null;
+      PhoneNumber = null;
+      Email = null;
+    }
     public ContactInformation(string address, string phoneNumber, string email)
     {
       Address = address;

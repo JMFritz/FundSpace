@@ -11,16 +11,25 @@ namespace Charity.Objects
     public string Name {get; set;}
     public string Login {get; set;}
     public string Password {get; set;}
-    // public int DonateAmout {get; set;}
     public ContactInformation ContactInfo {get; set;}
 
-    public User(int roleId, string name, string login, string password, ContactInformation contactInfo, int id = 0)
+    public User()
     {
-      RoleId = roleId;
+      Name = null;
+      Login = null;
+      Password = null;
+      ContactInfo = null;
+      RoleId = 0;
+      Id = 0;
+    }
+
+    public User(string name, string login, string password, ContactInformation contactInfo, int roleId = 1, int id = 0)
+    {
       Name = name;
       Login = login;
       Password = password;
       ContactInfo = contactInfo;
+      RoleId = roleId;
       Id = id;
     }
 
@@ -63,7 +72,7 @@ namespace Charity.Objects
         string email = rdr.GetString(7);
 
         ContactInformation info = new ContactInformation(address, phoneNumber, email);
-        User user = new User(roleId, name, login, password, info, id);
+        User user = new User(name, login, password, info, roleId, id);
         users.Add(user);
       }
 
@@ -124,14 +133,77 @@ namespace Charity.Objects
         string email = rdr.GetString(7);
 
         ContactInformation info = new ContactInformation(address, phoneNumber, email);
-        result = new User(roleId, name, login, password, info, id);
+        result = new User(name, login, password, info, roleId, id);
       }
+      return result;
+    }
+
+    public static User Find(int searchId)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE id = @UserId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@UserId", searchId));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      User foundUser = new User();
+      while (rdr.Read())
+      {
+        ContactInformation info = new ContactInformation();
+        foundUser.Id = rdr.GetInt32(0);
+        foundUser.RoleId = rdr.GetInt32(1);
+        foundUser.Name = rdr.GetString(2);
+        foundUser.Login = rdr.GetString(3);
+        foundUser.Password = rdr.GetString(4);
+
+        info.Address = rdr.GetString(5);
+        info.PhoneNumber = rdr.GetString(6);
+        info.Email = rdr.GetString(7);
+        foundUser.ContactInfo = info;
+      }
+
       if (rdr != null)
       {
         rdr.Close();
       }
       DB.CloseConnection();
-      return result;
+
+      return foundUser;
+    }
+
+    public List<Donation> GetDonations()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM donations WHERE @UserId = user_id;", DB.GetConnection());
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Donation> donations = new List<Donation>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        int userId = rdr.GetInt32(1);
+        int campaignId = rdr.GetInt32(2);
+        int donationAmount = rdr.GetInt32(3);
+        DateTime donationDate = rdr.GetDateTime(4);
+
+        Donation newDonation = new Donation(userId, campaignId, donationAmount, donationDate, id);
+
+        donations.Add(newDonation);
+
+        if (rdr != null)
+        {
+          rdr.Close();
+        }
+        DB.CloseConnection();
+      }
+      return donations;
     }
 
     public static void DeleteAll()

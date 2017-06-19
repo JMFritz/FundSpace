@@ -107,16 +107,16 @@ namespace Charity.Objects
       return foundCategory;
     }
 
-    public List<Campaigns> GetCampaigns()
+    public List<Campaign> GetCampaigns()
     {
       DB.CreateConnection();
       DB.OpenConnection();
 
       SqlCommand cmd = new SqlCommand("SELECT * FROM categories WHERE category_id = @CategoryId;", DB.GetConnection());
-      cmd.Parameters.Add(new SqlCommand("@CategoryId", this.Id));
+      cmd.Parameters.Add(new SqlParameter("@CategoryId", this.Id));
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Campaigns> campaigns = new List<Copies>{};
+      List<Campaign> campaigns = new List<Campaign>{};
 
       while(rdr.Read())
       {
