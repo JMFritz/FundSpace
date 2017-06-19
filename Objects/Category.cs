@@ -106,6 +106,39 @@ namespace Charity.Objects
       DB.CloseConnection();
       return foundCategory;
     }
+
+    public List<Campaigns> GetCampaigns()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM categories WHERE category_id = @CategoryId;", DB.GetConnection());
+      cmd.Parameters.Add(new SqlCommand("@CategoryId", this.Id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Campaigns> campaigns = new List<Copies>{};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string description = rdr.GetString(2);
+        int goal = rdr.GetInt32(3);
+        int balance = rdr.GetInt32(4);
+        DateTime start = rdr.GetDateTime(5);
+        DateTime end = rdr.GetDateTime(6);
+        int categoryId = rdr.GetInt32(7);
+
+        Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, id);
+        campaigns.Add(newCampaign);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+      return campaigns;
+    }
     public static void DeleteAll()
     {
       DB.CreateConnection();
