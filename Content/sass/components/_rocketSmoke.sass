@@ -43,24 +43,33 @@
 		opacity: 0
 		transform: scale(1) translate(20px, 150px)
 
-#smoke
-	.s0
-		animation: smokeL 10s 0s infinite
-	.s1
-		animation: smokeR 10s 1s infinite
-	.s2
-		animation: smokeL 10s 2s infinite
-	.s3
-		animation: smokeR 10s 3s infinite
-	.s4
-		animation: smokeL 10s 4s infinite
-	.s5
-		animation: smokeR 10s 5s infinite
-	.s6
-		animation: smokeL 10s 6s infinite
-	.s7
-		animation: smokeR 10s 7s infinite
-	.s8
-		animation: smokeL 10s 8s infinite
-	.s9
-		animation: smokeR 10s 9s infinite
+@for $i from 0 through 9
+	@if $i % 2 == 0
+		#smoke
+			.s#{$i}
+				animation: smokeR 10s #{$i}s infinite
+	@else
+		#smoke
+			.s#{$i}
+				animation: smokeL 10s #{$i}s infinite
+// #smoke
+// 	.s0
+// 		animation: smokeL 10s 0s infinite
+// 	.s1
+// 		animation: smokeR 10s 1s infinite
+// 	.s2
+// 		animation: smokeL 10s 2s infinite
+// 	.s3
+// 		animation: smokeR 10s 3s infinite
+// 	.s4
+// 		animation: smokeL 10s 4s infinite
+// 	.s5
+// 		animation: smokeR 10s 5s infinite
+// 	.s6
+// 		animation: smokeL 10s 6s infinite
+// 	.s7
+// 		animation: smokeR 10s 7s infinite
+// 	.s8
+// 		animation: smokeL 10s 8s infinite
+// 	.s9
+// 		animation: smokeR 10s 9s infinite

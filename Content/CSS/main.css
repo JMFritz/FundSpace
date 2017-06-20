@@ -111,6 +111,87 @@ section .categories ul li div img {
   width: 80px;
   height: 80px;
 }
+section .userTop, section .userBottom {
+  display: flex;
+  border: 1px solid black;
+}
+section .userTop .userInfo, section .userTop .myCampaigns, section .userBottom .userInfo, section .userBottom .myCampaigns {
+  flex-basis: 60%;
+  border: 1px solid green;
+}
+section .userTop .createButton, section .userTop .myDonations, section .userBottom .createButton, section .userBottom .myDonations {
+  flex-basis: 40%;
+  border: 1px solid red;
+}
+section .userTop .userInfo, section .userTop .createButton, section .userBottom .userInfo, section .userBottom .createButton {
+  height: 500px;
+}
+section .userTop .userInfo, section .userBottom .userInfo {
+  display: flex;
+}
+section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid blue;
+}
+section .userTop .userInfo .userImage img, section .userBottom .userInfo .userImage img {
+  margin: 30px;
+  height: 400px;
+  width: 400px;
+}
+section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  border: 1px solid pink;
+}
+section .userTop .createButton, section .userBottom .createButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .userTop .createButton button, section .userBottom .createButton button {
+  height: 300px;
+  width: 400px;
+  border: 2px solid black;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .userTop .createButton button h2, section .userBottom .createButton button h2 {
+  padding: 30px 50px;
+  font-size: 56px;
+  font-family: josephin-semiBold;
+}
+section .userTop .userDonations, section .userBottom .userDonations {
+  width: 90%;
+  margin: 30px auto;
+  padding: 20px;
+  height: 800px;
+  background-color: #16afbd;
+}
+section .userTop .userDonations .donationInfo, section .userBottom .userDonations .donationInfo {
+  width: 400px;
+  height: 150px;
+  margin: 20px auto;
+  background-color: #fff;
+  display: flex;
+}
+section .userTop .userDonations .donationInfo .donationUserImage, section .userBottom .userDonations .donationInfo .donationUserImage {
+  flex-basis: 30%;
+}
+
+.myProfile h1 {
+  padding: 30px 50px;
+  font-size: 26px;
+  font-family: josephin-semiBold;
+}
 
 .logInContainer, .createCampaignContainer {
   width: 100%;
@@ -293,34 +374,43 @@ input {
   }
 }
 #smoke .s0 {
-  animation: smokeL 10s 0s infinite;
+  animation: smokeR 10s 0s infinite;
 }
+
 #smoke .s1 {
-  animation: smokeR 10s 1s infinite;
+  animation: smokeL 10s 1s infinite;
 }
+
 #smoke .s2 {
-  animation: smokeL 10s 2s infinite;
+  animation: smokeR 10s 2s infinite;
 }
+
 #smoke .s3 {
-  animation: smokeR 10s 3s infinite;
+  animation: smokeL 10s 3s infinite;
 }
+
 #smoke .s4 {
-  animation: smokeL 10s 4s infinite;
+  animation: smokeR 10s 4s infinite;
 }
+
 #smoke .s5 {
-  animation: smokeR 10s 5s infinite;
+  animation: smokeL 10s 5s infinite;
 }
+
 #smoke .s6 {
-  animation: smokeL 10s 6s infinite;
+  animation: smokeR 10s 6s infinite;
 }
+
 #smoke .s7 {
-  animation: smokeR 10s 7s infinite;
+  animation: smokeL 10s 7s infinite;
 }
+
 #smoke .s8 {
-  animation: smokeL 10s 8s infinite;
+  animation: smokeR 10s 8s infinite;
 }
+
 #smoke .s9 {
-  animation: smokeR 10s 9s infinite;
+  animation: smokeL 10s 9s infinite;
 }
 
 .hero {
