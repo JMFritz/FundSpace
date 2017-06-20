@@ -214,7 +214,6 @@ namespace Charity.Objects
         this.Start = rdr.GetDateTime(4);
         this.End = rdr.GetDateTime(5);
         this.CategoryId = rdr.GetInt32(6);
-        // this.Id =
       }
 
       if (rdr != null)

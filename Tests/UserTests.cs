@@ -56,7 +56,6 @@ namespace Charity
       Assert.Equal(controlUser, testUser);
     }
 
-
     [Fact]
     public void User_ValidUser_ReturnsUser()
     {
@@ -70,21 +69,35 @@ namespace Charity
     [Fact]
     public void User_MakeDonation_ConnectsUserAndCampaign()
     {
-        ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
-        User newUser = new User("Anna", "anna123", "123",  info);
-        newUser.Save();
+      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
+      User newUser = new User("Anna", "anna123", "123",  info);
+      newUser.Save();
 
-        DateTime start = new DateTime(2017,1,1);
-        DateTime end = new DateTime(2018,1,1);
+      DateTime start = new DateTime(2017,1,1);
+      DateTime end = new DateTime(2018,1,1);
 
-        Campaign newCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      Campaign newCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
 
-        Donation testDonation = newUser.MakeDonation(newCampaign, 25, new DateTime (2017, 03, 3));
-        Donation controlDonation = new Donation(newUser.Id, newCampaign.Id, 25, new DateTime (2017, 03, 3), testDonation.Id);
+      Donation testDonation = newUser.MakeDonation(newCampaign, 25, new DateTime (2017, 03, 3));
+      Donation controlDonation = new Donation(newUser.Id, newCampaign.Id, 25, new DateTime (2017, 03, 3), testDonation.Id);
 
-        Assert.Equal(controlDonation, testDonation);
+      Assert.Equal(controlDonation, testDonation);
     }
 
+    [Fact]
+    public void User_Update_UpdateUserInfo()
+    {
+      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
+      User testUser = new User("Anna", "anna123", "123",  info);
+      testUser.Save();
+
+      testUser.Update("Lena", "anna123", "456", "21st W.Burnside, Portland", "useremail@gmail.com", "(631)456-7890");
+
+      ContactInformation updatedInfo = new ContactInformation("21st W.Burnside, Portland", "useremail@gmail.com", "(631)456-7890");
+      User controlUser =new User("Lena", "anna123", "456", updatedInfo, testUser.RoleId, testUser.Id);
+
+      Assert.Equal(controlUser, testUser);
+    }
 
     public void Dispose()
     {
