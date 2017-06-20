@@ -111,7 +111,8 @@ section .categories ul li div img {
   width: 80px;
   height: 80px;
 }
-section .logInContainer {
+
+.logInContainer {
   width: 100%;
   height: 80vh;
   padding: 50px;
@@ -119,19 +120,13 @@ section .logInContainer {
   justify-content: space-between;
   background-color: #16afbd;
 }
-section .logInContainer div {
+.logInContainer div {
   text-align: center;
 }
-section .logInContainer div input {
-  display: block;
-  height: 20px;
-  width: 90%;
-  margin: 10px auto;
-}
-section .logInContainer #logIn {
+.logInContainer #logIn {
   flex-basis: 45%;
 }
-section .logInContainer #signUp {
+.logInContainer #signUp {
   flex-basis: 45%;
 }
 
@@ -195,6 +190,13 @@ footer ul li img {
   opacity: 0.6;
   display: block;
   transform: translateX(189.5px) translateY(100px) translateX(-200px) translateZ(-200px);
+}
+
+input {
+  display: block;
+  height: 20px;
+  width: 90%;
+  margin: 10px auto;
 }
 
 .cards {
