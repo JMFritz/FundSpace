@@ -41,11 +41,43 @@
         <img src="http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg" alt="" />
       </div>
       <div class="userText">
-        <h2><span class="userTextLabel">Name: </span>Inputted Name</h2>
-        <h2><span class="userTextLabel">UserName: </span>Inputted User Name</h2>
-        <h2><span class="userTextLabel">Address: </span>Inputted Address</h2>
-        <h2><span class="userTextLabel">Phone: </span>Inputted Phone</h2>
-        <h2><span class="userTextLabel">Email: </span>Inputted Email</h2>
+        <label for="toggle-1">Edit</label>
+        <input type="checkbox" id="toggle-1">
+        <div class="currentUserInfo">
+          <h2><span>Name: </span>Inputted Name</h2>
+          <h2><span>UserName: </span>Inputted User Name</h2>
+          <h2><span>Address: </span>Inputted Address</h2>
+          <h2><span>Phone: </span>Inputted Phone</h2>
+          <h2><span>Email: </span>Inputted Email</h2>
+        </div>
+        <form class="updateForm" action="/" method="post">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input class="form-control" type="text" name="name" required>
+          </div>
+          <div class="form-group">
+            <label>Username</label>
+            <input class="form-control" type="text" name="username" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="text" name="password" required>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input class="form-control" type="text" name="address" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input class="form-control" type="text" name="phone-number" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="text" name="email" required>
+          </div>
+          <button type="submit" name="button">Update</button>
+        </form>
+        <!-- <button type="button" name="button">Edit</button> -->
       </div>
     </div>
     <div class="createButton">

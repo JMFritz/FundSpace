@@ -145,10 +145,34 @@ section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
   flex-basis: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 60px 30px 30px;
   border: 1px solid pink;
+}
+section .userTop .userInfo .userText .currentUserInfo, section .userBottom .userInfo .userText .currentUserInfo {
+  visibility: visible;
+}
+section .userTop .userInfo .userText .updateForm, section .userBottom .userInfo .userText .updateForm {
+  visibility: hidden;
+  height: 0;
+}
+section .userTop .userInfo .userText input[type=checkbox], section .userBottom .userInfo .userText input[type=checkbox] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
+  -webkit-appearance: push-button;
+  -moz-appearance: button;
+  cursor: pointer;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo {
+  visibility: hidden;
+  height: 0;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .updateForm, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .updateForm {
+  visibility: visible;
+  height: auto;
 }
 section .userTop .createButton, section .userBottom .createButton {
   display: flex;

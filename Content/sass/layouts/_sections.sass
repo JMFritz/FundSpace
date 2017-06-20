@@ -4,12 +4,9 @@ section
     font-family: josephin-semiBold
     width: 100%
     margin: 0 auto
-    // height: 1200px
-    // background-color: #000
     ul
       width: 90%
       max-width: 1650px
-      // height: 140px
       list-style: none
       display: flex
       align-items: center
@@ -18,7 +15,6 @@ section
       li
         height: 120px
         width: 120px
-        // border-radius: 100%
         margin: 20px auto
         font-size: 20px
         display: flex
@@ -33,7 +29,6 @@ section
           width: 120px
           height: 120px
           border-radius: 100%
-          // border: 3px dashed darkgray
           background-color: #bbb9b7
           padding: 10px
           display: flex
@@ -54,8 +49,6 @@ section
       border: 1px solid red
     .userInfo, .createButton
       height: 500px
-    .myCampaigns, .myDonations
-      // height: 700px
     .userInfo
       display: flex
       .userImage
@@ -72,10 +65,29 @@ section
         flex-basis: 60%
         display: flex
         flex-direction: column
-        justify-content: center
         align-items: center
-        padding: 30px
+        padding: 60px 30px 30px
         border: 1px solid pink
+        .currentUserInfo
+          visibility: visible
+        .updateForm
+          visibility: hidden
+          height: 0
+        input[type=checkbox]
+          position: absolute
+          top: -9999px
+          left: -9999px
+        > label
+          -webkit-appearance: push-button
+          -moz-appearance: button
+          cursor: pointer
+        >input[type=checkbox]:checked ~ .currentUserInfo
+          visibility: hidden
+          height: 0
+        >input[type=checkbox]:checked ~ .updateForm
+          visibility: visible
+          height: auto
+
     .createButton
       display: flex
       justify-content: center
