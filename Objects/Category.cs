@@ -112,7 +112,7 @@ namespace Charity.Objects
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM categories WHERE category_id = @CategoryId;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("SELECT * FROM campaigns WHERE category_id = @CategoryId;", DB.GetConnection());
       cmd.Parameters.Add(new SqlParameter("@CategoryId", this.Id));
       SqlDataReader rdr = cmd.ExecuteReader();
 

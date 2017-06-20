@@ -11,7 +11,7 @@ namespace Charity
   {
     public CampaignTest()
     {
-      DBConfiguration.ConnectionString = "Data Source=DESKTOP-6CVACGR\\SQLEXPRESS;Initial Catalog=charity_test;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=charity_test;Integrated Security=SSPI;";
     }
 
     [Fact]
@@ -78,6 +78,22 @@ namespace Charity
     }
 
     [Fact]
+    public void Campaign_Update_UpdateCampaignBalance()
+    {
+      DateTime start = new DateTime(2018,1,1);
+      DateTime end = new DateTime(2019,1,1);
+
+      Campaign campaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 500, 0, start, end, 1);
+      campaign.Save();
+
+      campaign.UpdateBalance(30);
+
+      Campaign controlCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 500, 30, start, end, 1, campaign.Id);
+
+      Assert.Equal(controlCampaign, campaign);
+    }
+
+    [Fact]
     public void Campaign_DeleteSingleCampaign_DeletesCampaign()
     {
       DateTime start = new DateTime(2018,1,1);
@@ -93,6 +109,48 @@ namespace Charity
       List<Campaign> controlList = new List<Campaign>{campaign2};
       Assert.Equal(controlList, testList);
     }
+    [Fact]
+    public void CampaignGetDonations_RetrieveCampaignDonations_ReturnListOfDonations()
+    {
+      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
+      User newUser = new User("Anna", "anna123", "123",  info);
+      newUser.Save();
+
+      DateTime start = new DateTime(2017,1,1);
+      DateTime end = new DateTime(2018,1,1);
+
+      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      testCampaign.Save();
+
+      Donation testDonation = newUser.MakeDonation(testCampaign, 10, new DateTime (2017,3,3));
+      Donation controlDonation = new Donation(newUser.Id, testCampaign.Id, 10, new DateTime(2017,3,3), testDonation.Id);
+
+      List<Donation> testDonations = testCampaign.GetDonations();
+      Assert.Equal(controlDonation, testDonations[0]);
+    }
+
+
+
+    [Fact]
+    public void CampaignGetGivers_RetrieveCampaignDonators_ReturnListOfUsers()
+    {
+      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
+      User newUser = new User("Anna", "anna123", "123",  info);
+      newUser.Save();
+
+      DateTime start = new DateTime(2017,1,1);
+      DateTime end = new DateTime(2018,1,1);
+
+      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      testCampaign.Save();
+
+      Donation testDonation = newUser.MakeDonation(testCampaign, 10, new DateTime (2017,3,3));
+      Donation controlDonation = new Donation(newUser.Id, testCampaign.Id, 10, new DateTime(2017,3,3), testDonation.Id);
+
+      List<User> testUsers = testCampaign.GetGivers();
+      Assert.Equal(newUser, testUsers[0]);
+    }
+
 
     public void Dispose()
     {

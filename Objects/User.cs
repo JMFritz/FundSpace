@@ -6,6 +6,8 @@ namespace Charity.Objects
 {
   public class User
   {
+    public static User CurrentUser;
+
     public int Id {get; set;}
     public int RoleId {get; set;}
     public string Name {get; set;}
@@ -32,6 +34,11 @@ namespace Charity.Objects
       RoleId = roleId;
       Id = id;
     }
+    // 
+    // public static User GetCurrentUser()
+    // {
+    //   return CurrentUser;
+    // }
 
     public override bool Equals(System.Object otherUser)
     {

@@ -14,6 +14,8 @@ namespace Charity.Objects
     public DateTime Start {get; set;}
     public DateTime End {get; set;}
     public int CategoryId {get; set;}
+    public int OwnerId {get; set;} //don't forget add me!!!!!!!!!
+
 
     public Campaign(string name, string description, int goal, int balance, DateTime start, DateTime end, int categoryId, int id = 0)
     {
@@ -24,6 +26,7 @@ namespace Charity.Objects
       Start = start;
       End = end;
       CategoryId = categoryId;
+
       Id = id;
     }
 
@@ -149,6 +152,44 @@ namespace Charity.Objects
       return foundCampaign;
     }
 
+    public List<User> GetGivers()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT users.* FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users (users.id = donations.user_id) WHERE campaign_id = @CampaignId ;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<User> givers = new List<User> {};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        int roleId = rdr.GetInt32(1);
+        string name = rdr.GetString(2);
+        string login = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string address = rdr.GetString(5);
+        string phoneNumber = rdr.GetString(6);
+        string email = rdr.GetString(7);
+
+        ContactInformation info = new ContactInformation(address, phoneNumber, email);
+        User giver = new User(name, login, password, info, roleId, id);
+        givers.Add(giver);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      DB.CloseConnection();
+
+      return givers;
+    }
+
     public List<Donation> GetDonations()
     {
       DB.CreateConnection();
@@ -214,6 +255,32 @@ namespace Charity.Objects
         this.Start = rdr.GetDateTime(4);
         this.End = rdr.GetDateTime(5);
         this.CategoryId = rdr.GetInt32(6);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
+    public void UpdateBalance(int donationAmount)
+    {
+      this.Balance +=donationAmount;
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+
+      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET current_amt = @CurrentAmount OUTPUT INSERTED.current_amt WHERE id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CurrentAmount", this.Balance));
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Balance = rdr.GetInt32(0);
       }
 
       if (rdr != null)
