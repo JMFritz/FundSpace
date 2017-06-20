@@ -187,15 +187,15 @@ namespace Charity.Objects
       return donations;
     }
 
-    public void Update(string description, string name, int goalAmount, int currentAmount, DateTime startDate, DateTime endDate, int categoryId )
+    public void Update(string name, string description, int goalAmount, int currentAmount, DateTime startDate, DateTime endDate, int categoryId )
     {
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET name = @Name, description = @Description, goalAmount = @GoalAmount, currentAmount = @CurrentAmount, startDate = @StartDate, endDate = @EndDate, categoryId = @CategoryId OUTPUT INSERTED.description, INSERTED.goalAmount, INSERTED.currentAmount, INSERTED.startDate, INSERTED.endDate, INSERTED.categoryId WHERE id = @CampaignId;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET name = @Name, description = @Description, goal_amt = @GoalAmount, current_amt = @CurrentAmount, start_date = @StartDate, end_date = @EndDate, category_id = @CategoryId OUTPUT INSERTED.name, INSERTED.description, INSERTED.goal_amt, INSERTED.current_amt, INSERTED.start_date, INSERTED.end_date, INSERTED.category_id WHERE id = @CampaignId;", DB.GetConnection());
 
-      cmd.Parameters.Add(new SqlParameter("@Description", description));
       cmd.Parameters.Add(new SqlParameter("@Name", name));
+      cmd.Parameters.Add(new SqlParameter("@Description", description));
       cmd.Parameters.Add(new SqlParameter("@GoalAmount", goalAmount));
       cmd.Parameters.Add(new SqlParameter("@CurrentAmount", currentAmount));
       cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
@@ -214,6 +214,7 @@ namespace Charity.Objects
         this.Start = rdr.GetDateTime(4);
         this.End = rdr.GetDateTime(5);
         this.CategoryId = rdr.GetInt32(6);
+        // this.Id =
       }
 
       if (rdr != null)
