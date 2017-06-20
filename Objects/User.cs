@@ -236,6 +236,53 @@ namespace Charity.Objects
       return newDonation;
     }
 
+    public void Update(string name, string login, string password, string address, string phoneNumber, string email)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("UPDATE users SET name = @Name, login = @Login, password = @Password, address = @Address, phone_number = @PhoneNumber, email = @Email OUTPUT INSERTED.name, INSERTED.login, INSERTED.password, INSERTED.address, INSERTED.phone_number, INSERTED.email WHERE id = @UserId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@Name", name));
+      cmd.Parameters.Add(new SqlParameter("@Login", login));
+      cmd.Parameters.Add(new SqlParameter("@Password", password));
+      cmd.Parameters.Add(new SqlParameter("@Address", address));
+      cmd.Parameters.Add(new SqlParameter("@PhoneNumber", phoneNumber));
+      cmd.Parameters.Add(new SqlParameter("@Email", email));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Name = rdr.GetString(0);
+        this.Login = rdr.GetString(1);
+        this.Password = rdr.GetString(2);
+        this.ContactInfo.Address = rdr.GetString(3);
+        this.ContactInfo.PhoneNumber = rdr.GetString(4);
+        this.ContactInfo.Email = rdr.GetString(5);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
+    public void DeleteSingleUser()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM donations WHERE id = @UserId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
+    }
+
     public static void DeleteAll()
     {
       DB.CreateConnection();

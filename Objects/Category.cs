@@ -139,6 +139,43 @@ namespace Charity.Objects
       DB.CloseConnection();
       return campaigns;
     }
+
+    public void Update(string name)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("UPDATE categories SET name = @Name OUTPUT INSERTED.name WHERE id = @CategoryId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@Name", name));
+      cmd.Parameters.Add(new SqlParameter("@CategoryId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Name = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
+    public void DeleteSingleCategory()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM categories WHERE id = @CategoryId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CategoryId", this.Id));
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
+    }
+
     public static void DeleteAll()
     {
       DB.CreateConnection();
