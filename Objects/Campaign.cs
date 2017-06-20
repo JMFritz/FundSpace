@@ -152,6 +152,44 @@ namespace Charity.Objects
       return foundCampaign;
     }
 
+    public List<User> GetGivers()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT users.* FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users (users.id = donations.user_id) WHERE campaign_id = @CampaignId ;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<User> givers = new List<User> {};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        int roleId = rdr.GetInt32(1);
+        string name = rdr.GetString(2);
+        string login = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string address = rdr.GetString(5);
+        string phoneNumber = rdr.GetString(6);
+        string email = rdr.GetString(7);
+
+        ContactInformation info = new ContactInformation(address, phoneNumber, email);
+        User giver = new User(name, login, password, info, roleId, id);
+        givers.Add(giver);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      DB.CloseConnection();
+
+      return givers;
+    }
+
     public List<Donation> GetDonations()
     {
       DB.CreateConnection();
