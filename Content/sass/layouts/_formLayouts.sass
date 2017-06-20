@@ -1,17 +1,50 @@
-.logInContainer, .createCampaignContainer
+.logInContainer, .createCampaignContainer, .individual
   width: 100%
   height: 100%
   padding: 50px
   display: flex
   justify-content: space-between
   background-color: #16afbd
+  height: 80vh
   // align-items: center
 
 .logInContainer
-  height: 80vh
   div
     text-align: center
   #logIn
     flex-basis: 45%
   #signUp
     flex-basis: 45%
+
+.createCampaignContainer
+  flex-wrap: wrap
+  label
+    display: flex
+
+//for   individual campaign page/......
+section.individualCampaign
+  height: 80vh
+  .individual
+    border: 1px solid yellow
+    width: 100vw
+    height: 500px
+    article
+      border: 1px solid red
+      flex-basis: 50%
+      height: 380px
+      ul
+        display: flex
+        img
+          width: 40px
+          height: 40px
+
+.theTabs
+  clear: both
+  width: 100vw
+  display: flex
+  justify-content: space-around
+  .mainTabs
+    width: 70vw
+  .donators
+    width: 20vw
+    align-self:flex-start

@@ -112,18 +112,16 @@ section .categories ul li div img {
   height: 80px;
 }
 
-.logInContainer, .createCampaignContainer {
+.logInContainer, .createCampaignContainer, .individual {
   width: 100%;
   height: 100%;
   padding: 50px;
   display: flex;
   justify-content: space-between;
   background-color: #16afbd;
-}
-
-.logInContainer {
   height: 80vh;
 }
+
 .logInContainer div {
   text-align: center;
 }
@@ -132,6 +130,47 @@ section .categories ul li div img {
 }
 .logInContainer #signUp {
   flex-basis: 45%;
+}
+
+.createCampaignContainer {
+  flex-wrap: wrap;
+}
+.createCampaignContainer label {
+  display: flex;
+}
+
+section.individualCampaign {
+  height: 80vh;
+}
+section.individualCampaign .individual {
+  border: 1px solid yellow;
+  width: 100vw;
+  height: 500px;
+}
+section.individualCampaign .individual article {
+  border: 1px solid red;
+  flex-basis: 50%;
+  height: 380px;
+}
+section.individualCampaign .individual article ul {
+  display: flex;
+}
+section.individualCampaign .individual article ul img {
+  width: 40px;
+  height: 40px;
+}
+
+.theTabs {
+  clear: both;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+.theTabs .mainTabs {
+  width: 70vw;
+}
+.theTabs .donators {
+  width: 20vw;
 }
 
 footer {
@@ -321,6 +360,64 @@ input {
 }
 #smoke .s9 {
   animation: smokeR 10s 9s infinite;
+}
+
+.mainTabs input[type=radio] {
+  display: none;
+}
+
+#tab-1:checked ~ .tab label:nth-child(1),
+#tab-2:checked ~ .tab label:nth-child(2),
+#tab-3:checked ~ .tab label:nth-child(3),
+#tab-4:checked ~ .tab label:nth-child(4) {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
+
+.content > div {
+  display: none;
+}
+
+#tab-1:checked ~ .content div:nth-child(1),
+#tab-2:checked ~ .content div:nth-child(2),
+#tab-3:checked ~ .content div:nth-child(3),
+#tab-4:checked ~ .content div:nth-child(4) {
+  display: block;
+}
+
+.mainTabs {
+  margin: 0 auto;
+  max-width: 1200px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.tab {
+  overflow: hidden;
+}
+.tab label {
+  font-size: 18px;
+  cursor: pointer;
+  float: left;
+  color: #fff;
+  width: 25%;
+  text-align: center;
+  padding: 15px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.content {
+  background-color: rgba(0, 0, 0, 0.2);
+  min-height: 400px;
+}
+.content > div {
+  padding: 10px;
+  line-height: 1.5;
+  font-size: 17px;
 }
 
 .hero {
