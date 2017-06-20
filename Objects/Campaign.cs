@@ -228,7 +228,7 @@ namespace Charity.Objects
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM campaigns WHERE id = @CampaignId;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("DELETE FROM campaigns WHERE id = @CampaignId; DELETE FROM donations WHERE campaign_id = @CampaignId;", DB.GetConnection());
 
       cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
       cmd.ExecuteNonQuery();

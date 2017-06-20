@@ -99,6 +99,21 @@ namespace Charity
       Assert.Equal(controlUser, testUser);
     }
 
+    [Fact]
+    public void User_DeleteSingleUser_DeletesUser()
+    {
+      ContactInformation info = new ContactInformation("950 W.Burnside, Portland", "useremail@gmail.com", "(123)456-7890");
+      User user1 = new User("Anna", "anna123", "123",  info);
+      user1.Save();
+      User user2 = new User("Tom", "tom456", "456",  info);
+      user2.Save();
+
+      user1.DeleteSingleUser();
+      List<User> testList = User.GetAll();
+      List<User> controlList = new List<User>{user2};
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Category.DeleteAll();

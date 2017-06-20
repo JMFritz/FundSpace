@@ -271,6 +271,18 @@ namespace Charity.Objects
       DB.CloseConnection();
     }
 
+    public void DeleteSingleUser()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM donations WHERE id = @UserId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
+    }
+
     public static void DeleteAll()
     {
       DB.CreateConnection();
