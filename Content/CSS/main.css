@@ -19,6 +19,7 @@
   src: url("../fonts/JosefinSans-Regular.ttf");
 }
 body {
+  background-color: #000;
   background-image: url("http://www.hpcf.upr.edu/~abel/phl/star_field_full_gal.jpg");
 }
 
@@ -30,14 +31,9 @@ a {
 
 header {
   margin: 0 auto;
-  height: 800px;
+  height: 100px;
   width: 100%;
   border: 1px solid black;
-}
-
-.hero {
-  width: 100%;
-  height: 700px;
 }
 
 nav {
@@ -63,6 +59,9 @@ nav #navLeft {
 }
 nav #navRight {
   justify-content: flex-end;
+}
+nav div {
+  z-index: 3;
 }
 
 section {
@@ -112,6 +111,169 @@ section .categories ul li div img {
   width: 80px;
   height: 80px;
 }
+section .userTop, section .userBottom {
+  display: flex;
+  border: 1px solid black;
+}
+section .userTop .userInfo, section .userTop .myCampaigns, section .userBottom .userInfo, section .userBottom .myCampaigns {
+  flex-basis: 60%;
+  border: 1px solid green;
+}
+section .userTop .createButton, section .userTop .myDonations, section .userBottom .createButton, section .userBottom .myDonations {
+  flex-basis: 40%;
+  border: 1px solid red;
+}
+section .userTop .userInfo, section .userTop .createButton, section .userBottom .userInfo, section .userBottom .createButton {
+  height: 500px;
+}
+section .userTop .userInfo, section .userBottom .userInfo {
+  display: flex;
+}
+section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid blue;
+}
+section .userTop .userInfo .userImage img, section .userBottom .userInfo .userImage img {
+  margin: 30px;
+  height: 400px;
+  width: 400px;
+}
+section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 30px 30px;
+  border: 1px solid pink;
+}
+section .userTop .userInfo .userText .currentUserInfo, section .userBottom .userInfo .userText .currentUserInfo {
+  visibility: visible;
+}
+section .userTop .userInfo .userText .updateForm, section .userBottom .userInfo .userText .updateForm {
+  visibility: hidden;
+  height: 0;
+}
+section .userTop .userInfo .userText input[type=checkbox], section .userBottom .userInfo .userText input[type=checkbox] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
+  -webkit-appearance: push-button;
+  -moz-appearance: button;
+  cursor: pointer;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo {
+  visibility: hidden;
+  height: 0;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .updateForm, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .updateForm {
+  visibility: visible;
+  height: auto;
+}
+section .userTop .createButton, section .userBottom .createButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .userTop .createButton button, section .userBottom .createButton button {
+  height: 300px;
+  width: 400px;
+  border: 2px solid black;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .userTop .createButton button h2, section .userBottom .createButton button h2 {
+  padding: 30px 50px;
+  font-size: 56px;
+  font-family: josephin-semiBold;
+}
+section .userTop .userDonations, section .userBottom .userDonations {
+  width: 90%;
+  margin: 30px auto;
+  padding: 20px;
+  height: 800px;
+  background-color: #16afbd;
+}
+section .userTop .userDonations .donationInfo, section .userBottom .userDonations .donationInfo {
+  width: 400px;
+  height: 150px;
+  margin: 20px auto;
+  background-color: #fff;
+  display: flex;
+}
+section .userTop .userDonations .donationInfo .donationUserImage, section .userBottom .userDonations .donationInfo .donationUserImage {
+  flex-basis: 30%;
+}
+
+.myProfile h1 {
+  padding: 30px 50px;
+  font-size: 26px;
+  font-family: josephin-semiBold;
+}
+
+.logInContainer, .createCampaignContainer, .individual {
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #16afbd;
+  height: 80vh;
+}
+
+.logInContainer div {
+  text-align: center;
+}
+.logInContainer #logIn {
+  flex-basis: 45%;
+}
+.logInContainer #signUp {
+  flex-basis: 45%;
+}
+
+.createCampaignContainer {
+  flex-wrap: wrap;
+}
+.createCampaignContainer label {
+  display: flex;
+}
+
+section.individualCampaign .individual {
+  border: 1px solid yellow;
+  width: 100vw;
+  height: 500px;
+}
+section.individualCampaign .individual article {
+  border: 1px solid red;
+  flex-basis: 50%;
+  height: 380px;
+}
+section.individualCampaign .individual article ul {
+  display: flex;
+}
+section.individualCampaign .individual article ul img {
+  width: 40px;
+  height: 40px;
+}
+
+.theTabs {
+  clear: both;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+.theTabs .mainTabs {
+  width: 70vw;
+}
+.theTabs .donators {
+  width: 20vw;
+}
 
 footer {
   width: 100%;
@@ -142,6 +304,11 @@ footer ul li img {
   width: 30px;
 }
 
+.hero {
+  width: 100%;
+  height: 700px;
+}
+
 .carousel {
   overflow: hidden;
   position: relative;
@@ -168,6 +335,13 @@ footer ul li img {
   opacity: 0.6;
   display: block;
   transform: translateX(189.5px) translateY(100px) translateX(-200px) translateZ(-200px);
+}
+
+input {
+  display: block;
+  height: 20px;
+  width: 90%;
+  margin: 10px auto;
 }
 
 .cards {
@@ -204,6 +378,170 @@ footer ul li img {
   flex-basis: 45%;
   height: 30px;
   margin-right: 5%;
+}
+
+/* Smoke container */
+#smoke {
+  position: absolute;
+  z-index: 0;
+  height: 60px;
+  width: 1px;
+  left: 49.5%;
+  top: 110px;
+}
+
+/* smoke balls */
+#smoke span {
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -20px;
+  height: 0px;
+  width: 0px;
+  border: 35px solid #fff;
+  border-radius: 35px;
+  left: -14px;
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+/* Smoke animation */
+@keyframes smokeL {
+  0% {
+    transform: scale(0.2) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(0.2) translate(0, 5px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translate(-20px, 150px);
+  }
+}
+@keyframes smokeR {
+  0% {
+    transform: scale(0.2) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(0.2) translate(0, 5px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translate(20px, 150px);
+  }
+}
+#smoke .s0 {
+  animation: smokeR 10s 0s infinite;
+}
+
+#smoke .s1 {
+  animation: smokeL 10s 1s infinite;
+}
+
+#smoke .s2 {
+  animation: smokeR 10s 2s infinite;
+}
+
+#smoke .s3 {
+  animation: smokeL 10s 3s infinite;
+}
+
+#smoke .s4 {
+  animation: smokeR 10s 4s infinite;
+}
+
+#smoke .s5 {
+  animation: smokeL 10s 5s infinite;
+}
+
+#smoke .s6 {
+  animation: smokeR 10s 6s infinite;
+}
+
+#smoke .s7 {
+  animation: smokeL 10s 7s infinite;
+}
+
+#smoke .s8 {
+  animation: smokeR 10s 8s infinite;
+}
+
+#smoke .s9 {
+  animation: smokeL 10s 9s infinite;
+}
+
+.mainTabs input[type=radio] {
+  display: none;
+}
+
+#tab-1:checked ~ .tab label:nth-child(1),
+#tab-2:checked ~ .tab label:nth-child(2),
+#tab-3:checked ~ .tab label:nth-child(3),
+#tab-4:checked ~ .tab label:nth-child(4) {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
+
+.content > div {
+  display: none;
+}
+
+#tab-1:checked ~ .content div:nth-child(1),
+#tab-2:checked ~ .content div:nth-child(2),
+#tab-3:checked ~ .content div:nth-child(3),
+#tab-4:checked ~ .content div:nth-child(4) {
+  display: block;
+}
+
+.mainTabs {
+  border: 2px solid black;
+  margin: 0 auto;
+  height: 900px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.tab {
+  overflow: hidden;
+}
+.tab label {
+  font-size: 18px;
+  cursor: pointer;
+  float: left;
+  color: #fff;
+  width: 25%;
+  text-align: center;
+  padding: 15px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.content {
+  background-color: rgba(0, 0, 0, 0.2);
+  min-height: 900px;
+}
+.content > div {
+  padding: 10px;
+  line-height: 1.5;
+  font-size: 17px;
+}
+
+.person {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.person div {
+  width: 50%;
+}
+.person div a {
+  color: red;
 }
 
 .hero {

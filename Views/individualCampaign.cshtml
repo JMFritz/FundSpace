@@ -1,6 +1,104 @@
 @{
   Layout="Shared/_Layout.cshtml";
 }
-<section>
-
+<section class="individualCampaign">
+  <h4> USER NAME </h4>
+  <h2> CAMPAING NAME</h2>
+  <div class="individual" >
+    <article>
+      <img src="http://via.placeholder.com/450x300" alt="" />
+      <ul>
+        <li><a href="#"><img src="../../Content/img/twitter.png" alt="" /></a></li>
+        <li><a href="#"><img src="../../Content/img/facebook.png" alt="" /></a></li>
+      </ul>
+    </article>
+    <article>
+      <div class="progressBar"></div>
+      <h3>$<span>1000000</span></h3>
+      <h3>Goal Date:<span>03/02/2018</span></h3>
+      <a href="#donate" name="donate">Support this cause!</a>
+      <div class="userButtons">
+        <button type="button" name="button">Edit</button>
+        <button type="button" name="button">Delete</button>
+      </div>
+    </article>
+  </div>
+  <div class="theTabs">
+    <div class="mainTabs">
+      <input type="radio" id="tab-1" name="show" checked/>
+      <input type="radio" id="tab-2" name="show" />
+      <input type="radio" id="tab-3" name="show" />
+      <input type="radio" id="tab-4" name="show" />
+      <div class="tab">
+        <label for="tab-1">Campaign</label>
+        <label for="tab-2">Updates</label>
+        <label for="tab-3">Comments</label>
+        <label for="tab-4">Donate</label>
+      </div>
+      <div class="content">
+        <div class="content-dis">
+          <p>this is where the campaign story will be displayed....    Just before Mother’s Day, our smiley, gentle Purnell was diagnosed with a rare and fatal genetic disease called Niemann-Pick Type A (think baby Alzheimer's). There is currently no available treatment and if nothing is done, it is unlikely Nell will make it to his 3rd birthday.
+          There is gene therapy treatment on the horizon that is within reach and the sole roadblock is funding. Time is of the utmost essence and we urgently need your help raising the funds by June 30 to give Nell the best chance to live.
+          We are calling on the generosity of family, friends, neighbors and strangers to help us #SavePurnell
+          With your help, we can reach this goal together and cure this disease once and for all.</p>
+        </div>
+        <div class="content-dis"><p>this is where the updats will be displayed</p></div>
+        <div class="content-dis"><p>these are alll the comments</p></div>
+        <!-- this a href is not working -->
+        <div class="content-dis" id="donate" >
+          <p>form for donations... </p>
+          <form>
+            <div class="form-group">
+              <label for="money">Enter your donation:</label>
+              <input class="form-control" type="number" name="money" placeholder="$..." required>
+            </div>
+            <div class="form-group">
+              <label>First Name</label>
+              <input class="form-control" type="text" name="name" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input class="form-control" type="text" name="username" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input class="form-control" type="text" name="email" required>
+            </div>
+            <div class="form-group">
+              <label>What country are you at?</label>
+              <input class="form-control" type="text" name="country" required>
+            </div>
+            <div class="person">
+              <div class="forPhoto">
+                <img src="http://via.placeholder.com/40x40" alt="" />
+                <h4><a href="#">Add a photo!</a></h4>
+              </div>
+              <div class="forComment">
+                <label for="comment">Leave a comment:</label>
+                <textarea name="comment" rows="4" cols="40"></textarea>
+              </div>
+            </div>
+            <button type="submit" name="button">Donate!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="donators">
+      <div class="donator">
+        <img src="http://via.placeholder.com/60x60" alt="" />
+        <h3> Donator name</h3>
+        <h3> Donator Country</h3>
+      </div>
+      <div class="donator">
+        <img src="http://via.placeholder.com/60x60" alt="" />
+        <h3> Donator name</h3>
+        <h3> Donator Country</h3>
+      </div>
+      <div class="donator">
+        <img src="http://via.placeholder.com/60x60" alt="" />
+        <h3> Donator name</h3>
+        <h3> Donator Country</h3>
+      </div>
+    </div>
+  </div>
 </section>

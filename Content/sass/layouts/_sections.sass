@@ -4,12 +4,9 @@ section
     font-family: josephin-semiBold
     width: 100%
     margin: 0 auto
-    // height: 1200px
-    // background-color: #000
     ul
       width: 90%
       max-width: 1650px
-      // height: 140px
       list-style: none
       display: flex
       align-items: center
@@ -18,7 +15,6 @@ section
       li
         height: 120px
         width: 120px
-        // border-radius: 100%
         margin: 20px auto
         font-size: 20px
         display: flex
@@ -33,7 +29,6 @@ section
           width: 120px
           height: 120px
           border-radius: 100%
-          // border: 3px dashed darkgray
           background-color: #bbb9b7
           padding: 10px
           display: flex
@@ -43,3 +38,89 @@ section
           img
             width: 80px
             height: 80px
+  .userTop, .userBottom
+    display: flex
+    border: 1px solid black
+    .userInfo, .myCampaigns
+      flex-basis: 60%
+      border: 1px solid green
+    .createButton, .myDonations
+      flex-basis: 40%
+      border: 1px solid red
+    .userInfo, .createButton
+      height: 500px
+    .userInfo
+      display: flex
+      .userImage
+        flex-basis: 40%
+        display: flex
+        justify-content: center
+        align-items: center
+        border: 1px solid blue
+        img
+          margin: 30px
+          height: 400px
+          width: 400px
+      .userText
+        flex-basis: 60%
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding: 60px 30px 30px
+        border: 1px solid pink
+        .currentUserInfo
+          visibility: visible
+        .updateForm
+          visibility: hidden
+          height: 0
+        input[type=checkbox]
+          position: absolute
+          top: -9999px
+          left: -9999px
+        > label
+          -webkit-appearance: push-button
+          -moz-appearance: button
+          cursor: pointer
+        >input[type=checkbox]:checked ~ .currentUserInfo
+          visibility: hidden
+          height: 0
+        >input[type=checkbox]:checked ~ .updateForm
+          visibility: visible
+          height: auto
+
+    .createButton
+      display: flex
+      justify-content: center
+      align-items: center
+      button
+        height: 300px
+        width: 400px
+        border: 2px solid black
+        border-radius: 30px
+        display: flex
+        justify-content: center
+        align-items: center
+        h2
+          padding: 30px 50px
+          font-size: 56px
+          font-family: josephin-semiBold
+    .userDonations
+      width: 90%
+      margin: 30px auto
+      padding: 20px
+      height: 800px
+      background-color: #16afbd
+      .donationInfo
+        width: 400px
+        height: 150px
+        margin: 20px auto
+        background-color: #fff
+        display: flex
+        .donationUserImage
+          flex-basis: 30%
+
+.myProfile
+  h1
+    padding: 30px 50px
+    font-size: 26px
+    font-family: josephin-semiBold
