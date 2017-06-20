@@ -187,6 +187,42 @@ namespace Charity.Objects
       return donations;
     }
 
+    public void Update(string description, string name, int goalAmount, int currentAmount, DateTime startDate, DateTime endDate, int categoryId )
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET name = @Name, description = @Description, goalAmount = @GoalAmount, currentAmount = @CurrentAmount, startDate = @StartDate, endDate = @EndDate, categoryId = @CategoryId OUTPUT INSERTED.description, INSERTED.goalAmount, INSERTED.currentAmount, INSERTED.startDate, INSERTED.endDate, INSERTED.categoryId WHERE id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@Description", description));
+      cmd.Parameters.Add(new SqlParameter("@Name", name));
+      cmd.Parameters.Add(new SqlParameter("@GoalAmount", goalAmount));
+      cmd.Parameters.Add(new SqlParameter("@CurrentAmount", currentAmount));
+      cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
+      cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
+      cmd.Parameters.Add(new SqlParameter("@CategoryId", categoryId));
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Name = rdr.GetString(0);
+        this.Description = rdr.GetString(1);
+        this.Goal = rdr.GetInt32(2);
+        this.Balance = rdr.GetInt32(3);
+        this.Start = rdr.GetDateTime(4);
+        this.End = rdr.GetDateTime(5);
+        this.CategoryId = rdr.GetInt32(6);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
     public static void DeleteAll()
     {
       DB.CreateConnection();
