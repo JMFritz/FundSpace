@@ -1,0 +1,66 @@
+/* Smoke container */
+#smoke
+	position: absolute
+	z-index: 0
+	height: 60px
+	width: 1px
+	left: 49.5%
+	top: 110px
+
+/* smoke balls */
+#smoke span
+	display: block
+	position: absolute
+	top: 5px
+	left: 50%
+	margin-left: -20px
+	height: 0px
+	width: 0px
+	border: 35px solid #fff
+	border-radius: 35px
+	left: -14px
+	opacity: 0
+	transform: scale(0.2)
+
+/* Smoke animation */
+@keyframes smokeL
+	0%
+		transform: scale(0.2) translate(0, 0)
+	10%
+		opacity: 1
+		transform: scale(0.2) translate(0, 5px)
+	100%
+		opacity: 0
+		transform: scale(1) translate(-20px, 150px)
+
+@keyframes smokeR
+	0%
+		transform: scale(0.2) translate(0, 0)
+	10%
+		opacity: 1
+		transform: scale(0.2) translate(0, 5px)
+	100%
+		opacity: 0
+		transform: scale(1) translate(20px, 150px)
+
+#smoke
+	.s0
+		animation: smokeL 10s 0s infinite
+	.s1
+		animation: smokeR 10s 1s infinite
+	.s2
+		animation: smokeL 10s 2s infinite
+	.s3
+		animation: smokeR 10s 3s infinite
+	.s4
+		animation: smokeL 10s 4s infinite
+	.s5
+		animation: smokeR 10s 5s infinite
+	.s6
+		animation: smokeL 10s 6s infinite
+	.s7
+		animation: smokeR 10s 7s infinite
+	.s8
+		animation: smokeL 10s 8s infinite
+	.s9
+		animation: smokeR 10s 9s infinite
