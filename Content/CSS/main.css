@@ -11,20 +11,38 @@
 }
 
 @font-face {
-  font-family: josephin-regular;
+  font-family: josephin-Regular;
   src: url("../fonts/JosefinSans-Regular.ttf");
 }
 @font-face {
-  font-family: josephin-semiBold;
-  src: url("../fonts/JosefinSans-Regular.ttf");
+  font-family: josephin-SemiBold;
+  src: url("../fonts/JosefinSans-SemiBold.ttf");
+}
+@font-face {
+  font-family: josephin-Bold;
+  src: url("../fonts/JosefinSans-Bold.ttf");
+}
+@font-face {
+  font-family: openSans;
+  src: url("../fonts/OpenSans-Light.ttf");
 }
 body {
   background-color: #000;
   background-image: url("http://www.hpcf.upr.edu/~abel/phl/star_field_full_gal.jpg");
+  font-family: openSans;
+}
+
+h1 {
+  font-family: josephin-SemiBold;
+}
+
+h2 {
+  font-family: josephin-SemiBold;
+  text-align: center;
 }
 
 a {
-  font-family: josephin-semiBold;
+  font-family: josephin-Regular;
   color: #bdbdbd;
   text-decoration: none;
 }
@@ -542,6 +560,11 @@ input {
 }
 .person div a {
   color: red;
+}
+
+button {
+  width: 100px;
+  height: 30px;
 }
 
 .hero {
