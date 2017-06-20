@@ -179,7 +179,7 @@ namespace Charity.Objects
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM donations WHERE @UserId = user_id;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("SELECT * FROM donations WHERE user_id = @UserId;", DB.GetConnection());
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -204,6 +204,36 @@ namespace Charity.Objects
         DB.CloseConnection();
       }
       return donations;
+    }
+
+    public Donation MakeDonation(Campaign donatedCampaign, int donationAmount, DateTime date)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO donations (user_id, campaign_id, donation_amount, donation_date) OUTPUT INSERTED.id VALUES (@UserId, @CampaignId, @DonationAmount, @DonationDate);", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", donatedCampaign.Id));
+      cmd.Parameters.Add(new SqlParameter("@DonationAmount", donationAmount));
+      cmd.Parameters.Add(new SqlParameter("@DonationDate", date));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      Donation newDonation = new Donation(this.Id, donatedCampaign.Id, donationAmount, date);
+
+      while (rdr.Read())
+      {
+        newDonation.Id = rdr.GetInt32(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return newDonation;
     }
 
     public static void DeleteAll()
