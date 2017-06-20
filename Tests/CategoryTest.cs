@@ -43,6 +43,19 @@ namespace Charity
     }
 
     [Fact]
+    public void Category_Update_UpdateCategory()
+    {
+      Category testCategory = new Category("Medical");
+      testCategory.Save();
+
+      testCategory.Update("Animals");
+      Category controlCategory = new Category("Animals", testCategory.Id);
+
+      Assert.Equal(controlCategory, testCategory);
+    }
+
+
+    [Fact]
     public void CategoryFind_FindSingleCategory_ReturnFoundCategory()
     {
       Category testCategory = new Category("Medical");
