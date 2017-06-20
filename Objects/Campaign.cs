@@ -223,6 +223,18 @@ namespace Charity.Objects
       DB.CloseConnection();
     }
 
+    public void DeleteSingleCampaign()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM campaigns WHERE id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
+    }
+
     public static void DeleteAll()
     {
       DB.CreateConnection();
