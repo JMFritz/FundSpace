@@ -139,9 +139,6 @@ section .categories ul li div img {
   display: flex;
 }
 
-section.individualCampaign {
-  height: 80vh;
-}
 section.individualCampaign .individual {
   border: 1px solid yellow;
   width: 100vw;
@@ -386,8 +383,9 @@ input {
 }
 
 .mainTabs {
+  border: 2px solid black;
   margin: 0 auto;
-  max-width: 1200px;
+  height: 900px;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -412,12 +410,24 @@ input {
 
 .content {
   background-color: rgba(0, 0, 0, 0.2);
-  min-height: 400px;
+  min-height: 900px;
 }
 .content > div {
   padding: 10px;
   line-height: 1.5;
   font-size: 17px;
+}
+
+.person {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.person div {
+  width: 50%;
+}
+.person div a {
+  color: red;
 }
 
 .hero {
