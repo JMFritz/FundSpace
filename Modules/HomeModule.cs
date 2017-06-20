@@ -57,22 +57,37 @@ namespace Charity
         model.Add("campaignDonations", selectedCampaign.GetDonations());
         return View["campaign.cshtml", model];
       };
-      // Post["/campaign/{id}"] = parameters => {
-      //   Dictionary<string, object> model = new Dictionary<string, object> {};
-      //   Campaign selectedCampaign = Campaign.Find(parameters.id);
-      //   Donation newDonation = User.CurrentUser.MakeDonation(selectedCampaign, Request.Form["amount"], Request.Form["date"]);
-      //
-      //   model.Add("selectedCampaign", selectedCampaign);
-      //   model.Add("campaignDonations", selectedCampaign.GetDonations());
-      //   return View["campaign.cshtml", model];
-      // };
-      // Get["/campaign/{id}/"] = parameters => {
-      //   Dictionary<string, object> model = new Dictionary<string, object> {};
-      //   Campaign selectedCampaign = Campaign.Find(parameters.id);
-      //   model.Add("selectedCampaign", selectedCampaign);
-      //   return View["campaign.cshtml", model];
-      //
-      // };
+      Post["/campaign/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object> {};
+        Campaign selectedCampaign = Campaign.Find(parameters.id);
+        Donation newDonation = User.CurrentUser.MakeDonation(selectedCampaign, Request.Form["amount"], Request.Form["date"]);
+
+        model.Add("selectedCampaign", selectedCampaign);
+        model.Add("campaignDonations", selectedCampaign.GetDonations());
+        return View["campaign.cshtml", model];
+      };
+      Get["/campaign/{id}/"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object> {};
+        Campaign selectedCampaign = Campaign.Find(parameters.id);
+        List<Donation> allDonations = selectedCampaign.GetDonations();
+        List<Dictionary<string, object>> allDonationInfo = new List<Dictionary<string, object>>{};
+        foreach(Donation donation in allDonations)
+        {
+          allDonationInfo.Add(donation.GetDonationsByCampaign(selectedCampaign));
+        }
+        model.Add("donations", allDonationInfo);
+        model.Add("selectedCampaign", selectedCampaign);
+        return View["campaign.cshtml", model];
+      };
+      Get["/campaign/new"] = _ => {
+        return View["form.cshtml"];
+      };
+      Post["/campaign/new"] = _ => {
+        Campaign newCampaign = new Campaign(Request.Form["name"], Request.Form["description"], Request.Form["goal"], 0, Request.Form["start_date"],
+        Request.Form["end_date"], Request.Form["category"], User.CurrentUser.Id);
+        newCampaign.Save();
+        return View[""];
+      };
     }
   }
 }

@@ -34,7 +34,7 @@ namespace Charity.Objects
       RoleId = roleId;
       Id = id;
     }
-    // 
+    //
     // public static User GetCurrentUser()
     // {
     //   return CurrentUser;
@@ -164,7 +164,7 @@ namespace Charity.Objects
         foundUser.RoleId = rdr.GetInt32(1);
         foundUser.Name = rdr.GetString(2);
         foundUser.Login = rdr.GetString(3);
-        foundUser.Password = rdr.GetString(4);
+        foundUser.Password = rdr.GetString(4); 
 
         info.Address = rdr.GetString(5);
         info.PhoneNumber = rdr.GetString(6);

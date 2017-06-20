@@ -76,7 +76,7 @@ namespace Charity
       DateTime start = new DateTime(2017,1,1);
       DateTime end = new DateTime(2018,1,1);
 
-      Campaign newCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      Campaign newCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
 
       Donation testDonation = newUser.MakeDonation(newCampaign, 25, new DateTime (2017, 03, 3));
       Donation controlDonation = new Donation(newUser.Id, newCampaign.Id, 25, new DateTime (2017, 03, 3), testDonation.Id);
