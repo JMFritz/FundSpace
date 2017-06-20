@@ -1,0 +1,61 @@
+
+.mainTabs input[type=radio]
+  display: none
+
+#tab-1:checked ~ .tab label:nth-child(1),
+#tab-2:checked ~ .tab label:nth-child(2),
+#tab-3:checked ~ .tab label:nth-child(3),
+#tab-4:checked ~ .tab label:nth-child(4)
+  background-color: rgba(0, 0, 0, 0.2)
+  box-shadow: none
+
+.content > div
+  display: none
+
+#tab-1:checked ~ .content div:nth-child(1),
+#tab-2:checked ~ .content div:nth-child(2),
+#tab-3:checked ~ .content div:nth-child(3),
+#tab-4:checked ~ .content div:nth-child(4)
+  display: block
+
+.mainTabs
+  border: 2px solid black
+  margin: 0 auto
+  height: 900px
+  border: 1px solid rgba(0, 0, 0, 0.2)
+
+.tab
+  overflow: hidden
+  label
+    font-size: 18px
+    cursor: pointer
+    float: left
+    color: #fff
+    width: 25%
+    text-align: center
+    padding: 15px 0
+    text-transform: uppercase
+    font-weight: bold
+    letter-spacing: 2px
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2)
+    user-select: none
+    -webkit-user-select: none
+
+
+.content
+  background-color: rgba(0, 0, 0, 0.2)
+  min-height: 900px
+  > div
+    padding: 10px
+    line-height: 1.5
+    font-size: 17px
+
+.person
+
+  display: flex
+  justify-content: space-around
+  align-items: center
+  div
+    width: 50%
+    a
+      color: red
