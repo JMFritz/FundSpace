@@ -14,9 +14,9 @@ namespace Charity.Objects
     public DateTime Start {get; set;}
     public DateTime End {get; set;}
     public int CategoryId {get; set;}
+    public int OwnerId {get; set;}
 
-
-    public Campaign(string name, string description, int goal, int balance, DateTime start, DateTime end, int categoryId, int id = 0)
+    public Campaign(string name, string description, int goal, int balance, DateTime start, DateTime end, int categoryId, int ownerId, int id = 0)
     {
       Name = name;
       Description = description;
@@ -25,6 +25,7 @@ namespace Charity.Objects
       Start = start;
       End = end;
       CategoryId = categoryId;
+      OwnerId = ownerId;
       Id = id;
     }
 
@@ -44,7 +45,8 @@ namespace Charity.Objects
                 this.Balance == newCampaign.Balance &&
                 this.Start == newCampaign.Start &&
                 this.End == newCampaign.End &&
-                this.CategoryId == newCampaign.CategoryId);
+                this.CategoryId == newCampaign.CategoryId &&
+                this.OwnerId == newCampaign.OwnerId);
       }
     }
 
@@ -67,8 +69,9 @@ namespace Charity.Objects
         DateTime start = rdr.GetDateTime(5);
         DateTime end = rdr.GetDateTime(6);
         int categoryId = rdr.GetInt32(7);
+        int ownerId = rdr.GetInt32(8);
 
-        Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, id);
+        Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, ownerId, id);
         campaigns.Add(newCampaign);
       }
 
@@ -86,7 +89,7 @@ namespace Charity.Objects
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO campaigns (name, description, goal_amt, current_amt, start_date, end_date, category_id) OUTPUT INSERTED.id VALUES (@Name, @Description, @Goal, @Balance, @Start, @End, @CategoryId)", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("INSERT INTO campaigns (name, description, goal_amt, current_amt, start_date, end_date, category_id, owner_id) OUTPUT INSERTED.id VALUES (@Name, @Description, @Goal, @Balance, @Start, @End, @CategoryId, @OwnerId)", DB.GetConnection());
 
       cmd.Parameters.Add(new SqlParameter("@Name", this.Name));
       cmd.Parameters.Add(new SqlParameter("@Description", this.Description));
@@ -95,6 +98,7 @@ namespace Charity.Objects
       cmd.Parameters.Add(new SqlParameter("@Start", this.Start));
       cmd.Parameters.Add(new SqlParameter("@End", this.End));
       cmd.Parameters.Add(new SqlParameter("@CategoryId", this.CategoryId));
+      cmd.Parameters.Add(new SqlParameter("@OwnerId", this.OwnerId));
 
 
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -127,6 +131,7 @@ namespace Charity.Objects
       DateTime foundCampaignStart = default(DateTime);
       DateTime foundCampaignEnd = default(DateTime);
       int foundCampaignCategoryId = 0;
+      int foundCampaignOwnerId = 0;
 
       while(rdr.Read())
       {
@@ -138,9 +143,10 @@ namespace Charity.Objects
         foundCampaignStart = rdr.GetDateTime(5);
         foundCampaignEnd = rdr.GetDateTime(6);
         foundCampaignCategoryId = rdr.GetInt32(7);
+        foundCampaignOwnerId = rdr.GetInt32(8);
       }
 
-      Campaign foundCampaign = new Campaign(foundCampaignName, foundCampaignDescription, foundCampaignGoal, foundCampaignBalance, foundCampaignStart, foundCampaignEnd, foundCampaignCategoryId, foundCampaignId);
+      Campaign foundCampaign = new Campaign(foundCampaignName, foundCampaignDescription, foundCampaignGoal, foundCampaignBalance, foundCampaignStart, foundCampaignEnd, foundCampaignCategoryId, foundCampaignOwnerId, foundCampaignId);
 
       if (rdr != null)
       {
@@ -188,7 +194,7 @@ namespace Charity.Objects
     //
     //   return givers;
     // }
-    
+
     public List<Donation> GetDonations()
     {
       DB.CreateConnection();
@@ -227,12 +233,12 @@ namespace Charity.Objects
       return donations;
     }
 
-    public void Update(string name, string description, int goalAmount, int currentAmount, DateTime startDate, DateTime endDate, int categoryId)
+    public void Update(string name, string description, int goalAmount, int currentAmount, DateTime startDate, DateTime endDate, int categoryId, int ownerId)
     {
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET name = @Name, description = @Description, goal_amt = @GoalAmount, current_amt = @CurrentAmount, start_date = @StartDate, end_date = @EndDate, category_id = @CategoryId  OUTPUT INSERTED.name, INSERTED.description, INSERTED.goal_amt, INSERTED.current_amt, INSERTED.start_date, INSERTED.end_date, INSERTED.category_id WHERE id = @CampaignId;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET name = @Name, description = @Description, goal_amt = @GoalAmount, current_amt = @CurrentAmount, start_date = @StartDate, end_date = @EndDate, category_id = @CategoryId, owner_id = @OwnerId  OUTPUT INSERTED.name, INSERTED.description, INSERTED.goal_amt, INSERTED.current_amt, INSERTED.start_date, INSERTED.end_date, INSERTED.category_id, INSERTED.owner_id WHERE id = @CampaignId;", DB.GetConnection());
 
       cmd.Parameters.Add(new SqlParameter("@Name", name));
       cmd.Parameters.Add(new SqlParameter("@Description", description));
@@ -241,6 +247,7 @@ namespace Charity.Objects
       cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
       cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
       cmd.Parameters.Add(new SqlParameter("@CategoryId", categoryId));
+      cmd.Parameters.Add(new SqlParameter("@OwnerId", ownerId));
       cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -254,6 +261,7 @@ namespace Charity.Objects
         this.Start = rdr.GetDateTime(4);
         this.End = rdr.GetDateTime(5);
         this.CategoryId = rdr.GetInt32(6);
+        this.OwnerId = rdr.GetInt32(7);
       }
 
       if (rdr != null)

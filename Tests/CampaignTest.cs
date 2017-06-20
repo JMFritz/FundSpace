@@ -20,8 +20,8 @@ namespace Charity
       DateTime start = DateTime.Now;
       DateTime end = new DateTime(2018,1,1);
 
-      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
-      Campaign testCampaign2 = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
+      Campaign testCampaign2 = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
 
       Assert.Equal(testCampaign, testCampaign2);
     }
@@ -41,7 +41,7 @@ namespace Charity
       DateTime start = new DateTime(2017,1,1);
       DateTime end = new DateTime(2018,1,1);
 
-      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
       testCampaign.Save();
       Campaign testCampaign2 = Campaign.GetAll()[0];
 
@@ -54,7 +54,7 @@ namespace Charity
       DateTime start = new DateTime(2017,1,1);
       DateTime end = new DateTime(2018,1,1);
 
-      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
       testCampaign.Save();
 
       Campaign foundCampaign = Campaign.Find(testCampaign.Id);
@@ -67,12 +67,12 @@ namespace Charity
       DateTime start = new DateTime(2018,1,1);
       DateTime end = new DateTime(2019,1,1);
 
-      Campaign campaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      Campaign campaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
       campaign.Save();
 
-      campaign.Update("Jun needs new laptop", "Help to buy new laptop", 50, 0, start, end, 1);
+      campaign.Update("Jun needs new laptop", "Help to buy new laptop", 50, 0, start, end, 1, 1);
 
-      Campaign controlCampaign = new Campaign("Jun needs new laptop", "Help to buy new laptop", 50, 0, start, end, 1, campaign.Id);
+      Campaign controlCampaign = new Campaign("Jun needs new laptop", "Help to buy new laptop", 50, 0, start, end, 1, 1, campaign.Id);
 
       Assert.Equal(controlCampaign, campaign);
     }
@@ -83,12 +83,12 @@ namespace Charity
       DateTime start = new DateTime(2018,1,1);
       DateTime end = new DateTime(2019,1,1);
 
-      Campaign campaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 500, 0, start, end, 1);
+      Campaign campaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 500, 0, start, end, 1, 1);
       campaign.Save();
 
       campaign.UpdateBalance(30);
 
-      Campaign controlCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 500, 30, start, end, 1, campaign.Id);
+      Campaign controlCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 500, 30, start, end, 1, 1, campaign.Id);
 
       Assert.Equal(controlCampaign, campaign);
     }
@@ -99,9 +99,9 @@ namespace Charity
       DateTime start = new DateTime(2018,1,1);
       DateTime end = new DateTime(2019,1,1);
 
-      Campaign campaign1 = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      Campaign campaign1 = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
       campaign1.Save();
-      Campaign campaign2 = new Campaign("Jun needs new laptop", "Help to buy new laptop", 50, 0, start, end, 1);
+      Campaign campaign2 = new Campaign("Jun needs new laptop", "Help to buy new laptop", 50, 0, start, end, 1, 1);
       campaign2.Save();
 
       campaign1.DeleteSingleCampaign();
@@ -119,7 +119,7 @@ namespace Charity
       DateTime start = new DateTime(2017,1,1);
       DateTime end = new DateTime(2018,1,1);
 
-      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1);
+      Campaign testCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
       testCampaign.Save();
 
       Donation testDonation = newUser.MakeDonation(testCampaign, 10, new DateTime (2017,3,3));

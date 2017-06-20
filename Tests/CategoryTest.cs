@@ -35,7 +35,7 @@ namespace Charity
     [Fact]
     public void CategorySave_SavesToDatabase_ReturnCategory()
     {
-      Category testCategory = new Category("Medical");
+      Category testCategory = new Category("medical");
       testCategory.Save();
       Category testCategory2 = Category.GetAll()[0];
 
@@ -81,6 +81,7 @@ namespace Charity
     public void Dispose()
     {
       Category.DeleteAll();
+
     }
   }
 }

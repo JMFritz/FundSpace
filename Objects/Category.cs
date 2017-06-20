@@ -128,8 +128,9 @@ namespace Charity.Objects
         DateTime start = rdr.GetDateTime(5);
         DateTime end = rdr.GetDateTime(6);
         int categoryId = rdr.GetInt32(7);
+        int ownerId = rdr.GetInt32(8);
 
-        Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, id);
+        Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, ownerId, id);
         campaigns.Add(newCampaign);
       }
       if (rdr != null)
