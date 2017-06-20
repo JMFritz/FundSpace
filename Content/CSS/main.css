@@ -112,13 +112,17 @@ section .categories ul li div img {
   height: 80px;
 }
 
-.logInContainer {
+.logInContainer, .createCampaignContainer {
   width: 100%;
-  height: 80vh;
+  height: 100%;
   padding: 50px;
   display: flex;
   justify-content: space-between;
   background-color: #16afbd;
+}
+
+.logInContainer {
+  height: 80vh;
 }
 .logInContainer div {
   text-align: center;
