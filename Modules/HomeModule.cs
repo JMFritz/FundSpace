@@ -23,9 +23,41 @@ namespace Charity
         Dictionary<string, object> model = new Dictionary<string, object> {};
         model.Add("currentUser", User.CurrentUser);
         model.Add("categories", Category.GetAll());
+        model.Add("all-campaigns", Campaign.GetAll());
+        return View["index.cshtml", model];
+      };
+      Get["/{id}/campaigns"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object> {};
+        Category selectedCategory = Category.Find(parameters.id);
+        model.Add("selectedCampaigns", selectedCategory.GetCampaigns());
+        model.Add("currentUser", User.CurrentUser);
+        model.Add("categories", Category.GetAll());
         model.Add("campaigns", Campaign.GetAll());
         return View["index.cshtml", model];
       };
+      Get["/campaign/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object> {};
+        Campaign selectedCampaign = Campaign.Find(parameters.id);
+        model.Add("selectedCampaign", selectedCampaign);
+        model.Add("campaignDonations", selectedCampaign.GetDonations());
+        return View["campaign.cshtml", model];
+      };
+      // Post["/campaign/{id}"] = parameters => {
+      //   Dictionary<string, object> model = new Dictionary<string, object> {};
+      //   Campaign selectedCampaign = Campaign.Find(parameters.id);
+      //   Donation newDonation = User.CurrentUser.MakeDonation(selectedCampaign, Request.Form["amount"], Request.Form["date"]);
+      //
+      //   model.Add("selectedCampaign", selectedCampaign);
+      //   model.Add("campaignDonations", selectedCampaign.GetDonations());
+      //   return View["campaign.cshtml", model];
+      // };
+      // Get["/campaign/{id}/"] = parameters => {
+      //   Dictionary<string, object> model = new Dictionary<string, object> {};
+      //   Campaign selectedCampaign = Campaign.Find(parameters.id);
+      //   model.Add("selectedCampaign", selectedCampaign);
+      //   return View["campaign.cshtml", model];
+      //
+      // };
     }
   }
 }

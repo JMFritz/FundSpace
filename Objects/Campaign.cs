@@ -14,6 +14,8 @@ namespace Charity.Objects
     public DateTime Start {get; set;}
     public DateTime End {get; set;}
     public int CategoryId {get; set;}
+    public int OwnerId {get; set;} //don't forget add me!!!!!!!!!
+
 
     public Campaign(string name, string description, int goal, int balance, DateTime start, DateTime end, int categoryId, int id = 0)
     {
@@ -24,6 +26,7 @@ namespace Charity.Objects
       Start = start;
       End = end;
       CategoryId = categoryId;
+
       Id = id;
     }
 
@@ -214,6 +217,32 @@ namespace Charity.Objects
         this.Start = rdr.GetDateTime(4);
         this.End = rdr.GetDateTime(5);
         this.CategoryId = rdr.GetInt32(6);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
+    public void UpdateBalance(int donationAmount)
+    {
+      this.Balance +=donationAmount;
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+
+      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET current_amt = @CurrentAmount OUTPUT INSERTED.current_amt WHERE id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CurrentAmount", this.Balance));
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Balance = rdr.GetInt32(0);
       }
 
       if (rdr != null)

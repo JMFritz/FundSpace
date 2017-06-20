@@ -78,6 +78,22 @@ namespace Charity
     }
 
     [Fact]
+    public void Campaign_Update_UpdateCampaignBalance()
+    {
+      DateTime start = new DateTime(2018,1,1);
+      DateTime end = new DateTime(2019,1,1);
+
+      Campaign campaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 500, 0, start, end, 1);
+      campaign.Save();
+
+      campaign.UpdateBalance(30);
+
+      Campaign controlCampaign = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 500, 30, start, end, 1, campaign.Id);
+
+      Assert.Equal(controlCampaign, campaign);
+    }
+
+    [Fact]
     public void Campaign_DeleteSingleCampaign_DeletesCampaign()
     {
       DateTime start = new DateTime(2018,1,1);
