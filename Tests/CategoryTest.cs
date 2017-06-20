@@ -54,7 +54,6 @@ namespace Charity
       Assert.Equal(controlCategory, testCategory);
     }
 
-
     [Fact]
     public void CategoryFind_FindSingleCategory_ReturnFoundCategory()
     {
@@ -64,6 +63,21 @@ namespace Charity
       Category foundCategory = Category.Find(testCategory.Id);
       Assert.Equal(testCategory, foundCategory);
     }
+
+    [Fact]
+    public void Category_DeleteSingleCategory_DeletesCategory()
+    {
+      Category category1 = new Category("Medical");
+      category1.Save();
+      Category category2 = new Category("Animals");
+      category2.Save();
+
+      category1.DeleteSingleCategory();
+      List<Category> testList = Category.GetAll();
+      List<Category> controlList = new List<Category>{category2};
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Category.DeleteAll();
