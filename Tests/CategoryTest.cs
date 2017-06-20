@@ -11,7 +11,6 @@ namespace Charity
   {
     public CategoryTest()
     {
-      // Console.WriteLine("Hello");
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=charity_test;Integrated Security=SSPI;";
     }
 
@@ -44,6 +43,18 @@ namespace Charity
     }
 
     [Fact]
+    public void Category_Update_UpdateCategory()
+    {
+      Category testCategory = new Category("Medical");
+      testCategory.Save();
+
+      testCategory.Update("Animals");
+      Category controlCategory = new Category("Animals", testCategory.Id);
+
+      Assert.Equal(controlCategory, testCategory);
+    }
+
+    [Fact]
     public void CategoryFind_FindSingleCategory_ReturnFoundCategory()
     {
       Category testCategory = new Category("Medical");
@@ -52,6 +63,21 @@ namespace Charity
       Category foundCategory = Category.Find(testCategory.Id);
       Assert.Equal(testCategory, foundCategory);
     }
+
+    [Fact]
+    public void Category_DeleteSingleCategory_DeletesCategory()
+    {
+      Category category1 = new Category("Medical");
+      category1.Save();
+      Category category2 = new Category("Animals");
+      category2.Save();
+
+      category1.DeleteSingleCategory();
+      List<Category> testList = Category.GetAll();
+      List<Category> controlList = new List<Category>{category2};
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Category.DeleteAll();
