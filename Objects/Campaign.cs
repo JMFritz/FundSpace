@@ -29,6 +29,19 @@ namespace Charity.Objects
       Id = id;
     }
 
+    public Campaign()
+    {
+      Id = 0;
+      Name = null;
+      Description = null;
+      Goal = 0;
+      Balance = 0;
+      Start = default(DateTime);
+      End = default(DateTime);
+      CategoryId = 0;
+      OwnerId = 0;
+    }
+
     public override bool Equals(System.Object otherCampaign)
     {
       if (!(otherCampaign is Campaign))
@@ -343,6 +356,14 @@ namespace Charity.Objects
       cmd.ExecuteNonQuery();
       DB.CloseConnection();
     }
+
+    public static List<Campaign> SearchByName(string searchQuery)
+    {
+      
+
+      return matches;
+    }
+
 
     public static void DeleteAll()
     {
