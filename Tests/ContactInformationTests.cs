@@ -11,7 +11,6 @@ namespace Charity
   {
     public ContactInformationTest()
     {
-      // Console.WriteLine("Hello");
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=charity_test;Integrated Security=SSPI;";
     }
 

@@ -15,6 +15,7 @@ namespace Charity.Objects
     public DateTime End {get; set;}
     public int CategoryId {get; set;}
 
+
     public Campaign(string name, string description, int goal, int balance, DateTime start, DateTime end, int categoryId, int id = 0)
     {
       Name = name;
@@ -95,6 +96,7 @@ namespace Charity.Objects
       cmd.Parameters.Add(new SqlParameter("@End", this.End));
       cmd.Parameters.Add(new SqlParameter("@CategoryId", this.CategoryId));
 
+
       SqlDataReader rdr = cmd.ExecuteReader();
       while (rdr.Read())
       {
@@ -149,6 +151,44 @@ namespace Charity.Objects
       return foundCampaign;
     }
 
+    // public List<User> GetGivers()
+    // {
+    //   DB.CreateConnection();
+    //   DB.OpenConnection();
+    //
+    //   SqlCommand cmd = new SqlCommand("SELECT users.* FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users (users.id = donations.user_id) WHERE campaign_id = @CampaignId ;", DB.GetConnection());
+    //
+    //   cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+    //   SqlDataReader rdr = cmd.ExecuteReader();
+    //
+    //   List<User> givers = new List<User> {};
+    //
+    //   while(rdr.Read())
+    //   {
+    //     int id = rdr.GetInt32(0);
+    //     int roleId = rdr.GetInt32(1);
+    //     string name = rdr.GetString(2);
+    //     string login = rdr.GetString(3);
+    //     string password = rdr.GetString(4);
+    //     string address = rdr.GetString(5);
+    //     string phoneNumber = rdr.GetString(6);
+    //     string email = rdr.GetString(7);
+    //
+    //     ContactInformation info = new ContactInformation(address, phoneNumber, email);
+    //     User giver = new User(name, login, password, info, roleId, id);
+    //     givers.Add(giver);
+    //   }
+    //
+    //   if (rdr != null)
+    //   {
+    //     rdr.Close();
+    //   }
+    //
+    //   DB.CloseConnection();
+    //
+    //   return givers;
+    // }
+    
     public List<Donation> GetDonations()
     {
       DB.CreateConnection();
@@ -185,6 +225,80 @@ namespace Charity.Objects
 
       DB.CloseConnection();
       return donations;
+    }
+
+    public void Update(string name, string description, int goalAmount, int currentAmount, DateTime startDate, DateTime endDate, int categoryId)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET name = @Name, description = @Description, goal_amt = @GoalAmount, current_amt = @CurrentAmount, start_date = @StartDate, end_date = @EndDate, category_id = @CategoryId  OUTPUT INSERTED.name, INSERTED.description, INSERTED.goal_amt, INSERTED.current_amt, INSERTED.start_date, INSERTED.end_date, INSERTED.category_id WHERE id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@Name", name));
+      cmd.Parameters.Add(new SqlParameter("@Description", description));
+      cmd.Parameters.Add(new SqlParameter("@GoalAmount", goalAmount));
+      cmd.Parameters.Add(new SqlParameter("@CurrentAmount", currentAmount));
+      cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
+      cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
+      cmd.Parameters.Add(new SqlParameter("@CategoryId", categoryId));
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Name = rdr.GetString(0);
+        this.Description = rdr.GetString(1);
+        this.Goal = rdr.GetInt32(2);
+        this.Balance = rdr.GetInt32(3);
+        this.Start = rdr.GetDateTime(4);
+        this.End = rdr.GetDateTime(5);
+        this.CategoryId = rdr.GetInt32(6);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
+    public void UpdateBalance(int donationAmount)
+    {
+      this.Balance +=donationAmount;
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+
+      SqlCommand cmd = new SqlCommand("UPDATE campaigns SET current_amt = @CurrentAmount OUTPUT INSERTED.current_amt WHERE id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CurrentAmount", this.Balance));
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Balance = rdr.GetInt32(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
+    public void DeleteSingleCampaign()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM campaigns WHERE id = @CampaignId; DELETE FROM donations WHERE campaign_id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
     }
 
     public static void DeleteAll()

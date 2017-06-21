@@ -5,8 +5,9 @@ nav
   border: 1px solid black
   display: flex
   justify-content: space-between
+  @include medium-bp
   ul
-    width: 35%
+    width: 80%
     list-style: none
     display: flex
     align-items: center
@@ -15,7 +16,16 @@ nav
       font-size: 20px
   #navLeft
     justify-content: flex-start
+
   #navRight
     justify-content: flex-end
+
+  #navRight,  #navLeft
+    @include medium-bp
+      display: none
   div
     z-index: 3
+
+  .logo
+    @include medium-bp
+      height: 90px

@@ -11,20 +11,38 @@
 }
 
 @font-face {
-  font-family: josephin-regular;
+  font-family: josephin-Regular;
   src: url("../fonts/JosefinSans-Regular.ttf");
 }
 @font-face {
-  font-family: josephin-semiBold;
-  src: url("../fonts/JosefinSans-Regular.ttf");
+  font-family: josephin-SemiBold;
+  src: url("../fonts/JosefinSans-SemiBold.ttf");
+}
+@font-face {
+  font-family: josephin-Bold;
+  src: url("../fonts/JosefinSans-Bold.ttf");
+}
+@font-face {
+  font-family: openSans;
+  src: url("../fonts/OpenSans-Light.ttf");
 }
 body {
   background-color: #000;
   background-image: url("http://www.hpcf.upr.edu/~abel/phl/star_field_full_gal.jpg");
+  font-family: openSans;
+}
+
+h1 {
+  font-family: josephin-SemiBold;
+}
+
+h2 {
+  font-family: josephin-SemiBold;
+  text-align: center;
 }
 
 a {
-  font-family: josephin-semiBold;
+  font-family: josephin-Regular;
   color: #bdbdbd;
   text-decoration: none;
 }
@@ -45,7 +63,7 @@ nav {
   justify-content: space-between;
 }
 nav ul {
-  width: 35%;
+  width: 80%;
   list-style: none;
   display: flex;
   align-items: center;
@@ -60,8 +78,18 @@ nav #navLeft {
 nav #navRight {
   justify-content: flex-end;
 }
+@media screen and (max-width: 1000px) {
+  nav #navRight, nav #navLeft {
+    display: none;
+  }
+}
 nav div {
   z-index: 3;
+}
+@media screen and (max-width: 1000px) {
+  nav .logo {
+    height: 90px;
+  }
 }
 
 section {
@@ -77,14 +105,16 @@ section .categories ul {
   max-width: 1650px;
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
   margin: 0 auto;
 }
 section .categories ul li {
+  zoom: 0.8;
   height: 120px;
   width: 120px;
-  margin: 20px auto;
+  margin: 20px;
   font-size: 20px;
   display: flex;
   flex-wrap: wrap;
@@ -544,6 +574,118 @@ input {
   color: red;
 }
 
+button {
+  width: 100px;
+  height: 30px;
+}
+
+/* Important styles */
+.menuToggle {
+  display: none;
+}
+@media screen and (max-width: 1000px) {
+  .menuToggle {
+    display: block;
+  }
+}
+
+#toggle {
+  display: block;
+  width: 28px;
+  height: 30px;
+  margin: 30px auto 10px;
+}
+
+#toggle span:after, #toggle span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -9px;
+}
+
+#toggle span:after {
+  top: 9px;
+}
+
+#toggle span {
+  position: relative;
+  display: block;
+}
+
+#toggle span, #toggle span:after, #toggle span:before {
+  width: 100%;
+  height: 5px;
+  background-color: #888;
+  transition: all 0.3s;
+  backface-visibility: hidden;
+  border-radius: 2px;
+}
+
+/* on activation */
+#toggle.on span {
+  background-color: transparent;
+}
+
+#toggle.on span:before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#toggle.on span:after {
+  transform: rotate(-45deg) translate(7px, -8px);
+}
+
+#toggle.on + #menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* menu appearance */
+#menu {
+  position: relative;
+  color: #999;
+  width: 200px;
+  padding: 10px;
+  margin: auto;
+  right: 0;
+  font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+  text-align: center;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+  /* just for this demo */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s;
+}
+#menu ::after {
+  position: absolute;
+  top: -15px;
+  left: 85px;
+  content: "";
+  display: block;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 20px solid white;
+}
+#menu ul, #menu li, #menu li a {
+  list-style: none;
+  display: block;
+  margin: 0;
+  padding-left: 5px;
+  text-align: center;
+}
+#menu li a {
+  padding: 5px;
+  color: #888;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+#menu li a:hover, #menu li a:focus {
+  background: #1ABC9C;
+  color: #fff;
+}
+
+/* demo styles */
 .hero {
   background-image: url("https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg");
 }

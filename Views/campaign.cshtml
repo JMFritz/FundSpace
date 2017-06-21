@@ -1,0 +1,11 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<h1>@Model["selectedCampaign"].Name</h1>
+
+@foreach(var donation in @Model["donations"])
+{
+  <h1>@donation["name"]</h1>
+  <h2>@donation["donationAmount"]</h2>
+  <h3>@donation["donationDate"]</h3>
+}

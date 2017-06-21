@@ -6,6 +6,8 @@ namespace Charity.Objects
 {
   public class User
   {
+    public static User CurrentUser;
+
     public int Id {get; set;}
     public int RoleId {get; set;}
     public string Name {get; set;}
@@ -32,6 +34,11 @@ namespace Charity.Objects
       RoleId = roleId;
       Id = id;
     }
+    //
+    // public static User GetCurrentUser()
+    // {
+    //   return CurrentUser;
+    // }
 
     public override bool Equals(System.Object otherUser)
     {
@@ -157,7 +164,7 @@ namespace Charity.Objects
         foundUser.RoleId = rdr.GetInt32(1);
         foundUser.Name = rdr.GetString(2);
         foundUser.Login = rdr.GetString(3);
-        foundUser.Password = rdr.GetString(4);
+        foundUser.Password = rdr.GetString(4); 
 
         info.Address = rdr.GetString(5);
         info.PhoneNumber = rdr.GetString(6);
@@ -234,6 +241,53 @@ namespace Charity.Objects
       DB.CloseConnection();
 
       return newDonation;
+    }
+
+    public void Update(string name, string login, string password, string address, string phoneNumber, string email)
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("UPDATE users SET name = @Name, login = @Login, password = @Password, address = @Address, phone_number = @PhoneNumber, email = @Email OUTPUT INSERTED.name, INSERTED.login, INSERTED.password, INSERTED.address, INSERTED.phone_number, INSERTED.email WHERE id = @UserId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@Name", name));
+      cmd.Parameters.Add(new SqlParameter("@Login", login));
+      cmd.Parameters.Add(new SqlParameter("@Password", password));
+      cmd.Parameters.Add(new SqlParameter("@Address", address));
+      cmd.Parameters.Add(new SqlParameter("@PhoneNumber", phoneNumber));
+      cmd.Parameters.Add(new SqlParameter("@Email", email));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Name = rdr.GetString(0);
+        this.Login = rdr.GetString(1);
+        this.Password = rdr.GetString(2);
+        this.ContactInfo.Address = rdr.GetString(3);
+        this.ContactInfo.PhoneNumber = rdr.GetString(4);
+        this.ContactInfo.Email = rdr.GetString(5);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+    }
+
+    public void DeleteSingleUser()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM donations WHERE id = @UserId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
     }
 
     public static void DeleteAll()
