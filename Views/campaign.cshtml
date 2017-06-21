@@ -25,11 +25,11 @@
   </div>
 </header>
 <section class="individualCampaign">
+  <h2>@Model["selectedCampaign"].Name</h2>
   @if(@Model["donations"].Count != 0)
   {
-    <h4> @Model["donations"][0]["owner"].Name </h4>
+    <h3> by @Model["donations"][0]["owner"].Name </h3>
   }
-  <h2>@Model["selectedCampaign"].Name</h2>
   <div class="individual" >
     <article>
       <img src="http://via.placeholder.com/450x300" alt="" />
