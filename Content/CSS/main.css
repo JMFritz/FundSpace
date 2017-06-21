@@ -367,11 +367,51 @@ footer ul li img {
   transform: translateX(189.5px) translateY(100px) translateX(-200px) translateZ(-200px);
 }
 
-input {
+.form-group {
+  text-align: center;
+}
+
+input, textarea {
   display: block;
-  height: 20px;
-  width: 90%;
+  height: 30px;
+  width: 80%;
+  margin: 2px auto 20px;
+  border-radius: 5px;
+  border: 1px solid #2a7e86;
+  background-color: #fdfdfc;
+}
+
+textarea {
+  height: 100px;
+  width: 100%;
+}
+
+label {
+  width: 80%;
+  text-align: center;
+}
+
+.person {
+  width: 80%;
   margin: 10px auto;
+  display: flex;
+  justify-content: space-around;
+}
+.person .forPhoto {
+  width: 33%;
+  display: flex;
+  align-items: center;
+}
+.person .forPhoto img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+.person .forComment {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .cards {
@@ -406,7 +446,6 @@ input {
 }
 .cards .card button {
   flex-basis: 45%;
-  height: 30px;
   margin-right: 5%;
 }
 
@@ -575,17 +614,22 @@ input {
 }
 
 button {
-  width: 100px;
-  height: 30px;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  color: white;
+  border-radius: 2px;
+  border-style: none;
+  font-family: josephin-Regular;
+  text-transform: uppercase;
+  background-color: #ec7054;
+  margin: 20px auto;
 }
 
 /* Important styles */
-.menuToggle {
-  display: none;
-}
 @media screen and (max-width: 1000px) {
   .menuToggle {
-    display: block;
+    display: none;
   }
 }
 
@@ -686,6 +730,12 @@ button {
 }
 
 /* demo styles */
+h2 {
+  font-size: 40px;
+  color: #0e0e0e;
+  margin: 30px auto;
+}
+
 .hero {
   background-image: url("https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg");
 }
