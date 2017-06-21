@@ -3,13 +3,12 @@
   display: flex
   flex-wrap: wrap
   justify-content: center
-  width: 90%
-  max-width: 1900px
+  width: 450px
   .card
     display: flex
     flex-wrap: wrap
     background-color: #fff
-    margin: 20px
+    margin: 20px 0
     height: 400px
     width: 450px
     border: 1px solid green
@@ -26,3 +25,12 @@
     button
       flex-basis: 45%
       margin-right: 5%
+  @include large-bp
+    margin: 30px auto
+    justify-content: space-around
+    width: 95%
+    max-width: 1150px
+    .card
+      margin: 20px
+  @include xLarge-bp
+    max-width: 1780px
