@@ -3,16 +3,22 @@
   width: 100%
   margin: 0 auto
   ul
+    zoom: 0.7
     width: 90%
-    max-width: 1650px
+    max-width: 650px
     list-style: none
     display: flex
     flex-wrap: wrap
     align-items: center
     justify-content: space-around
     margin: 0 auto
+    @include medium-bp
+      zoom: 1
+      // max-width: 650px
+    @include categoryInline-bp
+      // min-width: 710px
+      max-width: 1600px
     li
-      // zoom: .8
       height: 100px
       width: 100px
       margin: 20px
@@ -38,4 +44,3 @@
         img
           width: 60px
           height: 60px
-      
