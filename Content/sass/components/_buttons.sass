@@ -5,6 +5,10 @@ button
 
 //hamburger stylings
 /* Important styles */
+.menuToggle
+  display: none
+  @include medium-bp
+    display: block
 #toggle
   display: block
   width: 28px
@@ -57,6 +61,7 @@ button
   width: 200px
   padding: 10px
   margin: auto
+  right: 0
   font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif
   text-align: center
   border-radius: 4px
@@ -67,10 +72,11 @@ button
   visibility: hidden
   transition: opacity .4s
 
-  :after
+
+  ::after
     position: absolute
     top: -15px
-    left: 95px
+    left: 85px
     content: ""
     display: block
     border-left: 15px solid transparent
@@ -81,7 +87,8 @@ button
     list-style: none
     display: block
     margin: 0
-    padding: 0
+    padding-left: 5px
+    text-align: center
 
   li a
     padding: 5px
