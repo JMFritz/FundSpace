@@ -5,7 +5,6 @@ nav
   border: 1px solid black
   display: flex
   justify-content: space-between
-  @include medium-bp
   ul
     width: 80%
     list-style: none
@@ -19,13 +18,19 @@ nav
 
   #navRight
     justify-content: flex-end
+    li
+    text-align: right
 
   #navRight,  #navLeft
+    display: none
     @include medium-bp
-      display: none
+      display: block
+    @include xLarge-bp
+      display: flex
   div
     z-index: 3
 
   .logo
-    @include medium-bp
-      height: 90px
+    height: 90px
+    // @include medium-bp
+    //   height: 90px
