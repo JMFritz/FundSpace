@@ -129,38 +129,7 @@ namespace Charity.Objects
 
       return foundDonation;
     }
-    public Dictionary<string, object> GetDonationsByCampaign(Campaign newCampaign)
-    {
-      DB.CreateConnection();
-      DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("SELECT users.name, donations.donation_amount, donations.donation_date FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users ON (users.id = donations.user_id) WHERE campaign_id = @CampaignId;", DB.GetConnection());
-
-      cmd.Parameters.Add(new SqlParameter("@CampaignId", newCampaign.Id));
-      SqlDataReader rdr = cmd.ExecuteReader();
-
-      Dictionary<string, object> donationsInfo = new Dictionary<string, object> {};
-
-      while(rdr.Read())
-      {
-        string name = rdr.GetString(0);
-        int donationAmount = rdr.GetInt32(1);
-        DateTime donationDate = rdr.GetDateTime(2);
-
-        donationsInfo.Add("name", name);
-        donationsInfo.Add("donationAmount", donationAmount);
-        donationsInfo.Add("donationDate", donationDate);
-      }
-
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-
-      DB.CloseConnection();
-
-      return donationsInfo;
-    }
 
     public static void DeleteAll()
     {

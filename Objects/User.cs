@@ -120,7 +120,7 @@ namespace Charity.Objects
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE login = @Login AND password = @Password", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE login = @Login AND password = @Password;", DB.GetConnection());
 
       cmd.Parameters.Add(new SqlParameter("@Login", inputLogin));
       cmd.Parameters.Add(new SqlParameter("@Password", inputPassword));
@@ -164,7 +164,7 @@ namespace Charity.Objects
         foundUser.RoleId = rdr.GetInt32(1);
         foundUser.Name = rdr.GetString(2);
         foundUser.Login = rdr.GetString(3);
-        foundUser.Password = rdr.GetString(4); 
+        foundUser.Password = rdr.GetString(4);
 
         info.Address = rdr.GetString(5);
         info.PhoneNumber = rdr.GetString(6);
