@@ -82,13 +82,20 @@ namespace Charity
         return View["campaign.cshtml", model];
       };
       Get["/campaign/new"] = _ => {
-        return View["form.cshtml"];
+        // List<Category> allCategories = Category
+        // model.Add("categories", Category.GetAll())
+        return View["createCampaign.cshtml", Category.GetAll()];
       };
       Post["/campaign/new"] = _ => {
-        Campaign newCampaign = new Campaign(Request.Form["name"], Request.Form["description"], Request.Form["goal"], 0, Request.Form["start_date"],
-        Request.Form["end_date"], Request.Form["category"], User.CurrentUser.Id);
+        Dictionary<string, object> model = new Dictionary<string, object> {};
+        Console.WriteLine(User.CurrentUser.Name);
+        Campaign newCampaign = new Campaign(Request.Form["name"], Request.Form["description"], Request.Form["goal"], 0, Request.Form["start-date"],
+        Request.Form["end-date"], Request.Form["category"], User.CurrentUser.Id);
         newCampaign.Save();
-        return View[""];
+        List<Dictionary<string, object>> allDonationInfo = newCampaign.GetDonationsByCampaign();
+        model.Add("donations", allDonationInfo);
+        model.Add("selectedCampaign", newCampaign);
+        return View["campaign.cshtml", model];
       };
     }
   }
