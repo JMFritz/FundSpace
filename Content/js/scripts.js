@@ -46,4 +46,22 @@ $(function(){
     }
     console.log("end");
   // });
+
+
+
+// -------------------------- search!!!!!!
+
+$('.search a').click(function(e) {
+  e.preventDefault();
+  // $('#search-panel').css('visibility', 'visible');
+  $('#search-panel').addClass('panel-visible');
+
+});
+
+$('.go-button').click(function() {
+  // $('#search-panel').css('visibility', 'hidden');
+  $('#search-panel').removeClass('panel-visible');
+});
+
+
 });

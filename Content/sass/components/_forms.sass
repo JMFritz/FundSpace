@@ -1,5 +1,7 @@
 .form-group
   text-align: center
+button
+  align-self: center
 
 input, textarea
   display: block
@@ -21,12 +23,21 @@ label
 
 // --------------------------
 // donate form
+form#donations
+  display: flex
+  flex-direction: column
+  button
+    align-self: center
+
+
 
 .person
   width: 80%
   margin: 10px auto
   display: flex
   justify-content: space-around
+  button
+    align-self: center
   .forPhoto
     width: 33%
     display: flex
@@ -40,3 +51,13 @@ label
     display: flex
     flex-direction: column
     justify-content: flex-start
+
+.donator
+  display: flex
+  flex-direction: column
+  justify-content: space-arround
+  align-items: center
+  img
+    width: 100px
+    height: 100px
+    border-radius: 50px
