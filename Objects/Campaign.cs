@@ -359,7 +359,37 @@ namespace Charity.Objects
 
     public static List<Campaign> SearchByName(string searchQuery)
     {
-      
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM campaigns WHERE name LIKE @SearchQuery", DB.GetConnection());
+      cmd.Parameters.Add(new SqlParameter("@SearchQuery", "%" + searchQuery + "%"));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Campaign> matches = new List<Campaign>{};
+
+      Console.WriteLine("Hello");
+      while (rdr.Read())
+      {
+        Campaign foundCampaign = new Campaign();
+        foundCampaign.Id = rdr.GetInt32(0);
+        foundCampaign.Name = rdr.GetString(1);
+        foundCampaign.Description = rdr.GetString(2);
+        foundCampaign.Goal = rdr.GetInt32(3);
+        foundCampaign.Balance = rdr.GetInt32(4);
+        foundCampaign.Start = rdr.GetDateTime(5);
+        foundCampaign.End = rdr.GetDateTime(6);
+        foundCampaign.CategoryId = rdr.GetInt32(7);
+        foundCampaign.OwnerId = rdr.GetInt32(8);
+        matches.Add(foundCampaign);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
 
       return matches;
     }
