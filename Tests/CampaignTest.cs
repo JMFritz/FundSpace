@@ -129,6 +129,27 @@ namespace Charity
       Assert.Equal(controlDonation, testDonations[0]);
     }
 
+    [Fact]
+    public void Campaign_SearchByName_ReturnsAllMatches()
+    {
+      DateTime start = new DateTime(2018,1,1);
+      DateTime end = new DateTime(2019,1,1);
+
+      Campaign campaign1 = new Campaign("Lina's Sunburn", "Help Lina's sunburn", 100, 0, start, end, 1, 1);
+      campaign1.Save();
+      Campaign campaign2 = new Campaign("Jun needs new laptop", "Help to buy new laptop", 500, 0, start, end, 1, 1);
+      campaign2.Save();
+      Campaign campaign3 = new Campaign("Jun's Sunburn", "Help Lina's sunburn", 50, 0, start, end, 1, 1);
+      campaign3.Save();
+      Campaign campaign4 = new Campaign("Lina needs new laptop", "Help to buy new laptop", 55, 0, start, end, 1, 1);
+      campaign4.Save();
+
+      List<Campaign> testList = Campaign.SearchByName("Sunburn");
+      List<Campaign> controlList = new List<Campaign>{campaign1, campaign3};
+
+      Assert.Equal(controlList, testList);
+    }
+
 
 
     // [Fact]
