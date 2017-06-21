@@ -104,7 +104,7 @@ namespace Charity
         model.Add("donations", User.CurrentUser.GetDonationsByUser());
         model.Add("campaigns", User.CurrentUser.GetCampaigns());
         model.Add("currentUser", User.CurrentUser);
-        return View["userProfile.cshtml", model];
+        return View["user_profile.cshtml", model];
       };
       Patch["/profile/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>{};
@@ -113,7 +113,7 @@ namespace Charity
         model.Add("donations", mainUser.GetDonationsByUser());
         model.Add("campaigns", mainUser.GetCampaigns());
         model.Add("currentUser", mainUser);
-        return View["userProfile.cshtml", model];
+        return View["user_profile.cshtml", model];
       };
       Get["/campaign/{id}/update"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>{};
@@ -133,6 +133,16 @@ namespace Charity
         model.Add("selectedCampaign", selectedCampaign);
         return View["campaign.cshtml", model];
       };
+      Delete["campaign/{id}/delete"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Campaign selectedCampaign = Campaign.Find(parameters.id);
+        selectedCampaign.DeleteSingleCampaign();
+        model.Add("donations", User.CurrentUser.GetDonationsByUser());
+        model.Add("campaigns", User.CurrentUser.GetCampaigns());
+        model.Add("currentUser", User.CurrentUser);
+        return View["user_profile.cshtml", model];
+      };
+
     }
   }
 }

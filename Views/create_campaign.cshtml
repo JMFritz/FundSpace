@@ -26,19 +26,20 @@
 </header>
 <section class="createCampaignContainer">
   <!-- if not loged in... take to log-in form -->
-  <form id="new-campaign" method="post" action="/campaign/@Model["selectedCampaign"].Id">
-    <input type="hidden" name="_method" value="PATCH">
-    <h2>Start a new campaign!</h2>
-    <label for="category"> Choose category:
-      @foreach(var category in @Model["allCategories"])
-      {
-        <input type="radio" name="category" value="@category.Id"> @category.Name
-      }
-      <!-- <input type="radio" name="category" value="all"> Undefined  //?! -->
-    </label><br>
-
+<div class="info">
     @if(@Model.ContainsKey("update"))
     {
+      <form id="new-campaign" method="post" action="/campaign/@Model["selectedCampaign"].Id">
+        <input type="hidden" name="_method" value="PATCH">
+        <h2>Campaign Information</h2>
+        <label for="category"> Choose category:
+          @foreach(var category in @Model["allCategories"])
+          {
+            <input type="radio" name="category" value="@category.Id"> @category.Name</input>
+          }
+          <!-- <input type="radio" name="category" value="all"> Undefined  //?! -->
+        </label><br>
+
       <label for="name">Title:
         <input type="text" name="name" value="@Model["selectedCampaign"].Name">
       </label><br>
@@ -52,9 +53,24 @@
       <label for="end-date">What is the deadline:<br>
         <input type="date" name="end-date" value="@Model["selectedCampaign"].End">
       </label>
+      <button type="submit" name="submit-campaign">Submit!</button>
+    </form>
+    <form action="/campaign/@Model["selectedCampaign"].Id/delete" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit" name="button">Delete campaign</button>
+    </form>
     }
     else
     {
+      <form id="new-campaign" method="post" action="/campaign/new">
+        <h2>Campaign Information</h2>
+        <label for="category"> Choose category:
+          @foreach(var category in @Model["allCategories"])
+          {
+            <input type="radio" name="category" value="@category.Id"> @category.Name</input>
+          }
+          <!-- <input type="radio" name="category" value="all"> Undefined  //?! -->
+        </label><br>
       <label for="name">Title:
       <input type="text" name="name" value="Campaign Title">
       </label><br>
@@ -71,9 +87,11 @@
       <label for="end-date">What is the deadline:<br>
       <input type="date" name="end-date">
       </label>
+      <button type="submit" name="submit-campaign">Submit!</button>
+      </form>
     }
-    <button type="submit" name="submit-campaign">Submit!</button>
-  </form>
+
+</div>
 </section>
 <footer>
   <div class="footerLogo">
