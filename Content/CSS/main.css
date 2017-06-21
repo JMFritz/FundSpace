@@ -702,7 +702,6 @@ button {
 }
 
 /* Important styles */
-
 @media screen and (min-width: 640px) {
   .menuToggle {
     display: none;
@@ -824,6 +823,8 @@ h3 {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  height: 200px;
+  width: 1%;
   visibility: hidden;
   z-index: 1000;
   display: flex;
@@ -833,11 +834,20 @@ h3 {
   justify-content: center;
   text-align: center;
   transition: width 0.5s, height 0.5s, opacity 0.8s;
+  background-color: rgba(42, 66, 78, 0.88);
+}
+#search-panel h3 {
+  color: grey;
 }
 #search-panel h3:after {
   content: "";
   display: block;
   position: absolute;
+  background-image: url("../img/search-hint.png");
+  background-size: auto auto;
+  background-position: center;
+  height: 30px;
+  width: 30px;
   background-repeat: no-repeat;
   left: 50%;
   margin-top: 30px;
@@ -846,12 +856,19 @@ h3 {
 #search-panel input {
   opacity: 1;
   margin: 100px 0;
-  font-size: 80px;
+  font-size: 30px;
   padding: 20px;
   background: transparent;
   border-radius: 5px;
+  border: 2px solid #656565;
   text-align: center;
   color: #fff;
+}
+@media screen and (min-width: 640px) {
+  #search-panel input {
+    font-size: 45px;
+    padding: 40px;
+  }
 }
 #search-panel input:focus {
   outline: 0;
@@ -870,6 +887,13 @@ h3 {
 
 ::-webkit-input-placeholder {
   color: #fff;
+}
+
+#search-panel button.cancel {
+  background-color: #5bdcfd;
+  width: 10px;
+  padding-left: 20px;
+  padding-right: 30px;
 }
 
 .hero {
