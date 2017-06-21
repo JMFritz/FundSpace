@@ -8,6 +8,7 @@
     <script src="../../Content/js/scripts.js"></script>
     <title>Fund Space - Home</title>
   </head>
+
   <body>
     <header>
       <nav>
@@ -25,9 +26,12 @@
         </ul>
         <div class="menuToggle">
           <a href="#menu" id="toggle"><span></span></a>
+          <div class="search">
+            <a href="#sub-nav">Search</a>
+          </div>
           <div id="menu">
             <ul>
-              <li><a href="#">Search</a></li>
+              <li><a href="#sub-nav" >Search</a></li>
               <li><a href="#">Campaigns</a></li>
               <li><a href="#">How it works</a></li>
               <li><a href="#">Create campaign</a></li>
@@ -163,5 +167,10 @@
     <li><a href="#"><img src="../../Content/img/github.png" alt="" /></a></li>
   </ul>
 </footer>
+  <div id="search-panel">
+    <h3>Enter your search</h3>
+    <input type="text" name="name" placeholder="SEARCH C AMPAIGNS">
+    <button type="button" name="button" class="go-button">GO</button>
+  </div>
 </body>
 </html>

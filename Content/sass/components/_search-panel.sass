@@ -1,0 +1,69 @@
+#search-panel
+  // @include background-image(url('../img/bg-footercopyright.jpg'))
+  opacity: 0
+  position: fixed
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  // @include size(1%)
+  visibility: hidden
+  z-index: 1000
+  display: flex
+  flex-direction: column
+  color: white
+  align-items: center
+  justify-content: center
+  text-align: center
+  // font-family: $default-headings
+  transition: width .5s, height .5s, opacity .8s
+
+  h3
+    // color: lighten($dark-grey, 20%)
+
+    &:after
+      content: ""
+      display: block
+      position: absolute
+      // @include background-image(url('../img/search-hint.png'))
+      // @include size(30px)
+      background-repeat: no-repeat
+      left: 50%
+      margin-top: 30px
+      transform: translateX(-50%)
+
+
+
+  input
+    opacity: 1
+    margin: 100px 0
+    font-size: 80px
+    padding: 20px
+    background: transparent
+    border-radius: 5px
+    // border: 2px solid lighten($dark-grey, 20%)
+    text-align: center
+    color: #fff
+    // font-family: $default-headings
+
+    &:focus
+      outline: 0
+
+
+
+  button
+    // @extend %orange-button
+    padding-left: 100px
+    padding-right: 100px
+
+
+
+.panel-visible
+  visibility: visible !important
+  opacity: .97 !important
+  width: 100% !important
+  height: 100% !important
+
+
+::-webkit-input-placeholder
+  color: #fff
+  // font-family: $default-headings
