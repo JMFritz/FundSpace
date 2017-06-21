@@ -1,61 +1,869 @@
-/*
-Error: File to import not found or unreadable: components/seach-panel.
-       Load path: /Users/Guest/Desktop/go-fund-me/Content/sass
-        on line 31 of sass/main.sass
+*, *:before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-26: @import components/categories
-27: @import components/rocketSmoke
-28: @import components/tabs
-29: @import components/buttons
-30: @import components/titles
-31: @import components/seach-panel
-32: 
-33: 
-34: 
-35: //themes
-36: @import themes/theme
+.hero {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
-Backtrace:
-sass/main.sass:31
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/import_node.rb:67:in `rescue in import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/import_node.rb:45:in `import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/import_node.rb:28:in `imported_file'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/import_node.rb:37:in `css_import?'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:313:in `visit_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:79:in `block in with_base'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:115:in `with_frame'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:79:in `with_base'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `map'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:159:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/root_node.rb:36:in `css_tree'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/engine.rb:381:in `_render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/engine.rb:298:in `render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:209:in `each'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:473:in `on_file_changed'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:331:in `block in watch'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/adapter.rb:254:in `report_changes'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/adapter.rb:323:in `poll_changed_directories'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: File to import not found or unreadable: components/seach-panel.\A        Load path: /Users/Guest/Desktop/go-fund-me/Content/sass\A         on line 31 of sass/main.sass\A \A 26: @import components/categories\A 27: @import components/rocketSmoke\A 28: @import components/tabs\A 29: @import components/buttons\A 30: @import components/titles\A 31: @import components/seach-panel\A 32: \A 33: \A 34: \A 35: //themes\A 36: @import themes/theme"; }
+@font-face {
+  font-family: josephin-Regular;
+  src: url("../fonts/JosefinSans-Regular.ttf");
+}
+@font-face {
+  font-family: josephin-SemiBold;
+  src: url("../fonts/JosefinSans-SemiBold.ttf");
+}
+@font-face {
+  font-family: josephin-Bold;
+  src: url("../fonts/JosefinSans-Bold.ttf");
+}
+@font-face {
+  font-family: openSans;
+  src: url("../fonts/OpenSans-Light.ttf");
+}
+body {
+  background-color: #000;
+  background-image: url("http://www.hpcf.upr.edu/~abel/phl/star_field_full_gal.jpg");
+  font-family: openSans;
+}
+
+h1 {
+  font-family: josephin-SemiBold;
+}
+
+h2 {
+  font-family: josephin-SemiBold;
+  text-align: center;
+}
+
+a {
+  font-family: josephin-Regular;
+  color: #bdbdbd;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+ul li {
+  padding: 5px;
+}
+
+header {
+  margin: 0 auto;
+  height: 100px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+nav {
+  background-color: transparent;
+  height: 100px;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+nav ul {
+  width: 80%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+nav ul li {
+  margin: 0 20px;
+  font-size: 20px;
+}
+nav #navLeft {
+  justify-content: flex-start;
+}
+nav #navRight {
+  justify-content: flex-end;
+  text-align: right;
+}
+nav #navRight, nav #navLeft {
+  display: none;
+}
+@media screen and (min-width: 554px) {
+  nav #navRight, nav #navLeft {
+    display: block;
+  }
+}
+@media screen and (min-width: 1168px) {
+  nav #navRight, nav #navLeft {
+    display: flex;
+  }
+}
+nav div {
+  z-index: 3;
+}
+nav .logo {
+  height: 90px;
+}
+
+section {
+  background-color: #f3efeb;
+}
+section .userTop, section .userBottom {
+  display: flex;
+  border: 1px solid black;
+}
+section .userTop .userInfo, section .userTop .myCampaigns, section .userBottom .userInfo, section .userBottom .myCampaigns {
+  flex-basis: 60%;
+  border: 1px solid green;
+}
+section .userTop .createButton, section .userTop .myDonations, section .userBottom .createButton, section .userBottom .myDonations {
+  flex-basis: 40%;
+  border: 1px solid red;
+}
+section .userTop .userInfo, section .userTop .createButton, section .userBottom .userInfo, section .userBottom .createButton {
+  height: 500px;
+}
+section .userTop .userInfo, section .userBottom .userInfo {
+  display: flex;
+}
+section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid blue;
+}
+section .userTop .userInfo .userImage img, section .userBottom .userInfo .userImage img {
+  margin: 30px;
+  height: 400px;
+  width: 400px;
+}
+section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 30px 30px;
+  border: 1px solid pink;
+}
+section .userTop .userInfo .userText .currentUserInfo, section .userBottom .userInfo .userText .currentUserInfo {
+  visibility: visible;
+}
+section .userTop .userInfo .userText .updateForm, section .userBottom .userInfo .userText .updateForm {
+  visibility: hidden;
+  height: 0;
+}
+section .userTop .userInfo .userText input[type=checkbox], section .userBottom .userInfo .userText input[type=checkbox] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
+  -webkit-appearance: push-button;
+  -moz-appearance: button;
+  cursor: pointer;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo {
+  visibility: hidden;
+  height: 0;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .updateForm, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .updateForm {
+  visibility: visible;
+  height: auto;
+}
+section .userTop .createButton, section .userBottom .createButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .userTop .createButton button, section .userBottom .createButton button {
+  height: 300px;
+  width: 400px;
+  border: 2px solid black;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .userTop .createButton button h2, section .userBottom .createButton button h2 {
+  padding: 30px 50px;
+  font-size: 56px;
+  font-family: josephin-semiBold;
+}
+section .userTop .userDonations, section .userBottom .userDonations {
+  width: 90%;
+  margin: 30px auto;
+  padding: 20px;
+  height: 800px;
+  background-color: #16afbd;
+}
+section .userTop .userDonations .donationInfo, section .userBottom .userDonations .donationInfo {
+  width: 400px;
+  height: 150px;
+  margin: 20px auto;
+  background-color: #fff;
+  display: flex;
+}
+section .userTop .userDonations .donationInfo .donationUserImage, section .userBottom .userDonations .donationInfo .donationUserImage {
+  flex-basis: 30%;
+}
+
+.myProfile h1 {
+  padding: 30px 50px;
+  font-size: 26px;
+  font-family: josephin-semiBold;
+}
+
+.logInContainer, .createCampaignContainer, .individual {
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #16afbd;
+  height: 80vh;
+}
+
+.logInContainer div {
+  text-align: center;
+}
+.logInContainer #logIn {
+  flex-basis: 45%;
+}
+.logInContainer #signUp {
+  flex-basis: 45%;
+}
+
+.createCampaignContainer {
+  flex-wrap: wrap;
+}
+.createCampaignContainer label {
+  display: flex;
+}
+
+section.individualCampaign .individual {
+  width: 100vw;
+  height: 500px;
+}
+section.individualCampaign .individual article {
+  flex-basis: 50%;
+  height: 350px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+section.individualCampaign .individual article ul {
+  display: flex;
+}
+section.individualCampaign .individual article ul img {
+  width: 40px;
+  height: 40px;
+}
+
+.theTabs {
+  clear: both;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+.theTabs .mainTabs {
+  width: 70vw;
+}
+.theTabs .donators {
+  width: 20vw;
+  padding-right: 5vw;
+}
+
+footer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+}
+footer .footerLogo {
+  padding: 10px;
+}
+footer .footerLogo img {
+  height: 80px;
+}
+footer ul {
+  list-style: none;
+  display: flex;
+  width: 350px;
+  justify-content: flex-end;
+  align-items: center;
+}
+footer ul li {
+  margin: 10px auto;
+  width: 40px;
+  text-align: center;
+}
+footer ul li img {
+  width: 30px;
+}
+
+.hero {
+  width: 100%;
+  height: 300px;
+}
+@media screen and (min-width: 554px) {
+  .hero {
+    height: 400px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .hero {
+    height: 700px;
+  }
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 400px;
+  -webkit-perspective: 500px;
+  perspective: 500px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
+}
+
+.carousel .carousel-item {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.carousel-item > a {
+  z-index: -1;
+  opacity: 0.6;
+  display: block;
+  transform: translateX(189.5px) translateY(100px) translateX(-200px) translateZ(-200px);
+}
+
+.form-group {
+  text-align: center;
+}
+
+button {
+  align-self: center;
+}
+
+input, textarea {
+  display: block;
+  height: 30px;
+  width: 80%;
+  margin: 2px auto 20px;
+  border-radius: 5px;
+  border: 1px solid #2a7e86;
+  background-color: #fdfdfc;
+}
+
+textarea {
+  height: 100px;
+  width: 100%;
+}
+
+label {
+  width: 80%;
+  text-align: center;
+}
+
+form#donations {
+  display: flex;
+  flex-direction: column;
+}
+form#donations button {
+  align-self: center;
+}
+
+.person {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-around;
+}
+.person button {
+  align-self: center;
+}
+.person .forPhoto {
+  width: 33%;
+  display: flex;
+  align-items: center;
+}
+.person .forPhoto img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+.person .forComment {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.donator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-arround;
+  align-items: center;
+}
+.donator img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
+.cards {
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+  max-width: 1900px;
+}
+.cards .card {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  margin: 20px;
+  height: 400px;
+  width: 450px;
+  border: 1px solid green;
+}
+.cards .card .cardImage {
+  height: 250px;
+  width: 450px;
+  border: 1px solid red;
+}
+.cards .card .cardImage img {
+  height: inherit;
+  width: inherit;
+}
+.cards .card .cardText {
+  flex-basis: 50%;
+  padding-left: 10px;
+}
+.cards .card button {
+  flex-basis: 45%;
+  margin-right: 5%;
+}
+
+.categories {
+  font-family: josephin-semiBold;
+  width: 100%;
+  margin: 0 auto;
+}
+.categories ul {
+  width: 90%;
+  max-width: 1650px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+.categories ul li {
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  font-size: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.categories ul li h4 {
+  padding: 5px;
+  color: #666;
+}
+.categories ul li div {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: #bbb9b7;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.categories ul li div img {
+  width: 60px;
+  height: 60px;
+}
+
+/* Smoke container */
+#smoke {
+  position: absolute;
+  z-index: 0;
+  height: 60px;
+  width: 1px;
+  left: 49.5%;
+  top: 110px;
+}
+
+/* smoke balls */
+#smoke span {
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -20px;
+  height: 0px;
+  width: 0px;
+  border: 35px solid #fff;
+  border-radius: 35px;
+  left: -14px;
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+/* Smoke animation */
+@keyframes smokeL {
+  0% {
+    transform: scale(0.2) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(0.2) translate(0, 5px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translate(-20px, 150px);
+  }
+}
+@keyframes smokeR {
+  0% {
+    transform: scale(0.2) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(0.2) translate(0, 5px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translate(20px, 150px);
+  }
+}
+#smoke .s0 {
+  animation: smokeR 10s 0s infinite;
+}
+
+#smoke .s1 {
+  animation: smokeL 10s 1s infinite;
+}
+
+#smoke .s2 {
+  animation: smokeR 10s 2s infinite;
+}
+
+#smoke .s3 {
+  animation: smokeL 10s 3s infinite;
+}
+
+#smoke .s4 {
+  animation: smokeR 10s 4s infinite;
+}
+
+#smoke .s5 {
+  animation: smokeL 10s 5s infinite;
+}
+
+#smoke .s6 {
+  animation: smokeR 10s 6s infinite;
+}
+
+#smoke .s7 {
+  animation: smokeL 10s 7s infinite;
+}
+
+#smoke .s8 {
+  animation: smokeR 10s 8s infinite;
+}
+
+#smoke .s9 {
+  animation: smokeL 10s 9s infinite;
+}
+
+.mainTabs input[type=radio] {
+  display: none;
+}
+
+#tab-1:checked ~ .tab label:nth-child(1),
+#tab-2:checked ~ .tab label:nth-child(2),
+#tab-3:checked ~ .tab label:nth-child(3),
+#tab-4:checked ~ .tab label:nth-child(4) {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
+
+.content > div {
+  display: none;
+}
+
+#tab-1:checked ~ .content div:nth-child(1),
+#tab-2:checked ~ .content div:nth-child(2),
+#tab-3:checked ~ .content div:nth-child(3),
+#tab-4:checked ~ .content div:nth-child(4) {
+  display: block;
+}
+
+.mainTabs {
+  border: 2px solid black;
+  margin: 0 auto;
+  min-height: 500px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.tab {
+  overflow: hidden;
+}
+.tab label {
+  font-size: 18px;
+  cursor: pointer;
+  float: left;
+  color: #fff;
+  width: 25%;
+  text-align: center;
+  padding: 15px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.content {
+  background-color: rgba(0, 0, 0, 0.2);
+  min-height: 500px;
+}
+.content > div {
+  padding: 10px;
+  line-height: 1.5;
+  font-size: 17px;
+}
+
+.person {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.person div {
+  width: 50%;
+}
+.person div a {
+  color: red;
+}
+
+button {
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  color: white;
+  border-radius: 2px;
+  border-style: none;
+  font-family: josephin-Regular;
+  text-transform: uppercase;
+  background-color: #ec7054;
+  margin: 20px auto;
+}
+
+/* Important styles */
+@media screen and (min-width: 554px) {
+  .menuToggle {
+    display: none;
+  }
+}
+
+#toggle {
+  display: block;
+  width: 28px;
+  height: 30px;
+  margin: 30px auto 10px;
+}
+
+#toggle span:after, #toggle span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -9px;
+}
+
+#toggle span:after {
+  top: 9px;
+}
+
+#toggle span {
+  position: relative;
+  display: block;
+}
+
+#toggle span, #toggle span:after, #toggle span:before {
+  width: 100%;
+  height: 5px;
+  background-color: #888;
+  transition: all 0.3s;
+  backface-visibility: hidden;
+  border-radius: 2px;
+}
+
+/* on activation */
+#toggle.on span {
+  background-color: transparent;
+}
+
+#toggle.on span:before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#toggle.on span:after {
+  transform: rotate(-45deg) translate(7px, -8px);
+}
+
+#toggle.on + #menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* menu appearance */
+#menu {
+  position: relative;
+  color: #999;
+  width: 200px;
+  padding: 10px;
+  margin: auto;
+  right: 0;
+  font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+  text-align: center;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+  /* just for this demo */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s;
+}
+#menu ::after {
+  position: absolute;
+  top: -15px;
+  left: 85px;
+  content: "";
+  display: block;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 20px solid white;
+}
+#menu ul, #menu li, #menu li a {
+  list-style: none;
+  display: block;
+  margin: 0;
+  padding-left: 5px;
+  text-align: center;
+}
+#menu li a {
+  padding: 5px;
+  color: #888;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+#menu li a:hover, #menu li a:focus {
+  background: #1ABC9C;
+  color: #fff;
+}
+
+/* demo styles */
+h2 {
+  font-size: 40px;
+  color: #0e0e0e;
+  margin: 20px auto;
+}
+
+h3 {
+  font-size: 25px;
+  color: #353535;
+  margin: 10px auto;
+}
+
+#search-panel {
+  opacity: 0;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: width 0.5s, height 0.5s, opacity 0.8s;
+}
+#search-panel h3:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-repeat: no-repeat;
+  left: 50%;
+  margin-top: 30px;
+  transform: translateX(-50%);
+}
+#search-panel input {
+  opacity: 1;
+  margin: 100px 0;
+  font-size: 80px;
+  padding: 20px;
+  background: transparent;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+}
+#search-panel input:focus {
+  outline: 0;
+}
+#search-panel button {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.panel-visible {
+  visibility: visible !important;
+  opacity: 0.97 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.hero {
+  background-image: url("https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg");
+}
+
+article.right a {
+  width: 300px;
+  padding: 20px;
+  font-size: 30px;
+  color: white;
+  background-color: #5cbed6;
+  text-align: center;
+  border-radius: 2px;
+  border-style: none;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=main.css.map */
