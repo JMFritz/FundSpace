@@ -142,7 +142,15 @@ namespace Charity
         model.Add("currentUser", User.CurrentUser);
         return View["user_profile.cshtml", model];
       };
-
+      Get["categories/{id}/trending"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        List<Category> allCategories = Category.GetAll();
+        Category selectedCategory = Category.Find(parameters.id);
+        model.Add("campaigns", selectedCategory.GetTrendingCampaigns());
+        model.Add("categories", allCategories);
+        model.Add("selected-category", selectedCategory);
+        return View["campaigns.cshtml", model];
+      };
     }
   }
 }

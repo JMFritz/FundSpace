@@ -86,6 +86,7 @@ namespace Charity.Objects
 
         Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, ownerId, id);
         campaigns.Add(newCampaign);
+
       }
 
       if (rdr != null)
@@ -93,6 +94,7 @@ namespace Charity.Objects
         rdr.Close();
       }
       DB.CloseConnection();
+
 
       return campaigns;
     }
@@ -175,8 +177,8 @@ namespace Charity.Objects
     //   DB.CreateConnection();
     //   DB.OpenConnection();
     //
-    //   SqlCommand cmd = new SqlCommand("SELECT users.* FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users (users.id = donations.user_id) WHERE campaign_id = @CampaignId ;", DB.GetConnection());
-    //
+    //  SqlCommand cmd = new SqlCommand("SELECT users.* FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users (users.id = donations.user_id) WHERE campaign_id = @CampaignId ;", DB.GetConnection());
+    // //
     //   cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
     //   SqlDataReader rdr = cmd.ExecuteReader();
     //
