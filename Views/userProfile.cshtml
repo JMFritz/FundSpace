@@ -77,128 +77,39 @@
     <div class="myCampaigns">
       <h2>My Campaigns</h2>
       <div class="cards">
-        <div class="card">
-          <div class="cardImage">
-            <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-15.jpg" alt="" />
+        @foreach(var campaign in @Model["campaigns"])
+        {
+          <div class="card">
+            <div class="cardImage">
+              <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-15.jpg" alt="" />
+            </div>
+            <div class="cardText">
+              <h3>@campaign.Name</h3>
+            </div>
+            <div>
+              <h3>$@campaign.Goal</h3>
+            </div>
+            <a href="/campaign/@campaign.Id/update"><button type="button" name="button">Click to view, edit, or delete</button></a>
           </div>
-          <div class="cardText">
-            <h3>title title title</h3>
-          </div>
-          <div>
-            <h3>Goal: $$$</h3>
-          </div>
-          <button type="button" name="button">Click to view, edit, or delete</button>
-        </div>
-        <div class="card">
-          <div class="cardImage">
-            <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-15.jpg" alt="" />
-          </div>
-          <div class="cardText">
-            <h3>title title title</h3>
-          </div>
-          <div>
-            <h3>Goal: $$$</h3>
-          </div>
-          <button type="button" name="button">Click to view, edit, or delete</button>
-        </div>
-        <div class="card">
-          <div class="cardImage">
-            <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-15.jpg" alt="" />
-          </div>
-          <div class="cardText">
-            <h3>title title title</h3>
-          </div>
-          <div>
-            <h3>Goal: $$$</h3>
-          </div>
-          <button type="button" name="button">Click to view, edit, or delete</button>
-        </div>
-        <div class="card">
-          <div class="cardImage">
-            <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-15.jpg" alt="" />
-          </div>
-          <div class="cardText">
-            <h3>title title title</h3>
-          </div>
-          <div>
-            <h3>Goal: $$$</h3>
-          </div>
-          <button type="button" name="button">Click to view, edit, or delete</button>
-        </div>
-        <div class="card">
-          <div class="cardImage">
-            <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-15.jpg" alt="" />
-          </div>
-          <div class="cardText">
-            <h3>title title title</h3>
-          </div>
-          <div>
-            <h3>Goal: $$$</h3>
-          </div>
-          <button type="button" name="button">Click to view, edit, or delete</button>
-        </div>
-        <div class="card">
-          <div class="cardImage">
-            <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-15.jpg" alt="" />
-          </div>
-          <div class="cardText">
-            <h3>title title title</h3>
-          </div>
-          <div>
-            <h3>Goal: $$$</h3>
-          </div>
-          <button type="button" name="button">Click to view, edit, or delete</button>
-        </div>
+        }
       </div>
     </div>
     <div class="myDonations">
       <h2>My Donations</h2>
       <div class="userDonations">
-        <div class="donationInfo">
-          <div class="donationUserImage">
-            <img src="#" alt="" />
+        @foreach(var donation in @Model["donations"])
+        {
+          <div class="donationInfo">
+            <div class="donationUserImage">
+              <img src="#" alt="" />
+            </div>
+            <div class="donationText">
+              <h2>@donation["name"]</h2>
+              <h2>@donation["donationAmount"]</h2>
+              <h2>@donation["donationDate"]</h2>
+            </div>
           </div>
-          <div class="donationText">
-            <h2>Title of campaign</h2>
-            <h2>$$$ Amount Donated</h2>
-          </div>
-        </div>
-        <div class="donationInfo">
-          <div class="donationUserImage">
-            <img src="#" alt="" />
-          </div>
-          <div class="donationText">
-            <h2>Title of campaign</h2>
-            <h2>$$$ Amount Donated</h2>
-          </div>
-        </div>
-        <div class="donationInfo">
-          <div class="donationUserImage">
-            <img src="#" alt="" />
-          </div>
-          <div class="donationText">
-            <h2>Title of campaign</h2>
-            <h2>$$$ Amount Donated</h2>
-          </div>
-        </div>
-        <div class="donationInfo">
-          <div class="donationUserImage">
-            <img src="#" alt="" />
-          </div>
-          <div class="donationText">
-            <h2>Title of campaign</h2>
-            <h2>$$$ Amount Donated</h2>
-          </div>
-        </div>
-        <div class="donationInfo">
-          <div class="donationUserImage">
-            <img src="#" alt="" />
-          </div>
-          <div class="donationText">
-            <h2>Title of campaign</h2>
-            <h2>$$$ Amount Donated</h2>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </div>

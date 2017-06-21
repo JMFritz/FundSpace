@@ -25,7 +25,10 @@
   </div>
 </header>
 <section class="individualCampaign">
-  <h4> USER NAME </h4>
+  @if(@Model["donations"].Count != 0)
+  {
+    <h4> @Model["donations"][0]["owner"].Name </h4>
+  }
   <h2>@Model["selectedCampaign"].Name</h2>
   <div class="individual" >
     <article>

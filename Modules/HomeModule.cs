@@ -45,13 +45,6 @@ namespace Charity
           return View["index.cshtml", model];
         }
       };
-      Get["/home"] = _ => {
-        Dictionary<string, object> model = new Dictionary<string, object> {};
-        // model.Add("currentUser", User.CurrentUser);
-        model.Add("categories", Category.GetAll());
-        model.Add("all-campaigns", Campaign.GetAll());
-        return View["index.cshtml", model];
-      };
       Get["/{id}/campaigns"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object> {};
         Category selectedCategory = Category.Find(parameters.id);
@@ -73,6 +66,7 @@ namespace Charity
         Donation newDonation = User.CurrentUser.MakeDonation(selectedCampaign, Request.Form["money"], DateTime.Now);
         List<Dictionary<string, object>> allDonationInfo = selectedCampaign.GetDonationsByCampaign();
         selectedCampaign.UpdateBalance(Request.Form["money"]);
+        model.Add("currentUser", User.CurrentUser);
         model.Add("donations", allDonationInfo);
         model.Add("selectedCampaign", selectedCampaign);
         return View["campaign.cshtml", model];
@@ -82,14 +76,16 @@ namespace Charity
         Dictionary<string, object> model = new Dictionary<string, object> {};
         Campaign selectedCampaign = Campaign.Find(parameters.id);
         List<Dictionary<string, object>> allDonationInfo = selectedCampaign.GetDonationsByCampaign();
+        model.Add("currentUser", User.CurrentUser);
         model.Add("donations", allDonationInfo);
         model.Add("selectedCampaign", selectedCampaign);
         return View["campaign.cshtml", model];
       };
       Get["/campaign/new"] = _ => {
-        // List<Category> allCategories = Category
-        // model.Add("categories", Category.GetAll())
-        return View["createCampaign.cshtml", Category.GetAll()];
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("allCategories", Category.GetAll());
+        model.Add("currentUser", User.CurrentUser);
+        return View["create_campaign.cshtml", model];
       };
       Post["/campaign/new"] = _ => {
         Dictionary<string, object> model = new Dictionary<string, object> {};
@@ -98,13 +94,14 @@ namespace Charity
         Request.Form["end-date"], Request.Form["category"], User.CurrentUser.Id);
         newCampaign.Save();
         List<Dictionary<string, object>> allDonationInfo = newCampaign.GetDonationsByCampaign();
+        model.Add("currentUser", User.CurrentUser);
         model.Add("donations", allDonationInfo);
         model.Add("selectedCampaign", newCampaign);
         return View["campaign.cshtml", model];
       };
       Get["/profile/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>{};
-        model.Add("donations", User.CurrentUser.GetDonations());
+        model.Add("donations", User.CurrentUser.GetDonationsByUser());
         model.Add("campaigns", User.CurrentUser.GetCampaigns());
         model.Add("currentUser", User.CurrentUser);
         return View["userProfile.cshtml", model];
@@ -113,10 +110,28 @@ namespace Charity
         Dictionary<string, object> model = new Dictionary<string, object>{};
         User mainUser = User.CurrentUser;
         mainUser.Update(Request.Form["name"], Request.Form["username"], Request.Form["password"], Request.Form["address"], Request.Form["phone-number"], Request.Form["email"]);
-        model.Add("donations", mainUser.GetDonations());
+        model.Add("donations", mainUser.GetDonationsByUser());
         model.Add("campaigns", mainUser.GetCampaigns());
         model.Add("currentUser", mainUser);
         return View["userProfile.cshtml", model];
+      };
+      Get["/campaign/{id}/update"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("selectedCampaign", Campaign.Find(parameters.id));
+        model.Add("allCategories", Category.GetAll());
+        model.Add("currentUser", User.CurrentUser);
+        model.Add("update", null);
+        return View["create_campaign.cshtml", model];
+      };
+      Patch["/campaign/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Campaign selectedCampaign = Campaign.Find(parameters.id);
+        selectedCampaign.Update(Request.Form["name"], Request.Form["description"], Request.Form["goal"], Request.Form["end-date"], Request.Form["category"]);
+        List<Dictionary<string, object>> allDonationInfo = selectedCampaign.GetDonationsByCampaign();
+        model.Add("donations", allDonationInfo);
+        model.Add("currentUser", User.CurrentUser);
+        model.Add("selectedCampaign", selectedCampaign);
+        return View["campaign.cshtml", model];
       };
     }
   }
