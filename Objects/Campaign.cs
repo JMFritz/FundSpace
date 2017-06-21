@@ -297,6 +297,41 @@ namespace Charity.Objects
       DB.CloseConnection();
     }
 
+    public List<Dictionary<string, object>> GetDonationsByCampaign()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT users.name, donations.donation_amount, donations.donation_date FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users ON (users.id = donations.user_id) WHERE campaign_id = @CampaignId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Dictionary<string, object>> allDonationInfo = new List<Dictionary<string, object>>{};
+
+      while(rdr.Read())
+      {
+        string name = rdr.GetString(0);
+        int donationAmount = rdr.GetInt32(1);
+        DateTime donationDate = rdr.GetDateTime(2);
+
+        Dictionary<string, object> donationsInfo = new Dictionary<string, object> {};
+        donationsInfo.Add("name", name);
+        donationsInfo.Add("donationAmount", donationAmount);
+        donationsInfo.Add("donationDate", donationDate.ToString("d"));
+        allDonationInfo.Add(donationsInfo);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      DB.CloseConnection();
+
+      return allDonationInfo;
+    }
+
     public void DeleteSingleCampaign()
     {
       DB.CreateConnection();
