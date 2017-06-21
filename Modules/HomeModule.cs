@@ -11,16 +11,21 @@ namespace Charity
     {
       Get["/"] = _ => {
         Dictionary<string, object> model = new Dictionary<string, object> {};
+        model.Add("currentUser", User.CurrentUser);
         model.Add("categories", Category.GetAll());
         model.Add("all-campaigns", Campaign.GetAll());
         return View["index.cshtml", model];
       };
       Post["/profile/new"] = _ => {
+        Dictionary<string, object> model = new Dictionary<string, object> {};
         ContactInformation info = new ContactInformation(Request.Form["address"], Request.Form["phone-number"], Request.Form["email"]);
         User newUser = new User(Request.Form["name"], Request.Form["username"], Request.Form["password"], info);
         newUser.Save();
         User.CurrentUser = newUser;
-        return View["userProfile.cshtml"];
+        model.Add("currentUser", User.CurrentUser);
+        model.Add("categories", Category.GetAll());
+        model.Add("all-campaigns", Campaign.GetAll());
+        return View["index.cshtml", model];
       };
       Get["/login"] = _ =>{
         return View["login_form.cshtml"];
@@ -96,6 +101,22 @@ namespace Charity
         model.Add("donations", allDonationInfo);
         model.Add("selectedCampaign", newCampaign);
         return View["campaign.cshtml", model];
+      };
+      Get["/profile/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("donations", User.CurrentUser.GetDonations());
+        model.Add("campaigns", User.CurrentUser.GetCampaigns());
+        model.Add("currentUser", User.CurrentUser);
+        return View["userProfile.cshtml", model];
+      };
+      Patch["/profile/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        User mainUser = User.CurrentUser;
+        mainUser.Update(Request.Form["name"], Request.Form["username"], Request.Form["password"], Request.Form["address"], Request.Form["phone-number"], Request.Form["email"]);
+        model.Add("donations", mainUser.GetDonations());
+        model.Add("campaigns", mainUser.GetCampaigns());
+        model.Add("currentUser", mainUser);
+        return View["userProfile.cshtml", model];
       };
     }
   }

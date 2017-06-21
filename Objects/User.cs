@@ -204,12 +204,12 @@ namespace Charity.Objects
 
         donations.Add(newDonation);
 
-        if (rdr != null)
-        {
-          rdr.Close();
-        }
-        DB.CloseConnection();
       }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
       return donations;
     }
 
@@ -278,6 +278,42 @@ namespace Charity.Objects
       DB.CloseConnection();
     }
 
+    public List<Campaign> GetCampaigns()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM campaigns WHERE owner_id = @UserId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Campaign> allCampaigns = new List<Campaign>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string description = rdr.GetString(2);
+        int goal = rdr.GetInt32(3);
+        int balance = rdr.GetInt32(4);
+        DateTime start = rdr.GetDateTime(5);
+        DateTime end = rdr.GetDateTime(6);
+        int categoryId = rdr.GetInt32(7);
+        int ownerId = rdr.GetInt32(8);
+
+        Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, ownerId, id);
+        allCampaigns.Add(newCampaign);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return allCampaigns;
+    }
     public void DeleteSingleUser()
     {
       DB.CreateConnection();
