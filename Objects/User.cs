@@ -181,36 +181,36 @@ namespace Charity.Objects
       return foundUser;
     }
 
-    public List<Donation> GetDonations()
+    public List<Dictionary<string,object>> GetDonationsByUser()
     {
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM donations WHERE user_id = @UserId;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("SELECT campaigns.name, donations.donation_amount, donations.donation_date FROM users JOIN donations ON (users.id = donations.user_id) JOIN campaigns ON (campaigns.id = donations.campaign_id) WHERE user_id = @UserId;", DB.GetConnection());
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Donation> donations = new List<Donation>{};
+      List<Dictionary<string,object>> allDonations = new List<Dictionary<string,object>>{};
       while(rdr.Read())
       {
-        int id = rdr.GetInt32(0);
-        int userId = rdr.GetInt32(1);
-        int campaignId = rdr.GetInt32(2);
-        int donationAmount = rdr.GetInt32(3);
-        DateTime donationDate = rdr.GetDateTime(4);
+        string name = rdr.GetString(0);
+        int donationAmount = rdr.GetInt32(1);
+        DateTime donationDate = rdr.GetDateTime(2);
 
-        Donation newDonation = new Donation(userId, campaignId, donationAmount, donationDate, id);
-
-        donations.Add(newDonation);
-
-        if (rdr != null)
-        {
-          rdr.Close();
-        }
-        DB.CloseConnection();
+        Dictionary<string, object> donationsInfo = new Dictionary<string, object> {};
+        donationsInfo.Add("name", name);
+        donationsInfo.Add("donationAmount", donationAmount);
+        donationsInfo.Add("donationDate", donationDate.ToString("d"));
+        allDonations.Add(donationsInfo);
       }
-      return donations;
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+      return allDonations;
     }
 
     public Donation MakeDonation(Campaign donatedCampaign, int donationAmount, DateTime date)
@@ -278,6 +278,42 @@ namespace Charity.Objects
       DB.CloseConnection();
     }
 
+    public List<Campaign> GetCampaigns()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM campaigns WHERE owner_id = @UserId;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Campaign> allCampaigns = new List<Campaign>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string description = rdr.GetString(2);
+        int goal = rdr.GetInt32(3);
+        int balance = rdr.GetInt32(4);
+        DateTime start = rdr.GetDateTime(5);
+        DateTime end = rdr.GetDateTime(6);
+        int categoryId = rdr.GetInt32(7);
+        int ownerId = rdr.GetInt32(8);
+
+        Campaign newCampaign = new Campaign(name, description, goal, balance, start, end, categoryId, ownerId, id);
+        allCampaigns.Add(newCampaign);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return allCampaigns;
+    }
     public void DeleteSingleUser()
     {
       DB.CreateConnection();

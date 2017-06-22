@@ -1,0 +1,130 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<header>
+  <nav>
+    <ul id="navLeft">
+      <li><a href="#search">Search</a></li>
+      <li><a href="campaigns.html">Campaigns</a></li>
+    </ul>
+    <div>
+      <a href="/"><img src="../Content/img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <ul id="navRight">
+      <li><a href="/login">Log-In/Sign-Up</a></li>
+    </ul>
+  </nav>
+  <div class="hamburger" id="hamburger">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+  </div>
+</header>
+<section class="myProfile">
+  <h1>My Profile</h1>
+  <div class="userTop">
+    <div class="userInfo">
+      <div class="userImage">
+        <img src="http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg" alt="" />
+      </div>
+      <div class="userText">
+        <label for="toggle-1">Edit</label>
+        <input type="checkbox" id="toggle-1">
+        <div class="currentUserInfo">
+          <h2><span>Name: </span>@Model["currentUser"].Name</h2>
+          <h2><span>UserName: </span>@Model["currentUser"].Login</h2>
+          <h2><span>Password: </span>@Model["currentUser"].Password</h2>
+          <h2><span>Address: </span>@Model["currentUser"].ContactInfo.Address</h2>
+          <h2><span>Phone: </span>@Model["currentUser"].ContactInfo.PhoneNumber</h2>
+          <h2><span>Email: </span>@Model["currentUser"].ContactInfo.Email</h2>
+        </div>
+        <form class="updateForm" action="/profile/@Model["currentUser"].Id" method="post">
+          <input type="hidden" name="_method" value="PATCH">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input class="form-control" type="text" name="name" value="@Model["currentUser"].Name" required>
+          </div>
+          <div class="form-group">
+            <label>Username</label>
+            <input class="form-control" type="text" name="username" value="@Model["currentUser"].Login" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="text" name="password" value="@Model["currentUser"].Password" required>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input class="form-control" type="text" name="address" value="@Model["currentUser"].ContactInfo.Address" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input class="form-control" type="text" name="phone-number" value="@Model["currentUser"].ContactInfo.PhoneNumber" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="text" name="email" value="@Model["currentUser"].ContactInfo.Email" required>
+          </div>
+          <button type="submit" name="button">Update</button>
+        </form>
+        <!-- <button type="button" name="button">Edit</button> -->
+      </div>
+    </div>
+    <div class="createButton">
+      <a href="/campaign/new"><button type="button" name="button"><h2>Create<br>- a -<br>Campaign</h2></button></a>
+    </div>
+  </div>
+  <div class="userBottom">
+    <div class="myCampaigns">
+      <h2>My Campaigns</h2>
+      <div class="cards">
+        @foreach(var campaign in @Model["campaigns"])
+        {
+          <div class="card">
+            <div class="cardImage">
+              <img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-15.jpg" alt="" />
+            </div>
+            <div class="cardText">
+              <h3>@campaign.Name</h3>
+            </div>
+            <div>
+              <h3>$@campaign.Goal</h3>
+            </div>
+            <a href="/campaign/@campaign.Id/update"><button type="button" name="button">Click to view, edit, or delete</button></a>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="myDonations">
+      <h2>My Donations</h2>
+      <div class="userDonations">
+        @foreach(var donation in @Model["donations"])
+        {
+          <div class="donationInfo">
+            <div class="donationUserImage">
+              <img src="#" alt="" />
+            </div>
+            <div class="donationText">
+              <h2>@donation["name"]</h2>
+              <h2>@donation["donationAmount"]</h2>
+              <h2>@donation["donationDate"]</h2>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footerLogo">
+    <a href="index.html"><img src="../Content/img/logo.png" class="logo" alt="logo"></a>
+  </div>
+  <ul id="navFooter">
+    <li><a href="#"><img src="../Content/img/twitter.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/facebook.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/tumblr.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/instagram.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/pinterest.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/youtube.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/github.png" alt="" /></a></li>
+  </ul>
+</footer>

@@ -107,6 +107,42 @@ namespace Charity.Objects
       return foundCategory;
     }
 
+    public List<Dictionary<string, object>> GetTrendingCampaigns()
+    {
+      DB.CreateConnection();
+      DB.OpenConnection();
+
+      SqlCommand cmd = new SqlCommand("SELECT campaigns.id, campaigns.name, campaigns.description, COUNT (campaign_id) as count FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) WHERE category_id = @CategoryId group by campaigns.id, campaigns.name, campaigns.description;", DB.GetConnection());
+
+      cmd.Parameters.Add(new SqlParameter("@CategoryId", this.Id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Dictionary<string, object>> trendingDonations = new List<Dictionary<string, object>>{};
+
+      while(rdr.Read())
+      {
+        int newId = rdr.GetInt32(0);
+        string campaignName = rdr.GetString(1);
+        string campaignDescription = rdr.GetString(2);
+        int campaignDonationCount = rdr.GetInt32(3);
+
+        Dictionary<string, object> campaignInfo = new Dictionary<string, object> {};
+        campaignInfo.Add("id", newId);
+        campaignInfo.Add("name", campaignName);
+        campaignInfo.Add("campaignDescription", campaignDescription);
+        campaignInfo.Add("campaignDonationCount", campaignDonationCount);
+        trendingDonations.Add(campaignInfo);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
+      DB.CloseConnection();
+      return trendingDonations;
+    }
+
     public List<Campaign> GetCampaigns()
     {
       DB.CreateConnection();

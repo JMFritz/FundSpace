@@ -1,0 +1,109 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<header>
+  <nav>
+    <ul id="navLeft">
+      <li><a href="#search">Search</a></li>
+      <li><a href="campaigns.html">Campaigns</a></li>
+    </ul>
+    <div>
+      <a href="/"><img src="../Content/img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <ul id="navRight">
+      @if (@Model["currentUser"] != null)
+      {
+        <li><a href="/profile/@Model["currentUser"].Id">My Profile</a></li>
+      }
+      <li><a href="/login">Log-In/Sign-Up</a></li>
+    </ul>
+  </nav>
+  <div class="hamburger" id="hamburger">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+  </div>
+</header>
+<section class="createCampaignContainer">
+  <!-- if not loged in... take to log-in form -->
+<div class="info">
+    @if(@Model.ContainsKey("update"))
+    {
+      <form id="new-campaign" method="post" action="/campaign/@Model["selectedCampaign"].Id">
+        <input type="hidden" name="_method" value="PATCH">
+        <h2>Campaign Information</h2>
+        <label for="category"> Choose category:
+          @foreach(var category in @Model["allCategories"])
+          {
+            <input type="radio" name="category" value="@category.Id"> @category.Name</input>
+          }
+          <!-- <input type="radio" name="category" value="all"> Undefined  //?! -->
+        </label><br>
+
+      <label for="name">Title:
+        <input type="text" name="name" value="@Model["selectedCampaign"].Name">
+      </label><br>
+      <label for="description">Tell us what the campaign is about:
+        <textarea name="description" rows="10" cols="30" value="@Model["selectedCampaign"].Description"></textarea><br>
+      </label><br>
+
+      <label for="goal">How much money do the cause need?
+        <input type="number" name="goal" min="1" max="1000000" value="@Model["selectedCampaign"].Goal">
+      </label>
+      <label for="end-date">What is the deadline:<br>
+        <input type="date" name="end-date" value="@Model["selectedCampaign"].End">
+      </label>
+      <button type="submit" name="submit-campaign">Submit!</button>
+    </form>
+    <form action="/campaign/@Model["selectedCampaign"].Id/delete" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit" name="button">Delete campaign</button>
+    </form>
+    }
+    else
+    {
+      <form id="new-campaign" method="post" action="/campaign/new">
+        <h2>Campaign Information</h2>
+        <label for="category"> Choose category:
+          @foreach(var category in @Model["allCategories"])
+          {
+            <input type="radio" name="category" value="@category.Id"> @category.Name</input>
+          }
+          <!-- <input type="radio" name="category" value="all"> Undefined  //?! -->
+        </label><br>
+      <label for="name">Title:
+      <input type="text" name="name" value="Campaign Title">
+      </label><br>
+      <label for="description">Tell us what the campaign is about:
+      <textarea name="description" rows="10" cols="30" placeholder="Tell us the story..."></textarea><br>
+      </label><br>
+
+      <label for="goal">How much money do the cause need?
+      <input type="number" name="goal" min="1" max="1000000" placeholder="How much money does the cause need?">
+      </label>
+      <label for="start-date">When will the campaign start:<br>
+      <input type="date" name="start-date">
+      </label>
+      <label for="end-date">What is the deadline:<br>
+      <input type="date" name="end-date">
+      </label>
+      <button type="submit" name="submit-campaign">Submit!</button>
+      </form>
+    }
+
+</div>
+</section>
+<footer>
+  <div class="footerLogo">
+    <a href="index.html"><img src="../Content/img/logo.png" class="logo" alt="logo"></a>
+  </div>
+  <ul id="navFooter">
+    <li><a href="#"><img src="../Content/img/twitter.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/facebook.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/tumblr.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/instagram.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/pinterest.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/youtube.png" alt="" /></a></li>
+    <li><a href="#"><img src="../Content/img/github.png" alt="" /></a></li>
+  </ul>
+</footer>
