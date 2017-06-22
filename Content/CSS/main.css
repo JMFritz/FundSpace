@@ -1001,6 +1001,13 @@ footer ul li img {
   padding-right: 30px;
 }
 
+#search-panel button.cancel {
+  background-color: #5bdcfd;
+  width: 10px;
+  padding-left: 20px;
+  padding-right: 30px;
+}
+
 .hero {
   background-image: url("https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg");
 }
