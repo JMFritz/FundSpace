@@ -2,14 +2,16 @@ section
   min-height: 100%
   background-color: #f3efeb
   // background-color: #16afbd
+  .userTop
+  border-top: 3px solid black
   .userTop, .userBottom
     h2
       font-size: 25px
-    border-top: 3px solid black
-    border-bottom: 3px solid black
-    .userInfo, .myCampaigns
-      // border: 1px solid green
-    .createButton, .myDonations
+    // border-bottom: 3px solid black
+
+    // .userInfo, .myCampaigns
+    //   // border: 1px solid green
+    // .createButton, .myDonations
       // border: 1px solid red
     .userInfo, .createButton
     .userInfo
@@ -21,7 +23,7 @@ section
         align-items: center
         // border: 1px solid blue
         img
-          margin: 30px
+          margin: 20px
           height: 400px
           width: 400px
       .userText
@@ -29,7 +31,7 @@ section
         display: flex
         flex-direction: column
         align-items: center
-        padding: 60px 30px 30px
+        padding: 30px 30px 30px
         // border: 1px solid pink
         .currentUserInfo
           visibility: visible
@@ -42,6 +44,7 @@ section
           top: -9999px
           left: -9999px
         > label
+          margin: 0 auto
           @extend %buttons
           cursor: pointer
           height: 50px
@@ -67,18 +70,24 @@ section
       display: flex
       justify-content: center
       align-items: center
+      background-color: #16afbd
+      height: 320px
       button
-        height: 300px
+        @extend %buttons
+        height: 250px
         width: 400px
-        border: 2px solid black
-        border-radius: 30px
+        // border: 2px solid black
+        // border-radius: 30px
         display: flex
         justify-content: center
         align-items: center
         h2
+          color: white
           padding: 30px 50px
           font-size: 56px
           font-family: josephin-semiBold
+      @include medium-bp
+        height: 450px
     .userDonations
       width: 90%
       margin: 30px auto
@@ -86,11 +95,15 @@ section
       // height: 800px
       background-color: #16afbd
       .donationInfo
-        width: 400px
-        height: 150px
+        min-width: 300px
+        max-width: 450px
+        height: 100px
         margin: 20px auto
         background-color: #fff
         display: flex
+        h2
+          font-size: 18px
+          padding-top: 10px
         .donationUserImage
           flex-basis: 30%
   .userTop
@@ -102,12 +115,27 @@ section
       .createButton
         flex-basis: 40%
   .userBottom
+    // @include medium-bp
+    //   display: flex
+    //   .myCampaigns
+    //     flex-basis: 60%
+    //   .myDonations
+    //     flex-basis: 40%
+    // @include large-bp
+    //   display: flex
+    //   .myCampaigns
+    //     flex-basis: 60%
+    //   .myDonations
+    //     flex-basis: 40%
     @include large-bp
       display: flex
       .myCampaigns
-        flex-basis: 60%
+        flex-basis: 70%
       .myDonations
-        flex-basis: 40%
+        flex-basis: 500px
+        margin-left: 2%
+        margin-right: 10%
+
 .myProfile
   h1
     padding: 30px 50px

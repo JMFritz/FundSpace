@@ -10,7 +10,7 @@
   background-position: center;
 }
 
-button, section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
+button, section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label, section .userTop .createButton button, section .userBottom .createButton button {
   font-size: 20px;
   color: white;
   border-radius: 2px;
@@ -20,7 +20,7 @@ button, section .userTop .userInfo .userText > label, section .userBottom .userI
   background-color: #ec7054;
   margin: 20px auto;
 }
-button:hover, section .userTop .userInfo .userText > label:hover, section .userBottom .userInfo .userText > label:hover {
+button:hover, section .userTop .userInfo .userText > label:hover, section .userBottom .userInfo .userText > label:hover, section .userTop .createButton button:hover, section .userBottom .createButton button:hover {
   background-color: #e74a26;
   font-weight: bold;
 }
@@ -253,6 +253,7 @@ label {
 }
 @media screen and (min-width: 640px) {
   .cards .card {
+    margin: 20px;
     width: 450px;
   }
 }
@@ -261,9 +262,6 @@ label {
     margin: 30px auto;
     justify-content: space-around;
     max-width: 1150px;
-  }
-  .cards .card {
-    margin: 20px;
   }
 }
 @media screen and (min-width: 1580px) {
@@ -276,6 +274,7 @@ label {
   font-family: josephin-semiBold;
   width: 100%;
   margin: 0 auto;
+  padding-top: 20px;
 }
 .categories ul {
   zoom: 0.7;
@@ -514,7 +513,7 @@ label {
   width: 50%;
 }
 .person div a {
-  color: red;
+  color: #ec7054;
 }
 
 button {
@@ -665,7 +664,7 @@ button {
 #search-panel input {
   opacity: 1;
   margin: 100px 0;
-  font-size: 30px;
+  font-size: 20px;
   padding: 20px;
   background: transparent;
   border-radius: 5px;
@@ -765,10 +764,7 @@ nav .logo {
 section {
   min-height: 100%;
   background-color: #f3efeb;
-}
-section .userTop, section .userBottom {
   border-top: 3px solid black;
-  border-bottom: 3px solid black;
 }
 section .userTop h2, section .userBottom h2 {
   font-size: 25px;
@@ -782,7 +778,7 @@ section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage 
   align-items: center;
 }
 section .userTop .userInfo .userImage img, section .userBottom .userInfo .userImage img {
-  margin: 30px;
+  margin: 20px;
   height: 400px;
   width: 400px;
 }
@@ -790,7 +786,7 @@ section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 30px 30px;
+  padding: 30px 30px 30px;
 }
 section .userTop .userInfo .userText .currentUserInfo, section .userBottom .userInfo .userText .currentUserInfo {
   visibility: visible;
@@ -805,6 +801,7 @@ section .userTop .userInfo .userText input[type=checkbox], section .userBottom .
   left: -9999px;
 }
 section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
+  margin: 0 auto;
   cursor: pointer;
   height: 50px;
   width: 300px;
@@ -836,20 +833,26 @@ section .userTop .createButton, section .userBottom .createButton {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #16afbd;
+  height: 320px;
 }
 section .userTop .createButton button, section .userBottom .createButton button {
-  height: 300px;
+  height: 250px;
   width: 400px;
-  border: 2px solid black;
-  border-radius: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 section .userTop .createButton button h2, section .userBottom .createButton button h2 {
+  color: white;
   padding: 30px 50px;
   font-size: 56px;
   font-family: josephin-semiBold;
+}
+@media screen and (min-width: 640px) {
+  section .userTop .createButton, section .userBottom .createButton {
+    height: 450px;
+  }
 }
 section .userTop .userDonations, section .userBottom .userDonations {
   width: 90%;
@@ -858,11 +861,16 @@ section .userTop .userDonations, section .userBottom .userDonations {
   background-color: #16afbd;
 }
 section .userTop .userDonations .donationInfo, section .userBottom .userDonations .donationInfo {
-  width: 400px;
-  height: 150px;
+  min-width: 300px;
+  max-width: 450px;
+  height: 100px;
   margin: 20px auto;
   background-color: #fff;
   display: flex;
+}
+section .userTop .userDonations .donationInfo h2, section .userBottom .userDonations .donationInfo h2 {
+  font-size: 18px;
+  padding-top: 10px;
 }
 section .userTop .userDonations .donationInfo .donationUserImage, section .userBottom .userDonations .donationInfo .donationUserImage {
   flex-basis: 30%;
@@ -884,10 +892,12 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
     display: flex;
   }
   section .userBottom .myCampaigns {
-    flex-basis: 60%;
+    flex-basis: 70%;
   }
   section .userBottom .myDonations {
-    flex-basis: 40%;
+    flex-basis: 500px;
+    margin-left: 2%;
+    margin-right: 10%;
   }
 }
 
@@ -932,6 +942,10 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
   flex-wrap: wrap;
 }
 
+section.individualCampaign > h4 {
+  font-size: 25px;
+  padding-left: 20px;
+}
 section.individualCampaign .myInfoWrapper {
   width: 100%;
   background-color: #16afbd;
@@ -945,7 +959,8 @@ section.individualCampaign .myInfoWrapper .individual article {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 section.individualCampaign .myInfoWrapper .individual article img {
   max-width: 600px;
@@ -989,6 +1004,7 @@ section.individualCampaign .myInfoWrapper .individual article.right a {
   width: 100%;
 }
 .theTabs .donators {
+  padding: 20px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
