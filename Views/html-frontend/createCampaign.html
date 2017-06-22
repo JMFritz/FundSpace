@@ -39,38 +39,54 @@
 
   <form id="new-campaign" >
     <h2>Start a new campaign!</h2>
-    <label for="category"> Choose category:
-      <input type="radio" name="category" value="art"> Art
-      <input type="radio" name="category" value="education"> Education
-      <input type="radio" name="category" value="emergency"> Emergency
-      <input type="radio" name="category" value="animals"> Animals
-      <input type="radio" name="category" value="medical"> Medical
-      <input type="radio" name="category" value="charity"> Charity
+    <div class="radioButtonContainer">
+      <h4> Choose category:</h4>
+      <label>Art</label>
+      <input type="radio" name="category" value="art">
+      <label>Education</label>
+      <input type="radio" name="category" value="education">
+      <label>Emergency</label>
+      <input type="radio" name="category" value="emergency">
+      <label>Animals</label>
+      <input type="radio" name="category" value="animals">
+      <label>Medical</label>
+      <input type="radio" name="category" value="medical">
+      <label>Charity</label>
+      <input type="radio" name="category" value="charity">
       <!-- <input type="radio" name="category" value="all"> Undefined  //?! -->
-    </label><br>
+    </div>
 
-    <label for="title">Title:
+    <div class="form-group">
+      <label for="title">Title:</label>
       <input type="text" name="title" placeholder="Campaign Title">
-    </label><br>
-    <label for="description">Tell us what the campaign is about:
-      <textarea name="description" rows="10" cols="30" placeholder="Tell us the story..."></textarea><br>
-    </label>
+    </div>
+    <div class="form-group">
+      <label for="description">Tell us what the campaign is about:</label>
+      <textarea name="description" rows="10" cols="30" placeholder="Tell us the story..."></textarea>
+    </div>
 
+    <div class="radioButtonContainer">
+      <h4> What Country are you at:</h4>
+      <label>U.S.A.</label>
+      <input type="radio" name="country" value="usa" checked>
+      <label>Ukraine</label>
+      <input type="radio" name="country" value="ukraine">
+      <label>Maxico</label>
+      <input type="radio" name="country" value="maxico">
+      <label>Canada</label>
+      <input type="radio" name="country" value="canada">
+      <label>Argentina</label>
+      <input type="radio" name="country" value="argentina">
+    </div>
 
-    <label for="country"> What Country are you at:
-      <input type="radio" name="country" value="usa" checked> U.S.A.
-      <input type="radio" name="country" value="ukraine"> Ukraine
-      <input type="radio" name="country" value="maxico"> Maxico
-      <input type="radio" name="country" value="canada"> Canada
-      <input type="radio" name="country" value="argentina"> Argentina
-    </label><br>
-
-    <label for="goal">How much money do the cause need?
+    <div class="form-group">
+      <label for="goal">How much money do the cause need?</label>
       <input type="number" name="goal" min="1" max="1000000" placeholder="How much money do the cause need?">
-    </label>
-    <label for="end-date">What is the deadline:<br>
+    </div>
+    <div class="form-group">
+      <label for="end-date">What is the deadline:</label>
       <input type="date" name="end-date">
-    </label>
+    </div>
     <button type="submit" name="submit-campaign">Submit!</button>
   </form>
 </section>
