@@ -218,11 +218,14 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
 .logInContainer, .createCampaignContainer, .individual {
   width: 100%;
   height: 100%;
+  background-color: #16afbd;
+}
+
+.logInContainer, .createCampaignContainer {
+  height: 80vh;
   padding: 50px;
   display: flex;
   justify-content: space-between;
-  background-color: #16afbd;
-  height: 80vh;
 }
 
 .logInContainer div {
@@ -242,38 +245,125 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
   display: flex;
 }
 
-section.individualCampaign .individual {
-  width: 100vw;
-  height: 500px;
+section.individualCampaign .myInfoWrapper {
+  width: 100%;
+  background-color: #16afbd;
 }
-section.individualCampaign .individual article {
+section.individualCampaign .myInfoWrapper .individual {
+  width: 100%;
+}
+section.individualCampaign .myInfoWrapper .individual article {
   flex-basis: 50%;
-  height: 350px;
+  text-align: center;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  max-width: 600px;
+  margin: 0 auto;
 }
-section.individualCampaign .individual article ul {
+section.individualCampaign .myInfoWrapper .individual article ul {
   display: flex;
 }
-section.individualCampaign .individual article ul img {
+section.individualCampaign .myInfoWrapper .individual article ul img {
   width: 40px;
   height: 40px;
+}
+@media screen and (min-width: 1000px) {
+  section.individualCampaign .myInfoWrapper .individual {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  section.individualCampaign .myInfoWrapper .individual article {
+    max-width: 580px;
+  }
 }
 
 .theTabs {
   clear: both;
-  width: 100vw;
+  width: 100%;
+}
+.theTabs .donators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+.theTabs .donators .donator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-arround;
+  align-items: center;
+}
+.theTabs .donators .donator img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+@media screen and (min-width: 1000px) {
+  .theTabs {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .theTabs .mainTabs {
+    width: 80%;
+    min-width: 800px;
+  }
+  .theTabs .donators {
+    width: 200px;
+  }
+}
+
+#donations {
+  display: flex;
+  flex-direction: column;
+}
+#donations button {
+  align-self: center;
+}
+
+.person {
+  width: 80%;
+  margin: 10px auto;
   display: flex;
   justify-content: space-around;
 }
-.theTabs .mainTabs {
-  width: 70vw;
+.person button {
+  align-self: center;
 }
-.theTabs .donators {
-  width: 20vw;
-  padding-right: 5vw;
+.person .forPhoto {
+  width: 33%;
+  display: flex;
+  align-items: center;
+}
+.person .forPhoto img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+.person .forComment {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.donator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-arround;
+  align-items: center;
+}
+.donator img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
 }
 
 footer {
@@ -369,52 +459,6 @@ textarea {
 label {
   width: 80%;
   text-align: center;
-}
-
-form#donations {
-  display: flex;
-  flex-direction: column;
-}
-form#donations button {
-  align-self: center;
-}
-
-.person {
-  width: 80%;
-  margin: 10px auto;
-  display: flex;
-  justify-content: space-around;
-}
-.person button {
-  align-self: center;
-}
-.person .forPhoto {
-  width: 33%;
-  display: flex;
-  align-items: center;
-}
-.person .forPhoto img {
-  width: 80px;
-  height: 80px;
-  margin-right: 10px;
-}
-.person .forComment {
-  width: 65%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.donator {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-arround;
-  align-items: center;
-}
-.donator img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
 }
 
 .cards {
@@ -702,7 +746,6 @@ button {
 }
 
 /* Important styles */
-
 @media screen and (min-width: 640px) {
   .menuToggle {
     display: none;
@@ -878,6 +921,7 @@ h3 {
 
 article.right a {
   width: 300px;
+  margin: 0 auto;
   padding: 20px;
   font-size: 30px;
   color: white;
