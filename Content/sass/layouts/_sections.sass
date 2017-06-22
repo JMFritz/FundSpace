@@ -3,7 +3,7 @@ section
   background-color: #f3efeb
   // background-color: #16afbd
   .userTop
-  border-top: 3px solid black
+    border-top: 3px solid black
   .userTop, .userBottom
     h2
       font-size: 25px
@@ -13,7 +13,7 @@ section
     //   // border: 1px solid green
     // .createButton, .myDonations
       // border: 1px solid red
-    .userInfo, .createButton
+    // .userInfo, .createButton
     .userInfo
       background-color: #fff
       .userImage
@@ -87,7 +87,7 @@ section
           font-size: 56px
           font-family: josephin-semiBold
       @include medium-bp
-        height: 450px
+        height: inherit
     .userDonations
       width: 90%
       margin: 30px auto
@@ -106,6 +106,9 @@ section
           padding-top: 10px
         .donationUserImage
           flex-basis: 30%
+          img
+            width: 85px
+            height: 85px
   .userTop
     @include xLarge-bp
       display: flex
@@ -141,3 +144,7 @@ section
     padding: 30px 50px
     font-size: 26px
     font-family: josephin-semiBold
+
+.individualCampaign
+  h4
+    text-align: center

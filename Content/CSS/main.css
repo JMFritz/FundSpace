@@ -674,8 +674,8 @@ button {
 }
 @media screen and (min-width: 640px) {
   #search-panel input {
-    font-size: 45px;
-    padding: 40px;
+    font-size: 35px;
+    padding: 30px 20px;
   }
 }
 #search-panel input:focus {
@@ -764,6 +764,8 @@ nav .logo {
 section {
   min-height: 100%;
   background-color: #f3efeb;
+}
+section .userTop {
   border-top: 3px solid black;
 }
 section .userTop h2, section .userBottom h2 {
@@ -851,7 +853,7 @@ section .userTop .createButton button h2, section .userBottom .createButton butt
 }
 @media screen and (min-width: 640px) {
   section .userTop .createButton, section .userBottom .createButton {
-    height: 450px;
+    height: inherit;
   }
 }
 section .userTop .userDonations, section .userBottom .userDonations {
@@ -874,6 +876,10 @@ section .userTop .userDonations .donationInfo h2, section .userBottom .userDonat
 }
 section .userTop .userDonations .donationInfo .donationUserImage, section .userBottom .userDonations .donationInfo .donationUserImage {
   flex-basis: 30%;
+}
+section .userTop .userDonations .donationInfo .donationUserImage img, section .userBottom .userDonations .donationInfo .donationUserImage img {
+  width: 85px;
+  height: 85px;
 }
 @media screen and (min-width: 1580px) {
   section .userTop {
@@ -905,6 +911,10 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
   padding: 30px 50px;
   font-size: 26px;
   font-family: josephin-semiBold;
+}
+
+.individualCampaign h4 {
+  text-align: center;
 }
 
 .logInContainer, .createCampaignContainer, .individual {
