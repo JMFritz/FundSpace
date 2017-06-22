@@ -41,8 +41,8 @@
     </article>
     <article>
       <div class="progressBar"></div>
-      <h3>$<span>@Model["selectedCampaign"].Balance</span></h3>
-      <h3>Goal Date:<span>@Model["selectedCampaign"].End</span></h3>
+      <h3>$<span>@Model["selectedCampaign"].Balance</span> of $@Model["selectedCampaign"].Goal Goal</h3>
+      <h3>Campaign End Date: <span>@(Model["selectedCampaign"].End.ToString("d"))</span></h3>
       <a href="#donate" name="donate">Support this cause!</a>
       <div class="userButtons">
         <button type="button" name="button">Edit</button>
@@ -97,7 +97,7 @@
         <div class="donator">
           <img src="http://via.placeholder.com/60x60" alt="" />
           <h1>@donation["name"]</h1>
-          <h2>@donation["donationAmount"]</h2>
+          <h2>$@donation["donationAmount"]</h2>
           <h3>@donation["donationDate"]</h3>
         </div>
       }
