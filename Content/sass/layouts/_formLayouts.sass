@@ -7,7 +7,7 @@
   background-color: #16afbd
   // align-items: center
 
-.logInContainer, .createCampaignContainer
+.createCampaignContainer
   // height: 80vh
   padding: 50px
   display: flex
@@ -16,10 +16,13 @@
 .logInContainer
   div
     text-align: center
-  #logIn
-    flex-basis: 45%
-  #signUp
-    flex-basis: 45%
+  @include large-bp
+    display: flex
+    justify-content: space-around
+    #logIn
+      flex-basis: 45%
+    #signUp
+      flex-basis: 45%
 
 .createCampaignContainer
   flex-wrap: wrap

@@ -220,7 +220,7 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
   background-color: #16afbd;
 }
 
-.logInContainer, .createCampaignContainer {
+.createCampaignContainer {
   padding: 50px;
   display: flex;
   justify-content: space-between;
@@ -229,11 +229,17 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
 .logInContainer div {
   text-align: center;
 }
-.logInContainer #logIn {
-  flex-basis: 45%;
-}
-.logInContainer #signUp {
-  flex-basis: 45%;
+@media screen and (min-width: 1000px) {
+  .logInContainer {
+    display: flex;
+    justify-content: space-around;
+  }
+  .logInContainer #logIn {
+    flex-basis: 45%;
+  }
+  .logInContainer #signUp {
+    flex-basis: 45%;
+  }
 }
 
 .createCampaignContainer {
