@@ -7,7 +7,7 @@
   background-color: #16afbd
   // align-items: center
 
-.logInContainer, .createCampaignContainer
+.createCampaignContainer
   // height: 80vh
   padding: 50px
   display: flex
@@ -16,10 +16,13 @@
 .logInContainer
   div
     text-align: center
-  #logIn
-    flex-basis: 45%
-  #signUp
-    flex-basis: 45%
+  @include large-bp
+    display: flex
+    justify-content: space-around
+    #logIn
+      flex-basis: 45%
+    #signUp
+      flex-basis: 45%
 
 .createCampaignContainer
   flex-wrap: wrap
@@ -44,8 +47,8 @@ section.individualCampaign
         flex-direction: column
         justify-content: flex-start
         img
-        max-width: 600px
-        margin: 0 auto
+          max-width: 600px
+          margin: 0 auto
         ul
           display: flex
           img
@@ -72,7 +75,7 @@ section.individualCampaign
     flex-wrap: wrap
     justify-content: space-around
     align-self:flex-start
-    padding: 20px
+      padding: 20px
     .donator
       display: flex
       flex-direction: column
