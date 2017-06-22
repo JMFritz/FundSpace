@@ -58,10 +58,15 @@ $('.search a').click(function(e) {
 
 });
 
+$('.cancel').click(function() {
+  // $('#search-panel').css('visibility', 'hidden');
+  $('#search-panel').removeClass('panel-visible');
+
+});
 $('.go-button').click(function() {
   // $('#search-panel').css('visibility', 'hidden');
   $('#search-panel').removeClass('panel-visible');
-});
 
+});
 
 });
