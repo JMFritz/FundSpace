@@ -25,19 +25,46 @@ label
   text-align: right
   display: flex
   flex-direction: column
-  align-items: flex-end
+  align-items: center
   // border: 1px solid black
-  label
-    // margin: 0 auto
+  div
+    width: 100%
+    text-align: center
     // border: 1px solid red
-    width: 95%
-    text-align: right
+    label
+      // margin: 0 auto
 
-  label:first-of-type, label:nth-of-type(4)
-    input
-      padding: 10px 30px
-      width: 30px
-      margin-left: 50px
-// --------------------------
-.radioButtonContainer
-  display: flex
+      width: 95%
+      text-align: right
+
+    label:first-of-type, label:nth-of-type(4)
+      input
+        padding: 10px 30px
+        width: 30px
+        margin-left: 50px
+    textarea
+      width: 80%
+    h4
+      font-size: 25px
+      font-weight: bold
+  .radioButtonContainer
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    width: 300px
+    h4
+      flex-basis: 100%
+    label, input
+      flex-basis: 16%
+    @include large-bp
+      width: 100%
+      padding: 20px
+      label, input
+        flex-basis: 10%
+  .radioButtonContainer:first-of-type
+    h4
+      flex-basis: 100%
+    label, input
+      flex-basis: 8%
+    @include large-bp
+      width: 100%
