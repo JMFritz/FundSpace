@@ -147,10 +147,30 @@ namespace Charity
         Dictionary<string, object> model = new Dictionary<string, object>{};
         List<Category> allCategories = Category.GetAll();
         Category selectedCategory = Category.Find(parameters.id);
+        Console.WriteLine(selectedCategory.Name);
+        if (selectedCategory.GetTrendingCampaigns() != null)
+        {
+          model.Add("campaigns", selectedCategory.GetTrendingCampaigns());
+        }
+        else
+        {
+          model.Add("campaigns", selectedCategory.GetCampaigns());
+        }
+        model.Add("search-results", null);
         model.Add("currentUser", User.CurrentUser);
-        model.Add("campaigns", selectedCategory.GetTrendingCampaigns());
         model.Add("categories", allCategories);
-        model.Add("selected-category", selectedCategory);
+        model.Add("selectedCategory", selectedCategory);
+        return View["campaigns.cshtml", model];
+      };
+
+      Get["campaigns/search"] = _ => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        List<Category> allCategories = Category.GetAll();
+        model.Add("currentUser", User.CurrentUser);
+        model.Add("campaigns", null);
+        model.Add("search-results", Campaign.SearchByName(Request.Form["name"]));
+        model.Add("categories", allCategories);
+
         return View["campaigns.cshtml", model];
       };
       Get["campaigns/all"] = _ => {
@@ -159,19 +179,8 @@ namespace Charity
         model.Add("currentUser", User.CurrentUser);
         model.Add("campaigns", null);
         model.Add("search-results", null);
-        model.Add("allCampaigns", allCampaigns);
         model.Add("categories", Category.GetAll());
-        model.Add("selected-category", null);
-        return View["campaigns.cshtml", model];
-      };
-      Get["campaigns/search"] = _ => {
-        Dictionary<string, object> model = new Dictionary<string, object>{};
-        List<Category> allCategories = Category.GetAll();
-        model.Add("currentUser", User.CurrentUser);
-        model.Add("campaigns", null);
-        model.Add("search-results", Campaign.SearchByName(Request.Form["name"]));
-        model.Add("categories", allCategories);
-        model.Add("selected-category", null);
+        model.Add("allCampaigns", allCampaigns);
         return View["campaigns.cshtml", model];
       };
     }

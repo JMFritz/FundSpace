@@ -5,10 +5,10 @@
   <nav>
     <ul id="navLeft">
       <li><div class="search"><a href="#sub-nav">Search</a></div></li>
-      <li><a href="/campaigns/all">Campaigns</a></li>
+      <li><a href="/campaign_rating">Campaigns</a></li>
     </ul>
     <div>
-      <a href="/"><img src="../Content/img/logo.png" class="logo" alt="logo"></a>
+      <a href="/"><img src="../../Content/img/logo.png" class="logo" alt="logo"></a>
     </div>
     <ul id="navRight">
       @if (@Model["currentUser"] != null)
@@ -26,8 +26,10 @@
           <li><div class="search">
             <a href="#sub-nav">Search</a>
           </div></li>
-          <li><a href="/campaigns/all">Campaigns</a></li>
-          <li><a href="/login">Log-in/Sign-Up</a></li>
+          <li><a href="#">Campaigns</a></li>
+          <li><a href="#">How it works</a></li>
+          <li><a href="#">Create campaign</a></li>
+          <li><a href="#">Log-in/Sign-Up</a></li>
         </ul>
       </div>
     </div>
@@ -42,13 +44,13 @@
   <div class="categories">
     <ul>
       <li>
-        <div><a href="/campaigns"><img src="../Content/img/all.png" alt=""/></a></div>
+        <div><a href="/campaigns/all"><img src="../../Content/img/all.png" alt=""/></a></div>
         <h4>All</h4>
       </li>
       @foreach(var category in @Model["categories"])
       {
         <li>
-          <div><a href="/categories/@category.Id/trending"><img src="../Content/img/@(category.Name).png" alt=""/></a></div>
+          <div><a href="/categories/@category.Id/trending"><img src="../../Content/img/@(category.Name).png" alt=""/></a></div>
           <h4>@category.Name</h4>
         </li>
       }
@@ -105,6 +107,7 @@
       </div>
     }
   }
+
   </div>
 </section>
 <footer>
