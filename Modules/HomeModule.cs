@@ -28,6 +28,7 @@ namespace Charity
         return View["index.cshtml", model];
       };
       Get["/login"] = _ =>{
+        User.CurrentUser = null;
         return View["login_form.cshtml"];
       };
       Post["/login"] = _ => {
@@ -146,6 +147,7 @@ namespace Charity
         Dictionary<string, object> model = new Dictionary<string, object>{};
         List<Category> allCategories = Category.GetAll();
         Category selectedCategory = Category.Find(parameters.id);
+        model.Add("currentUser", User.CurrentUser);
         model.Add("campaigns", selectedCategory.GetTrendingCampaigns());
         model.Add("categories", allCategories);
         model.Add("selected-category", selectedCategory);
