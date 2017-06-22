@@ -4,8 +4,13 @@
 	z-index: 0
 	height: 60px
 	width: 1px
-	left: 49.5%
+	left: 48.7%
 	top: 110px
+	display: none
+	@include large-bp
+		display: block
+	@include xLarge-bp
+		left: 49.5%
 
 /* smoke balls */
 #smoke span

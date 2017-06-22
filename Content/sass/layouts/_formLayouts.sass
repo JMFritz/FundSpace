@@ -7,6 +7,10 @@
   background-color: #16afbd
   // align-items: center
 
+.logInContainer, .createCampaignContainer
+  min-height: 850px
+
+
 .createCampaignContainer
   // height: 80vh
   padding: 50px
@@ -26,11 +30,13 @@
 
 .createCampaignContainer
   flex-wrap: wrap
-  label
-    display: flex
 
 //for   individual campaign page/......
 section.individualCampaign
+  > h4
+    font-size: 25px
+    padding-left: 20px
+
   // height: 80vh
   .myInfoWrapper
     width: 100%
@@ -45,7 +51,8 @@ section.individualCampaign
         padding: 10px
         display: flex
         flex-direction: column
-        justify-content: flex-start
+        justify-content: center
+        align-items: center
         img
           max-width: 600px
           margin: 0 auto
@@ -54,6 +61,18 @@ section.individualCampaign
           img
             width: 40px
             height: 40px
+      article.right
+        a
+          width: 300px
+          margin: 0 auto
+          padding: 20px
+          font-size: 30px
+          color: white
+          background-color: #ec7054
+          text-align: center
+          border-radius: 2px
+          border-style: none
+          text-transform: uppercase
       @include large-bp
         // max-width: 580px
         display: flex
@@ -70,7 +89,7 @@ section.individualCampaign
   .mainTabs
     // width: 70vw
   .donators
-    // width: 20vw
+    padding: 20px 0
     display: flex
     flex-wrap: wrap
     justify-content: space-around
