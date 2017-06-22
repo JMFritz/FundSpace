@@ -1,20 +1,28 @@
 .logInContainer, .createCampaignContainer, .individual
   width: 100%
-  height: 100%
+  // height: 100%
+  // padding: 50px
+  // display: flex
+  // justify-content: space-between
+  background-color: #16afbd
+  // align-items: center
+
+.createCampaignContainer
+  // height: 80vh
   padding: 50px
   display: flex
   justify-content: space-between
-  background-color: #16afbd
-  height: 80vh
-  // align-items: center
 
 .logInContainer
   div
     text-align: center
-  #logIn
-    flex-basis: 45%
-  #signUp
-    flex-basis: 45%
+  @include large-bp
+    display: flex
+    justify-content: space-around
+    #logIn
+      flex-basis: 45%
+    #signUp
+      flex-basis: 45%
 
 .createCampaignContainer
   flex-wrap: wrap
@@ -24,27 +32,109 @@
 //for   individual campaign page/......
 section.individualCampaign
   // height: 80vh
-  .individual
-    border: 1px solid yellow
-    width: 100vw
-    height: 500px
-    article
-      border: 1px solid red
-      flex-basis: 50%
-      height: 380px
-      ul
+  .myInfoWrapper
+    width: 100%
+    background-color: #16afbd
+    .individual
+      width: 100%
+      // height: 500px
+      article
+        flex-basis: 50%
+        // height: 350px
+        text-align: center
+        padding: 10px
         display: flex
+        flex-direction: column
+        justify-content: flex-start
         img
-          width: 40px
-          height: 40px
-
+          max-width: 600px
+          margin: 0 auto
+        ul
+          display: flex
+          img
+            width: 40px
+            height: 40px
+      @include large-bp
+        // max-width: 580px
+        display: flex
+        justify-content: space-around
+        align-items: center
+        padding: 50px
+        max-width: 1400px
+        margin: 0 auto
+        article
+          max-width: 580px
 .theTabs
   clear: both
-  width: 100vw
+  width: 100%
+  .mainTabs
+    // width: 70vw
+  .donators
+    // width: 20vw
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-around
+    align-self:flex-start
+      padding: 20px
+    .donator
+      display: flex
+      flex-direction: column
+      justify-content: space-arround
+      align-items: center
+      img
+        width: 100px
+        height: 100px
+        border-radius: 50px
+  //media query for .theTabs
+  @include large-bp
+    width: 1000px
+    margin: 0 auto
+    display: flex
+    justify-content: center
+    .mainTabs
+      width: 80%
+      min-width: 800px
+    .donators
+      width: 200px
+
+// donate form
+#donations
+  display: flex
+  flex-direction: column
+  button
+    align-self: center
+
+
+.person
+  width: 80%
+  margin: 10px auto
   display: flex
   justify-content: space-around
-  .mainTabs
-    width: 70vw
-  .donators
-    width: 20vw
-    align-self:flex-start
+  button
+    align-self: center
+  .forPhoto
+    width: 33%
+    display: flex
+    align-items: center
+    img
+      width: 80px
+      height: 80px
+      margin-right: 10px
+  .forComment
+    width: 65%
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+
+.donator
+  display: flex
+  flex-direction: column
+  justify-content: space-arround
+  align-items: center
+  img
+    width: 100px
+    height: 100px
+    border-radius: 50px
+
+.createCampaignContainer
+  justify-content: center

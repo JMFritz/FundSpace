@@ -11,302 +11,69 @@
 }
 
 @font-face {
-  font-family: josephin-regular;
+  font-family: josephin-Regular;
   src: url("../fonts/JosefinSans-Regular.ttf");
 }
 @font-face {
-  font-family: josephin-semiBold;
-  src: url("../fonts/JosefinSans-Regular.ttf");
+  font-family: josephin-SemiBold;
+  src: url("../fonts/JosefinSans-SemiBold.ttf");
+}
+@font-face {
+  font-family: josephin-Bold;
+  src: url("../fonts/JosefinSans-Bold.ttf");
+}
+@font-face {
+  font-family: openSans;
+  src: url("../fonts/OpenSans-Light.ttf");
 }
 body {
   background-color: #000;
   background-image: url("http://www.hpcf.upr.edu/~abel/phl/star_field_full_gal.jpg");
+  font-family: openSans;
+}
+
+h1 {
+  font-family: josephin-SemiBold;
+}
+
+h2 {
+  font-family: josephin-SemiBold;
+  text-align: center;
 }
 
 a {
-  font-family: josephin-semiBold;
+  font-family: josephin-Regular;
   color: #bdbdbd;
   text-decoration: none;
 }
 
-header {
-  margin: 0 auto;
-  height: 100px;
-  width: 100%;
-  border: 1px solid black;
-}
-
-nav {
-  background-color: transparent;
-  height: 100px;
-  width: 100%;
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-}
-nav ul {
-  width: 35%;
+ul {
   list-style: none;
-  display: flex;
-  align-items: center;
 }
-nav ul li {
-  margin: 0 20px;
-  font-size: 20px;
-}
-nav #navLeft {
-  justify-content: flex-start;
-}
-nav #navRight {
-  justify-content: flex-end;
-}
-nav div {
-  z-index: 3;
-}
-
-section {
-  background-color: #f3efeb;
-}
-section .categories {
-  font-family: josephin-semiBold;
-  width: 100%;
-  margin: 0 auto;
-}
-section .categories ul {
-  width: 90%;
-  max-width: 1650px;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 0 auto;
-}
-section .categories ul li {
-  height: 120px;
-  width: 120px;
-  margin: 20px auto;
-  font-size: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-section .categories ul li h4 {
+ul li {
   padding: 5px;
-  color: #666;
 }
-section .categories ul li div {
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-  background-color: #bbb9b7;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-section .categories ul li div img {
-  width: 80px;
-  height: 80px;
-}
-section .userTop, section .userBottom {
-  display: flex;
-  border: 1px solid black;
-}
-section .userTop .userInfo, section .userTop .myCampaigns, section .userBottom .userInfo, section .userBottom .myCampaigns {
-  flex-basis: 60%;
-  border: 1px solid green;
-}
-section .userTop .createButton, section .userTop .myDonations, section .userBottom .createButton, section .userBottom .myDonations {
-  flex-basis: 40%;
-  border: 1px solid red;
-}
-section .userTop .userInfo, section .userTop .createButton, section .userBottom .userInfo, section .userBottom .createButton {
-  height: 500px;
-}
-section .userTop .userInfo, section .userBottom .userInfo {
-  display: flex;
-}
-section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
-  flex-basis: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid blue;
-}
-section .userTop .userInfo .userImage img, section .userBottom .userInfo .userImage img {
-  margin: 30px;
-  height: 400px;
-  width: 400px;
-}
-section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
-  flex-basis: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 30px 30px;
-  border: 1px solid pink;
-}
-section .userTop .userInfo .userText .currentUserInfo, section .userBottom .userInfo .userText .currentUserInfo {
-  visibility: visible;
-}
-section .userTop .userInfo .userText .updateForm, section .userBottom .userInfo .userText .updateForm {
-  visibility: hidden;
-  height: 0;
-}
-section .userTop .userInfo .userText input[type=checkbox], section .userBottom .userInfo .userText input[type=checkbox] {
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-}
-section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
-  -webkit-appearance: push-button;
-  -moz-appearance: button;
-  cursor: pointer;
-}
-section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo {
-  visibility: hidden;
-  height: 0;
-}
-section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .updateForm, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .updateForm {
-  visibility: visible;
-  height: auto;
-}
-section .userTop .createButton, section .userBottom .createButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-section .userTop .createButton button, section .userBottom .createButton button {
-  height: 300px;
-  width: 400px;
-  border: 2px solid black;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-section .userTop .createButton button h2, section .userBottom .createButton button h2 {
-  padding: 30px 50px;
-  font-size: 56px;
-  font-family: josephin-semiBold;
-}
-section .userTop .userDonations, section .userBottom .userDonations {
-  width: 90%;
-  margin: 30px auto;
-  padding: 20px;
-  height: 800px;
-  background-color: #16afbd;
-}
-section .userTop .userDonations .donationInfo, section .userBottom .userDonations .donationInfo {
-  width: 400px;
-  height: 150px;
+
+h2 {
+  font-size: 40px;
+  color: #0e0e0e;
   margin: 20px auto;
-  background-color: #fff;
-  display: flex;
-}
-section .userTop .userDonations .donationInfo .donationUserImage, section .userBottom .userDonations .donationInfo .donationUserImage {
-  flex-basis: 30%;
 }
 
-.myProfile h1 {
-  padding: 30px 50px;
-  font-size: 26px;
-  font-family: josephin-semiBold;
-}
-
-.logInContainer, .createCampaignContainer, .individual {
-  width: 100%;
-  height: 100%;
-  padding: 50px;
-  display: flex;
-  justify-content: space-between;
-  background-color: #16afbd;
-  height: 80vh;
-}
-
-.logInContainer div {
-  text-align: center;
-}
-.logInContainer #logIn {
-  flex-basis: 45%;
-}
-.logInContainer #signUp {
-  flex-basis: 45%;
-}
-
-.createCampaignContainer {
-  flex-wrap: wrap;
-}
-.createCampaignContainer label {
-  display: flex;
-}
-
-section.individualCampaign .individual {
-  border: 1px solid yellow;
-  width: 100vw;
-  height: 500px;
-}
-section.individualCampaign .individual article {
-  border: 1px solid red;
-  flex-basis: 50%;
-  height: 380px;
-}
-section.individualCampaign .individual article ul {
-  display: flex;
-}
-section.individualCampaign .individual article ul img {
-  width: 40px;
-  height: 40px;
-}
-
-.theTabs {
-  clear: both;
-  width: 100vw;
-  display: flex;
-  justify-content: space-around;
-}
-.theTabs .mainTabs {
-  width: 70vw;
-}
-.theTabs .donators {
-  width: 20vw;
-}
-
-footer {
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  background-color: transparent;
-}
-footer .footerLogo {
-  padding: 10px;
-}
-footer .footerLogo img {
-  height: 80px;
-}
-footer ul {
-  list-style: none;
-  display: flex;
-  width: 350px;
-  justify-content: flex-end;
-  align-items: center;
-}
-footer ul li {
+h3 {
+  font-size: 25px;
+  color: #353535;
   margin: 10px auto;
-  width: 40px;
-  text-align: center;
-}
-footer ul li img {
-  width: 30px;
 }
 
 .hero {
   width: 100%;
-  height: 700px;
+  height: 300px;
+}
+@media screen and (min-width: 1580px) {
+  .hero {
+    height: 600px;
+  }
 }
 
 .carousel {
@@ -337,34 +104,79 @@ footer ul li img {
   transform: translateX(189.5px) translateY(100px) translateX(-200px) translateZ(-200px);
 }
 
-input {
+.form-group {
+  text-align: center;
+}
+
+button {
+  align-self: center;
+}
+
+input, textarea {
   display: block;
-  height: 20px;
-  width: 90%;
-  margin: 10px auto;
+  height: 30px;
+  width: 80%;
+  margin: 2px auto 20px;
+  border-radius: 5px;
+  border: 1px solid #2a7e86;
+  background-color: #fdfdfc;
+}
+
+textarea {
+  height: 100px;
+  width: 100%;
+}
+
+label {
+  width: 80%;
+  text-align: center;
+}
+
+#new-campaign {
+  width: 800px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#new-campaign label {
+  width: 95%;
+  text-align: right;
+}
+#new-campaign label:first-of-type input, #new-campaign label:nth-of-type(4) input {
+  padding: 10px 30px;
+  width: 30px;
+  margin-left: 50px;
+}
+
+.radioButtonContainer {
+  display: flex;
 }
 
 .cards {
-  margin: 30px auto;
+  margin: 20px auto;
+  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 90%;
-  max-width: 1900px;
+  width: 100%;
 }
 .cards .card {
   display: flex;
   flex-wrap: wrap;
   background-color: #fff;
-  margin: 20px;
-  height: 400px;
-  width: 450px;
-  border: 1px solid green;
+  margin: 10px 0;
+  height: 450px;
+  width: 98%;
+}
+.cards .card h3 {
+  font-size: 20px;
 }
 .cards .card .cardImage {
   height: 250px;
   width: 450px;
-  border: 1px solid red;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
 }
 .cards .card .cardImage img {
   height: inherit;
@@ -376,8 +188,97 @@ input {
 }
 .cards .card button {
   flex-basis: 45%;
-  height: 30px;
   margin-right: 5%;
+}
+@media screen and (min-width: 640px) {
+  .cards .card {
+    width: 450px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .cards {
+    margin: 30px auto;
+    justify-content: space-around;
+    max-width: 1150px;
+  }
+  .cards .card {
+    margin: 20px;
+  }
+}
+@media screen and (min-width: 1580px) {
+  .cards {
+    max-width: 1780px;
+  }
+}
+
+.categories {
+  font-family: josephin-semiBold;
+  width: 100%;
+  margin: 0 auto;
+}
+.categories ul {
+  zoom: 0.7;
+  width: 90%;
+  max-width: 650px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+@media screen and (min-width: 640px) {
+  .categories ul {
+    zoom: 1;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .categories ul {
+    max-width: 1600px;
+  }
+}
+.categories ul li {
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  font-size: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.4s;
+}
+.categories ul li:hover {
+  transform: scale(1.1);
+}
+.categories ul li:hover div {
+  background-color: #8b8b8b;
+  box-shadow: 2px 2px 2px 5px white;
+}
+.categories ul li:hover h4 {
+  padding: 5px;
+  color: black;
+}
+.categories ul li h4 {
+  padding: 5px;
+  color: #666;
+}
+.categories ul li div {
+  width: 120px;
+  height: 100px;
+  border-radius: 100px;
+  background-color: #bbb9b7;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+.categories ul li div img {
+  width: 60px;
+  height: 60px;
 }
 
 /* Smoke container */
@@ -499,7 +400,7 @@ input {
 .mainTabs {
   border: 2px solid black;
   margin: 0 auto;
-  height: 900px;
+  min-height: 500px;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -524,7 +425,7 @@ input {
 
 .content {
   background-color: rgba(0, 0, 0, 0.2);
-  min-height: 900px;
+  min-height: 500px;
 }
 .content > div {
   padding: 10px;
@@ -544,8 +445,596 @@ input {
   color: red;
 }
 
+button {
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  color: white;
+  border-radius: 2px;
+  border-style: none;
+  font-family: josephin-Regular;
+  text-transform: uppercase;
+  background-color: #ec7054;
+  margin: 20px auto;
+}
+button:hover {
+  background-color: #e74a26;
+  font-weight: bold;
+}
+
+/* Important styles */
+@media screen and (min-width: 640px) {
+  .menuToggle {
+    display: none;
+  }
+}
+
+#toggle {
+  display: block;
+  width: 28px;
+  height: 30px;
+  margin: 30px auto 10px;
+}
+
+#toggle span:after, #toggle span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -9px;
+}
+
+#toggle span:after {
+  top: 9px;
+}
+
+#toggle span {
+  position: relative;
+  display: block;
+}
+
+#toggle span, #toggle span:after, #toggle span:before {
+  width: 100%;
+  height: 5px;
+  background-color: #888;
+  transition: all 0.3s;
+  backface-visibility: hidden;
+  border-radius: 2px;
+}
+
+/* on activation */
+#toggle.on span {
+  background-color: transparent;
+}
+
+#toggle.on span:before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#toggle.on span:after {
+  transform: rotate(-45deg) translate(7px, -8px);
+}
+
+#toggle.on + #menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* menu appearance */
+#menu {
+  position: relative;
+  color: #999;
+  width: 200px;
+  padding: 10px;
+  margin: auto;
+  right: 0;
+  font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+  text-align: center;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+  /* just for this demo */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s;
+}
+#menu ::after {
+  position: absolute;
+  top: -15px;
+  left: 85px;
+  content: "";
+  display: block;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 20px solid white;
+}
+#menu ul, #menu li, #menu li a {
+  list-style: none;
+  display: block;
+  margin: 0;
+  padding-left: 5px;
+  text-align: center;
+}
+#menu li a {
+  padding: 5px;
+  color: #888;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+#menu li a:hover, #menu li a:focus {
+  background: #1ABC9C;
+  color: #fff;
+}
+
+/* demo styles */
+#search-panel {
+  opacity: 0;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 200px;
+  width: 1%;
+  visibility: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: width 0.5s, height 0.5s, opacity 0.8s;
+  background-color: rgba(42, 66, 78, 0.88);
+}
+#search-panel h3 {
+  color: grey;
+}
+#search-panel h3:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-image: url("../img/search-hint.png");
+  background-size: auto auto;
+  background-position: center;
+  height: 30px;
+  width: 30px;
+  background-repeat: no-repeat;
+  left: 50%;
+  margin-top: 30px;
+  transform: translateX(-50%);
+}
+#search-panel input {
+  opacity: 1;
+  margin: 100px 0;
+  font-size: 30px;
+  padding: 20px;
+  background: transparent;
+  border-radius: 5px;
+  border: 2px solid #656565;
+  text-align: center;
+  color: #fff;
+}
+@media screen and (min-width: 640px) {
+  #search-panel input {
+    font-size: 45px;
+    padding: 40px;
+  }
+}
+#search-panel input:focus {
+  outline: 0;
+}
+#search-panel button {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.panel-visible {
+  visibility: visible !important;
+  opacity: 0.97 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
+}
+
+#search-panel button.cancel {
+  background-color: #5bdcfd;
+  width: 10px;
+  padding-left: 20px;
+  padding-right: 30px;
+}
+
+header {
+  margin: 0 auto;
+  height: 100px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+nav {
+  background-color: transparent;
+  height: 100px;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+nav ul {
+  width: 80%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+nav ul li {
+  margin: 0 20px;
+  font-size: 20px;
+}
+nav #navLeft {
+  justify-content: flex-start;
+}
+nav #navRight {
+  justify-content: flex-end;
+  text-align: right;
+}
+nav #navRight, nav #navLeft {
+  display: none;
+}
+@media screen and (min-width: 640px) {
+  nav #navRight, nav #navLeft {
+    display: block;
+  }
+}
+@media screen and (min-width: 1180px) {
+  nav #navRight, nav #navLeft {
+    display: flex;
+  }
+}
+nav div {
+  z-index: 3;
+}
+nav .logo {
+  height: 90px;
+}
+
+section {
+  background-color: #f3efeb;
+}
+section .userTop, section .userBottom {
+  border: 1px solid black;
+}
+section .userTop .userInfo, section .userTop .myCampaigns, section .userBottom .userInfo, section .userBottom .myCampaigns {
+  border: 1px solid green;
+}
+section .userTop .createButton, section .userTop .myDonations, section .userBottom .createButton, section .userBottom .myDonations {
+  border: 1px solid red;
+}
+section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid blue;
+}
+section .userTop .userInfo .userImage img, section .userBottom .userInfo .userImage img {
+  margin: 30px;
+  height: 400px;
+  width: 400px;
+}
+section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 30px 30px;
+  border: 1px solid pink;
+}
+section .userTop .userInfo .userText .currentUserInfo, section .userBottom .userInfo .userText .currentUserInfo {
+  visibility: visible;
+}
+section .userTop .userInfo .userText .updateForm, section .userBottom .userInfo .userText .updateForm {
+  visibility: hidden;
+  height: 0;
+}
+section .userTop .userInfo .userText input[type=checkbox], section .userBottom .userInfo .userText input[type=checkbox] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
+  -webkit-appearance: push-button;
+  -moz-appearance: button;
+  cursor: pointer;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo {
+  visibility: hidden;
+  height: 0;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .updateForm, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .updateForm {
+  visibility: visible;
+  height: auto;
+}
+@media screen and (min-width: 1000px) {
+  section .userTop .userInfo, section .userBottom .userInfo {
+    display: flex;
+  }
+  section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
+    flex-basis: 40%;
+  }
+  section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
+    flex-basis: 60%;
+  }
+}
+section .userTop .createButton, section .userBottom .createButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .userTop .createButton button, section .userBottom .createButton button {
+  height: 300px;
+  width: 400px;
+  border: 2px solid black;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .userTop .createButton button h2, section .userBottom .createButton button h2 {
+  padding: 30px 50px;
+  font-size: 56px;
+  font-family: josephin-semiBold;
+}
+section .userTop .userDonations, section .userBottom .userDonations {
+  width: 90%;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #16afbd;
+}
+section .userTop .userDonations .donationInfo, section .userBottom .userDonations .donationInfo {
+  width: 400px;
+  height: 150px;
+  margin: 20px auto;
+  background-color: #fff;
+  display: flex;
+}
+section .userTop .userDonations .donationInfo .donationUserImage, section .userBottom .userDonations .donationInfo .donationUserImage {
+  flex-basis: 30%;
+}
+@media screen and (min-width: 1580px) {
+  section .userTop {
+    display: flex;
+  }
+  section .userTop .userInfo {
+    flex-basis: 60%;
+    border: 1px solid green;
+  }
+  section .userTop .createButton {
+    flex-basis: 40%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  section .userBottom {
+    display: flex;
+  }
+  section .userBottom .myCampaigns {
+    flex-basis: 60%;
+  }
+  section .userBottom .myDonations {
+    flex-basis: 40%;
+  }
+}
+
+.myProfile h1 {
+  padding: 30px 50px;
+  font-size: 26px;
+  font-family: josephin-semiBold;
+}
+
+.logInContainer, .createCampaignContainer, .individual {
+  width: 100%;
+  background-color: #16afbd;
+}
+
+.createCampaignContainer {
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logInContainer div {
+  text-align: center;
+}
+@media screen and (min-width: 1000px) {
+  .logInContainer {
+    display: flex;
+    justify-content: space-around;
+  }
+  .logInContainer #logIn {
+    flex-basis: 45%;
+  }
+  .logInContainer #signUp {
+    flex-basis: 45%;
+  }
+}
+
+.createCampaignContainer {
+  flex-wrap: wrap;
+}
+.createCampaignContainer label {
+  display: flex;
+}
+
+section.individualCampaign .myInfoWrapper {
+  width: 100%;
+  background-color: #16afbd;
+}
+section.individualCampaign .myInfoWrapper .individual {
+  width: 100%;
+}
+section.individualCampaign .myInfoWrapper .individual article {
+  flex-basis: 50%;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+section.individualCampaign .myInfoWrapper .individual article img {
+  max-width: 600px;
+  margin: 0 auto;
+}
+section.individualCampaign .myInfoWrapper .individual article ul {
+  display: flex;
+}
+section.individualCampaign .myInfoWrapper .individual article ul img {
+  width: 40px;
+  height: 40px;
+}
+@media screen and (min-width: 1000px) {
+  section.individualCampaign .myInfoWrapper .individual {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  section.individualCampaign .myInfoWrapper .individual article {
+    max-width: 580px;
+  }
+}
+
+.theTabs {
+  clear: both;
+  width: 100%;
+}
+.theTabs .donators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.theTabs .donators align-self:flex-start {
+  padding: 20px;
+}
+.theTabs .donators .donator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-arround;
+  align-items: center;
+}
+.theTabs .donators .donator img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+@media screen and (min-width: 1000px) {
+  .theTabs {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .theTabs .mainTabs {
+    width: 80%;
+    min-width: 800px;
+  }
+  .theTabs .donators {
+    width: 200px;
+  }
+}
+
+#donations {
+  display: flex;
+  flex-direction: column;
+}
+#donations button {
+  align-self: center;
+}
+
+.person {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-around;
+}
+.person button {
+  align-self: center;
+}
+.person .forPhoto {
+  width: 33%;
+  display: flex;
+  align-items: center;
+}
+.person .forPhoto img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+.person .forComment {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.donator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-arround;
+  align-items: center;
+}
+.donator img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
+.createCampaignContainer {
+  justify-content: center;
+}
+
+footer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+}
+footer .footerLogo {
+  padding: 10px;
+}
+footer .footerLogo img {
+  height: 80px;
+}
+footer ul {
+  list-style: none;
+  display: flex;
+  width: 350px;
+  justify-content: flex-end;
+  align-items: center;
+}
+footer ul li {
+  margin: 10px auto;
+  width: 40px;
+  text-align: center;
+}
+footer ul li img {
+  width: 30px;
+}
+
 .hero {
   background-image: url("https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg");
+}
+
+article.right a {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 30px;
+  color: white;
+  background-color: #5cbed6;
+  text-align: center;
+  border-radius: 2px;
+  border-style: none;
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=main.css.map */

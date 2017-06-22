@@ -1,0 +1,78 @@
+#search-panel
+  opacity: 0
+  position: fixed
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  height: 200px
+  width: 1%
+  visibility: hidden
+  z-index: 1000
+  display: flex
+  flex-direction: column
+  color: white
+  align-items: center
+  justify-content: center
+  text-align: center
+  transition: width .5s, height .5s, opacity .8s
+  background-color: rgba(42, 66, 78, 0.88)
+  h3
+    color: grey
+
+    &:after
+      content: ""
+      display: block
+      position: absolute
+      @include background-image(url('../img/search-hint.png'))
+      height: 30px
+      width: 30px
+      background-repeat: no-repeat
+      left: 50%
+      margin-top: 30px
+      transform: translateX(-50%)
+
+
+
+  input
+    opacity: 1
+    margin: 100px 0
+    font-size: 30px
+    padding: 20px
+    background: transparent
+    border-radius: 5px
+    border: 2px solid lighten($dark-grey, 20%)
+    text-align: center
+    color: #fff
+    @include medium-bp
+      font-size: 45px
+      padding: 40px
+    &:focus
+      outline: 0
+
+
+
+  button
+    // @extend %orange-button
+    padding-left: 100px
+    padding-right: 100px
+
+
+
+
+.panel-visible
+  visibility: visible !important
+  opacity: .97 !important
+  width: 100% !important
+  height: 100% !important
+
+
+::-webkit-input-placeholder
+  color: #fff
+  // font-family: $default-headings
+
+#search-panel
+  button.cancel
+    background-color: #5bdcfd
+    width: 10px
+    padding-left: 20px
+    padding-right: 30px
