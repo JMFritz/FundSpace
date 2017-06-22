@@ -8,7 +8,7 @@
       <li><a href="/campaigns/all">Campaigns</a></li>
     </ul>
     <div>
-      <a href="/"><img src="../Content/img/logo.png" class="logo" alt="logo"></a>
+      <a href="/"><img src="../../Content/img/logo.png" class="logo" alt="logo"></a>
     </div>
     <ul id="navRight">
       @if (@Model["currentUser"] != null)
@@ -43,7 +43,7 @@
   <div class="userTop">
     <div class="userInfo">
       <div class="userImage">
-        <img src="http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg" alt="" />
+        <img src="../Content/img/user.png" alt="" />
       </div>
       <div class="userText">
         <label for="toggle-1">Edit</label>
@@ -105,9 +105,9 @@
               <h3>@campaign.Name</h3>
             </div>
             <div>
-              <h3>$@campaign.Goal</h3>
+              <h3>Goal: $@campaign.Goal</h3>
             </div>
-            <a href="/campaign/@campaign.Id/update"><button type="button" name="button">Click to view, edit, or delete</button></a>
+            <a href="/campaign/@campaign.Id/update"><button type="button" name="button">Edit/Delete</button></a>
           </div>
         }
       </div>
@@ -119,7 +119,7 @@
         {
           <div class="donationInfo">
             <div class="donationUserImage">
-              <img src="#" alt="" />
+              <img src="../Content/img/twitter.png" alt="" />
             </div>
             <div class="donationText">
               <h2>@donation["name"]</h2>

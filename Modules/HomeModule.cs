@@ -168,9 +168,8 @@ namespace Charity
         List<Category> allCategories = Category.GetAll();
         model.Add("currentUser", User.CurrentUser);
         model.Add("campaigns", null);
-        model.Add("search-results", Campaign.SearchByName(Request.Form["name"]));
+        model.Add("search-results", Campaign.SearchByName(Request.Query["name"]));
         model.Add("categories", allCategories);
-
         return View["campaigns.cshtml", model];
       };
       Get["campaigns/all"] = _ => {

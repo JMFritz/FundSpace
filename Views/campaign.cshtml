@@ -5,10 +5,10 @@
   <nav>
     <ul id="navLeft">
       <li><div class="search"><a href="#sub-nav">Search</a></div></li>
-      <li><a href="/campaign_rating">Campaigns</a></li>
+      <li><a href="/campaigns/all">Campaigns</a></li>
     </ul>
     <div>
-      <a href="/"><img src="../Content/img/logo.png" class="logo" alt="logo"></a>
+      <a href="/"><img src="../../Content/img/logo.png" class="logo" alt="logo"></a>
     </div>
     <ul id="navRight">
       @if (@Model["currentUser"] != null)
@@ -26,10 +26,8 @@
           <li><div class="search">
             <a href="#sub-nav">Search</a>
           </div></li>
-          <li><a href="#">Campaigns</a></li>
-          <li><a href="#">How it works</a></li>
-          <li><a href="#">Create campaign</a></li>
-          <li><a href="#">Log-in/Sign-Up</a></li>
+          <li><a href="/campaigns/all">Campaigns</a></li>
+          <li><a href="/login">Log-in/Sign-Up</a></li>
         </ul>
       </div>
     </div>
@@ -46,9 +44,10 @@
   {
     <h3> by @Model["donations"][0]["owner"].Name </h3>
   }
+<div class="myInfoWrapper">
   <div class="individual" >
     <article>
-      <img src="http://via.placeholder.com/450x300" alt="" />
+      <img src="../../Content/img/@(Model["selectedCampaign"].CategoryId).png" alt="" />
       <ul>
         <li><a href="#"><img src="../../Content/img/twitter.png" alt="" /></a></li>
         <li><a href="#"><img src="../../Content/img/facebook.png" alt="" /></a></li>
@@ -59,12 +58,9 @@
       <h3>$<span>@Model["selectedCampaign"].Balance</span> of $@Model["selectedCampaign"].Goal Goal</h3>
       <h3>Campaign End Date: <span>@(Model["selectedCampaign"].End.ToString("d"))</span></h3>
       <a href="#donate" name="donate">Support this cause!</a>
-      <div class="userButtons">
-        <button type="button" name="button">Edit</button>
-        <button type="button" name="button">Delete</button>
-      </div>
     </article>
   </div>
+</div>
   <div class="theTabs">
     <div class="mainTabs">
       <input type="radio" id="tab-1" name="show" checked/>
@@ -81,11 +77,10 @@
         <div class="content-dis">
           <p>@Model["selectedCampaign"].Description</p>
         </div>
-        <div class="content-dis"><p>this is where the updats will be displayed</p></div>
-        <div class="content-dis"><p>these are alll the comments</p></div>
+        <div class="content-dis"><p>No Updates Yet</p></div>
+        <div class="content-dis"><p>No Comments Yet</p></div>
         <!-- this a href is not working -->
         <div class="content-dis" id="donate" >
-          <p>form for donations... </p>
           <form action="/campaign/@Model["selectedCampaign"].Id" method="post">
             <div class="form-group">
               <label for="money">Enter your donation:</label>

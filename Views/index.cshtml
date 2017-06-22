@@ -58,25 +58,41 @@
   </div>
 
 
-  <h2>Discover these great causes</h2>
+  <h2>DISCOVER THESE GREAT CAUSES</h2>
 
 
   @if(@Model.ContainsKey("all-campaigns"))
   {
     <div class="cards">
-    @foreach(var campaign in @Model["all-campaigns"])
-    {
         <div class="card">
           <div class="cardImage">
-            <img src="../Content/img/@(campaign.CategoryId).png" alt="" />
+            <img src="../Content/img/7.jpg" alt="" />
           </div>
           <div class="cardText">
-            <h3>@campaign.Name</h3>
+            <h3>Save Purnell</h3>
           </div>
-          <a href="/campaign/@campaign.Id"><button type="button" name="button">Read More</button></a>
+          <a href="/campaign/13"><button type="button" name="button">Read More</button></a>
       </div>
+        <div class="card">
+          <div class="cardImage">
+            <img src="../Content/img/8.jpg" alt="" />
+          </div>
+          <div class="cardText">
+            <h3>Karl's Dog Fund</h3>
+          </div>
+          <a href="/campaign/14"><button type="button" name="button">Read More</button></a>
+      </div>
+        <div class="card">
+          <div class="cardImage">
+            <img src="../Content/img/9.jpg" alt="" />
+          </div>
+          <div class="cardText">
+            <h3>Charlie's Medical Bills</h3>
+          </div>
+          <a href="/campaign/15"><button type="button" name="button">Read More</button></a>
+      </div>
+    </div>
     }
-  </div>
   }
 </section>
 <footer>
