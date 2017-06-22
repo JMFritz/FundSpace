@@ -3,19 +3,23 @@ section
   background-color: #f3efeb
   // background-color: #16afbd
   .userTop, .userBottom
-    border: 1px solid black
+    h2
+      font-size: 25px
+    border-top: 3px solid black
+    border-bottom: 3px solid black
     .userInfo, .myCampaigns
-      border: 1px solid green
+      // border: 1px solid green
     .createButton, .myDonations
-      border: 1px solid red
+      // border: 1px solid red
     .userInfo, .createButton
     .userInfo
+      background-color: #fff
       .userImage
         // flex-basis: 40%
         display: flex
         justify-content: center
         align-items: center
-        border: 1px solid blue
+        // border: 1px solid blue
         img
           margin: 30px
           height: 400px
@@ -26,26 +30,33 @@ section
         flex-direction: column
         align-items: center
         padding: 60px 30px 30px
-        border: 1px solid pink
+        // border: 1px solid pink
         .currentUserInfo
           visibility: visible
         .updateForm
           visibility: hidden
           height: 0
+
         input[type=checkbox]
           position: absolute
           top: -9999px
           left: -9999px
         > label
-          -webkit-appearance: push-button
-          -moz-appearance: button
+          @extend %buttons
           cursor: pointer
+          height: 50px
+          width: 300px
+          padding-top: 17px
+
         >input[type=checkbox]:checked ~ .currentUserInfo
           visibility: hidden
           height: 0
+
         >input[type=checkbox]:checked ~ .updateForm
           visibility: visible
           height: auto
+          button
+            background-color: #16afbd
       @include large-bp
         display: flex
         .userImage

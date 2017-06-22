@@ -10,6 +10,21 @@
   background-position: center;
 }
 
+button, section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
+  font-size: 20px;
+  color: white;
+  border-radius: 2px;
+  border-style: none;
+  font-family: josephin-Regular;
+  text-transform: uppercase;
+  background-color: #ec7054;
+  margin: 20px auto;
+}
+button:hover, section .userTop .userInfo .userText > label:hover, section .userBottom .userInfo .userText > label:hover {
+  background-color: #e74a26;
+  font-weight: bold;
+}
+
 @font-face {
   font-family: josephin-Regular;
   src: url("../fonts/JosefinSans-Regular.ttf");
@@ -505,18 +520,6 @@ label {
 button {
   width: 300px;
   height: 50px;
-  font-size: 20px;
-  color: white;
-  border-radius: 2px;
-  border-style: none;
-  font-family: josephin-Regular;
-  text-transform: uppercase;
-  background-color: #ec7054;
-  margin: 20px auto;
-}
-button:hover {
-  background-color: #e74a26;
-  font-weight: bold;
 }
 
 /* Important styles */
@@ -764,19 +767,19 @@ section {
   background-color: #f3efeb;
 }
 section .userTop, section .userBottom {
-  border: 1px solid black;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
 }
-section .userTop .userInfo, section .userTop .myCampaigns, section .userBottom .userInfo, section .userBottom .myCampaigns {
-  border: 1px solid green;
+section .userTop h2, section .userBottom h2 {
+  font-size: 25px;
 }
-section .userTop .createButton, section .userTop .myDonations, section .userBottom .createButton, section .userBottom .myDonations {
-  border: 1px solid red;
+section .userTop .userInfo, section .userBottom .userInfo {
+  background-color: #fff;
 }
 section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid blue;
 }
 section .userTop .userInfo .userImage img, section .userBottom .userInfo .userImage img {
   margin: 30px;
@@ -788,7 +791,6 @@ section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
   flex-direction: column;
   align-items: center;
   padding: 60px 30px 30px;
-  border: 1px solid pink;
 }
 section .userTop .userInfo .userText .currentUserInfo, section .userBottom .userInfo .userText .currentUserInfo {
   visibility: visible;
@@ -803,9 +805,10 @@ section .userTop .userInfo .userText input[type=checkbox], section .userBottom .
   left: -9999px;
 }
 section .userTop .userInfo .userText > label, section .userBottom .userInfo .userText > label {
-  -webkit-appearance: push-button;
-  -moz-appearance: button;
   cursor: pointer;
+  height: 50px;
+  width: 300px;
+  padding-top: 17px;
 }
 section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .currentUserInfo {
   visibility: hidden;
@@ -814,6 +817,9 @@ section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .currentUs
 section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .updateForm, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .updateForm {
   visibility: visible;
   height: auto;
+}
+section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .updateForm button, section .userBottom .userInfo .userText > input[type=checkbox]:checked ~ .updateForm button {
+  background-color: #16afbd;
 }
 @media screen and (min-width: 1000px) {
   section .userTop .userInfo, section .userBottom .userInfo {
