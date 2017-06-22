@@ -2,20 +2,15 @@ section
   background-color: #f3efeb
   // background-color: #16afbd
   .userTop, .userBottom
-    display: flex
     border: 1px solid black
     .userInfo, .myCampaigns
-      flex-basis: 60%
       border: 1px solid green
     .createButton, .myDonations
-      flex-basis: 40%
       border: 1px solid red
     .userInfo, .createButton
-      height: 500px
     .userInfo
-      display: flex
       .userImage
-        flex-basis: 40%
+        // flex-basis: 40%
         display: flex
         justify-content: center
         align-items: center
@@ -25,7 +20,7 @@ section
           height: 400px
           width: 400px
       .userText
-        flex-basis: 60%
+        // flex-basis: 60%
         display: flex
         flex-direction: column
         align-items: center
@@ -50,7 +45,12 @@ section
         >input[type=checkbox]:checked ~ .updateForm
           visibility: visible
           height: auto
-
+      @include large-bp
+        display: flex
+        .userImage
+          flex-basis: 40%
+        .userText
+          flex-basis: 60%
     .createButton
       display: flex
       justify-content: center
@@ -71,7 +71,7 @@ section
       width: 90%
       margin: 30px auto
       padding: 20px
-      height: 800px
+      // height: 800px
       background-color: #16afbd
       .donationInfo
         width: 400px
@@ -81,7 +81,21 @@ section
         display: flex
         .donationUserImage
           flex-basis: 30%
-
+  .userTop
+    @include xLarge-bp
+      display: flex
+      .userInfo
+        flex-basis: 60%
+        border: 1px solid green
+      .createButton
+        flex-basis: 40%
+  .userBottom
+    @include large-bp
+      display: flex
+      .myCampaigns
+        flex-basis: 60%
+      .myDonations
+        flex-basis: 40%
 .myProfile
   h1
     padding: 30px 50px
