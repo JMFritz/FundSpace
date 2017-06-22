@@ -153,12 +153,23 @@ namespace Charity
         model.Add("selected-category", selectedCategory);
         return View["campaigns.cshtml", model];
       };
+      Get["campaigns/all"] = _ => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        List<Campaign> allCampaigns = Campaign.GetAll();
+        model.Add("currentUser", User.CurrentUser);
+        model.Add("campaigns", null);
+        model.Add("search-results", null);
+        model.Add("allCampaigns", allCampaigns);
+        model.Add("categories", Category.GetAll());
+        model.Add("selected-category", null);
+        return View["campaigns.cshtml", model];
+      };
       Get["campaigns/search"] = _ => {
         Dictionary<string, object> model = new Dictionary<string, object>{};
         List<Category> allCategories = Category.GetAll();
         model.Add("currentUser", User.CurrentUser);
         model.Add("campaigns", null);
-        model.Add("search-results", Campaign.SearchByName("Jun"));
+        model.Add("search-results", Campaign.SearchByName(Request.Form["name"]));
         model.Add("categories", allCategories);
         model.Add("selected-category", null);
         return View["campaigns.cshtml", model];

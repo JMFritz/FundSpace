@@ -4,8 +4,8 @@
 <header>
   <nav>
     <ul id="navLeft">
-      <li><a href="#search">Search</a></li>
-      <li><a href="campaigns.html">Campaigns</a></li>
+      <li><div class="search"><a href="#sub-nav">Search</a></div></li>
+      <li><a href="/campaigns/all">Campaigns</a></li>
     </ul>
     <div>
       <a href="/"><img src="../Content/img/logo.png" class="logo" alt="logo"></a>
@@ -18,6 +18,19 @@
       <li><a href="/login">Log-In/Sign-Up</a></li>
       <li><a href="/login">Log-Out</a></li>
     </ul>
+    <div class="menuToggle">
+      <a href="#menu" id="toggle"><span></span></a>
+
+      <div id="menu">
+        <ul>
+          <li><div class="search">
+            <a href="#sub-nav">Search</a>
+          </div></li>
+          <li><a href="/campaigns/all">Campaigns</a></li>
+          <li><a href="/login">Log-in/Sign-Up</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
   <div class="hamburger" id="hamburger">
     <span class="line"></span>
@@ -53,14 +66,13 @@
       </div>
       <div class="cardText">
       <h3>@campaign["name"]</h3>
-      <h3>@campaign["campaignDescription"]</h3>
       </div>
       <a href="/campaign/@campaign["id"]"><button type="button" name="button">Read More</button></a>
       </div>
     }
   }
 
-  @if(@Model.ContainsKey("search-results"))
+  @if(@Model["search-results"] != null)
   {
     @foreach(var campaign in @Model["search-results"])
     {
@@ -70,9 +82,24 @@
       </div>
       <div class="cardText">
       <h3>@campaign.Name</h3>
-      <h3>@campaign.Description</h3>
-      <h3>@campaign.Balance</h3>
-      <h3>@campaign.Goal</h3>
+      <h3>@campaign.Balance out of @campaign.Goal</h3>
+      </div>
+      <a href="/campaign/@campaign.Id"><button type="button" name="button">Read More</button></a>
+      </div>
+    }
+  }
+
+  @if(@Model.ContainsKey("allCampaigns"))
+  {
+    @foreach(var campaign in @Model["allCampaigns"])
+    {
+      <div class="card">
+      <div class="cardImage">
+      <img src="#" alt="" />
+      </div>
+      <div class="cardText">
+      <h3>@campaign.Name</h3>
+      <h3>@campaign.Balance out of @campaign.Goal</h3>
       </div>
       <a href="/campaign/@campaign.Id"><button type="button" name="button">Read More</button></a>
       </div>
@@ -94,3 +121,11 @@
     <li><a href="#"><img src="../Content/img/github.png" alt="" /></a></li>
   </ul>
 </footer>
+<div id="search-panel">
+<h3>Enter your search</h3>
+<form action="/campaigns/search" method="get">
+<input type="text" name="name" placeholder="SEARCH CAMPAIGNS">
+<button type="submit" name="button" class="go-button">GO !</button>
+</form>
+<button type="button" name="cancel" class="cancel">X</button>
+</div>
