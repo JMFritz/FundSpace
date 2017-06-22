@@ -42,6 +42,9 @@
     </ul>
   </div>
   <div class="cards">
+
+  @if(@Model["campaigns"] != null)
+  {
     @foreach(var campaign in @Model["campaigns"])
     {
       <div class="card">
@@ -56,6 +59,26 @@
       <a href="/campaign/@campaign["id"]"><button type="button" name="button">Read More</button></a>
       </div>
     }
+  }
+
+  @if(@Model.ContainsKey("search-results"))
+  {
+    @foreach(var campaign in @Model["search-results"])
+    {
+      <div class="card">
+      <div class="cardImage">
+      <img src="#" alt="" />
+      </div>
+      <div class="cardText">
+      <h3>@campaign.Name</h3>
+      <h3>@campaign.Description</h3>
+      <h3>@campaign.Balance</h3>
+      <h3>@campaign.Goal</h3>
+      </div>
+      <a href="/campaign/@campaign.Id"><button type="button" name="button">Read More</button></a>
+      </div>
+    }
+  }
   </div>
 </section>
 <footer>

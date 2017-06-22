@@ -311,7 +311,7 @@ namespace Charity.Objects
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("SELECT users.name, donations.donation_amount, donations.donation_date, owner_id FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users ON (users.id = donations.user_id) WHERE campaign_id = @CampaignId;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("SELECT users.name, donations.donation_amount, donations.donation_date, owner_id FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) JOIN users ON (users.id = donations.user_id) WHERE campaign_id = @CampaignId ORDER BY donation_date DESC;", DB.GetConnection());
 
       cmd.Parameters.Add(new SqlParameter("@CampaignId", this.Id));
       SqlDataReader rdr = cmd.ExecuteReader();
