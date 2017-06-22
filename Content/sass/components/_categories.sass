@@ -2,6 +2,7 @@
   font-family: josephin-semiBold
   width: 100%
   margin: 0 auto
+
   ul
     zoom: 0.7
     width: 90%
@@ -28,19 +29,30 @@
       align-items: center
       justify-content: center
       text-align: center
+      transition: transform .4s
+      &:hover
+        transform: scale(1.1)
+        div
+          background-color: #8b8b8b
+          box-shadow: 2px 2px 2px 5px white
+
+        h4
+          padding: 5px
+          color: black
       h4
         padding: 5px
         color: #666
       div
-        width: 100px
+        width: 120px
         height: 100px
-        border-radius: 100%
+        border-radius: 100px
         background-color: #bbb9b7
         padding: 10px
         display: flex
         flex-wrap: wrap
         align-items: center
         justify-content: center
+        transition: background-color .3s
         img
           width: 60px
           height: 60px

@@ -1,21 +1,24 @@
 .cards
-  margin: 30px auto
+  margin: 20px auto
+  margin-top: 100px
   display: flex
   flex-wrap: wrap
   justify-content: center
-  width: 450px
+  width: 100%
   .card
     display: flex
     flex-wrap: wrap
     background-color: #fff
-    margin: 20px 0
-    height: 400px
-    width: 450px
-    border: 1px solid green
+    margin: 10px 0
+    height: 450px
+    width: 98%
+    h3
+      font-size: 20px
     .cardImage
       height: 250px
       width: 450px
-      border: 1px solid red
+      margin: 0px auto
+      border: 1px solid lightgrey
       img
         height: inherit
         width: inherit
@@ -25,10 +28,13 @@
     button
       flex-basis: 45%
       margin-right: 5%
+  @include medium-bp
+    .card
+      width: 450px
+
   @include large-bp
     margin: 30px auto
     justify-content: space-around
-    width: 95%
     max-width: 1150px
     .card
       margin: 20px
