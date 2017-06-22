@@ -110,25 +110,15 @@ section {
   background-color: #f3efeb;
 }
 section .userTop, section .userBottom {
-  display: flex;
   border: 1px solid black;
 }
 section .userTop .userInfo, section .userTop .myCampaigns, section .userBottom .userInfo, section .userBottom .myCampaigns {
-  flex-basis: 60%;
   border: 1px solid green;
 }
 section .userTop .createButton, section .userTop .myDonations, section .userBottom .createButton, section .userBottom .myDonations {
-  flex-basis: 40%;
   border: 1px solid red;
 }
-section .userTop .userInfo, section .userTop .createButton, section .userBottom .userInfo, section .userBottom .createButton {
-  height: 500px;
-}
-section .userTop .userInfo, section .userBottom .userInfo {
-  display: flex;
-}
 section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
-  flex-basis: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,7 +130,6 @@ section .userTop .userInfo .userImage img, section .userBottom .userInfo .userIm
   width: 400px;
 }
 section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
-  flex-basis: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,6 +161,17 @@ section .userTop .userInfo .userText > input[type=checkbox]:checked ~ .updateFor
   visibility: visible;
   height: auto;
 }
+@media screen and (min-width: 1000px) {
+  section .userTop .userInfo, section .userBottom .userInfo {
+    display: flex;
+  }
+  section .userTop .userInfo .userImage, section .userBottom .userInfo .userImage {
+    flex-basis: 40%;
+  }
+  section .userTop .userInfo .userText, section .userBottom .userInfo .userText {
+    flex-basis: 60%;
+  }
+}
 section .userTop .createButton, section .userBottom .createButton {
   display: flex;
   justify-content: center;
@@ -195,7 +195,6 @@ section .userTop .userDonations, section .userBottom .userDonations {
   width: 90%;
   margin: 30px auto;
   padding: 20px;
-  height: 800px;
   background-color: #16afbd;
 }
 section .userTop .userDonations .donationInfo, section .userBottom .userDonations .donationInfo {
@@ -207,6 +206,29 @@ section .userTop .userDonations .donationInfo, section .userBottom .userDonation
 }
 section .userTop .userDonations .donationInfo .donationUserImage, section .userBottom .userDonations .donationInfo .donationUserImage {
   flex-basis: 30%;
+}
+@media screen and (min-width: 1580px) {
+  section .userTop {
+    display: flex;
+  }
+  section .userTop .userInfo {
+    flex-basis: 60%;
+    border: 1px solid green;
+  }
+  section .userTop .createButton {
+    flex-basis: 40%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  section .userBottom {
+    display: flex;
+  }
+  section .userBottom .myCampaigns {
+    flex-basis: 60%;
+  }
+  section .userBottom .myDonations {
+    flex-basis: 40%;
+  }
 }
 
 .myProfile h1 {
@@ -263,6 +285,8 @@ section.individualCampaign .myInfoWrapper .individual article {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+section.individualCampaign .myInfoWrapper .individual article img {
   max-width: 600px;
   margin: 0 auto;
 }
@@ -295,6 +319,8 @@ section.individualCampaign .myInfoWrapper .individual article ul img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+.theTabs .donators align-self:flex-start {
   padding: 20px;
 }
 .theTabs .donators .donator {
