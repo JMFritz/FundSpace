@@ -7,6 +7,10 @@
   background-color: #16afbd
   // align-items: center
 
+.logInContainer, .createCampaignContainer
+  min-height: 850px
+
+
 .createCampaignContainer
   // height: 80vh
   padding: 50px
@@ -26,8 +30,6 @@
 
 .createCampaignContainer
   flex-wrap: wrap
-  label
-    display: flex
 
 //for   individual campaign page/......
 section.individualCampaign
@@ -54,6 +56,18 @@ section.individualCampaign
           img
             width: 40px
             height: 40px
+      article.right
+        a
+          width: 300px
+          margin: 0 auto
+          padding: 20px
+          font-size: 30px
+          color: white
+          background-color: #ec7054
+          text-align: center
+          border-radius: 2px
+          border-style: none
+          text-transform: uppercase
       @include large-bp
         // max-width: 580px
         display: flex

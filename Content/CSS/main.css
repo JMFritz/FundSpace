@@ -30,6 +30,10 @@ body {
   background-color: #000;
   background-image: url("http://www.hpcf.upr.edu/~abel/phl/star_field_full_gal.jpg");
   font-family: openSans;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
 h1 {
@@ -57,7 +61,9 @@ ul li {
 h2 {
   font-size: 40px;
   color: #0e0e0e;
-  margin: 20px auto;
+  margin: 0px auto;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 h3 {
@@ -69,6 +75,7 @@ h3 {
 .hero {
   width: 100%;
   height: 300px;
+  background-image: url("https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg");
 }
 @media screen and (min-width: 1580px) {
   .hero {
@@ -137,25 +144,64 @@ label {
   text-align: right;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
 }
-#new-campaign label {
+#new-campaign div {
+  width: 100%;
+  text-align: center;
+}
+#new-campaign div label {
   width: 95%;
   text-align: right;
 }
-#new-campaign label:first-of-type input, #new-campaign label:nth-of-type(4) input {
+#new-campaign div label:first-of-type input, #new-campaign div label:nth-of-type(4) input {
   padding: 10px 30px;
   width: 30px;
   margin-left: 50px;
 }
-
-.radioButtonContainer {
+#new-campaign div textarea {
+  width: 80%;
+}
+#new-campaign div h4 {
+  font-size: 25px;
+  font-weight: bold;
+}
+#new-campaign .radioButtonContainer {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 300px;
+}
+#new-campaign .radioButtonContainer h4 {
+  flex-basis: 100%;
+}
+#new-campaign .radioButtonContainer label, #new-campaign .radioButtonContainer input {
+  flex-basis: 16%;
+}
+@media screen and (min-width: 1000px) {
+  #new-campaign .radioButtonContainer {
+    width: 100%;
+    padding: 20px;
+  }
+  #new-campaign .radioButtonContainer label, #new-campaign .radioButtonContainer input {
+    flex-basis: 10%;
+  }
+}
+#new-campaign .radioButtonContainer:first-of-type h4 {
+  flex-basis: 100%;
+}
+#new-campaign .radioButtonContainer:first-of-type label, #new-campaign .radioButtonContainer:first-of-type input {
+  flex-basis: 8%;
+}
+@media screen and (min-width: 1000px) {
+  #new-campaign .radioButtonContainer:first-of-type {
+    width: 100%;
+  }
 }
 
 .cards {
   margin: 20px auto;
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -287,8 +333,19 @@ label {
   z-index: 0;
   height: 60px;
   width: 1px;
-  left: 49.5%;
+  left: 48.7%;
   top: 110px;
+  display: none;
+}
+@media screen and (min-width: 1000px) {
+  #smoke {
+    display: block;
+  }
+}
+@media screen and (min-width: 1580px) {
+  #smoke {
+    left: 49.5%;
+  }
 }
 
 /* smoke balls */
@@ -411,7 +468,7 @@ label {
   font-size: 18px;
   cursor: pointer;
   float: left;
-  color: #fff;
+  color: #16afbd;
   width: 25%;
   text-align: center;
   padding: 15px 0;
@@ -647,7 +704,7 @@ button:hover {
 
 header {
   margin: 0 auto;
-  height: 100px;
+  height: 120px;
   width: 100%;
   border: 1px solid black;
 }
@@ -696,8 +753,14 @@ nav div {
 nav .logo {
   height: 90px;
 }
+@media screen and (min-width: 1000px) {
+  nav .logo {
+    height: 160px;
+  }
+}
 
 section {
+  min-height: 100%;
   background-color: #f3efeb;
 }
 section .userTop, section .userBottom {
@@ -833,6 +896,10 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
   background-color: #16afbd;
 }
 
+.logInContainer, .createCampaignContainer {
+  min-height: 850px;
+}
+
 .createCampaignContainer {
   padding: 50px;
   display: flex;
@@ -857,9 +924,6 @@ section .userTop .userDonations .donationInfo .donationUserImage, section .userB
 
 .createCampaignContainer {
   flex-wrap: wrap;
-}
-.createCampaignContainer label {
-  display: flex;
 }
 
 section.individualCampaign .myInfoWrapper {
@@ -887,6 +951,18 @@ section.individualCampaign .myInfoWrapper .individual article ul {
 section.individualCampaign .myInfoWrapper .individual article ul img {
   width: 40px;
   height: 40px;
+}
+section.individualCampaign .myInfoWrapper .individual article.right a {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 30px;
+  color: white;
+  background-color: #ec7054;
+  text-align: center;
+  border-radius: 2px;
+  border-style: none;
+  text-transform: uppercase;
 }
 @media screen and (min-width: 1000px) {
   section.individualCampaign .myInfoWrapper .individual {
@@ -995,6 +1071,8 @@ footer {
   width: 100%;
   height: 100px;
   display: flex;
+  position: relative;
+  bottom: 0;
   justify-content: space-between;
   background-color: transparent;
 }
@@ -1018,23 +1096,6 @@ footer ul li {
 }
 footer ul li img {
   width: 30px;
-}
-
-.hero {
-  background-image: url("https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg");
-}
-
-article.right a {
-  width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  font-size: 30px;
-  color: white;
-  background-color: #5cbed6;
-  text-align: center;
-  border-radius: 2px;
-  border-style: none;
-  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=main.css.map */
