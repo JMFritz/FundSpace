@@ -112,7 +112,7 @@ namespace Charity.Objects
       DB.CreateConnection();
       DB.OpenConnection();
 
-      SqlCommand cmd = new SqlCommand("SELECT campaigns.id, campaigns.name, campaigns.description, COUNT (campaign_id) as count FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) WHERE category_id = @CategoryId group by campaigns.id, campaigns.name, campaigns.description;", DB.GetConnection());
+      SqlCommand cmd = new SqlCommand("SELECT campaigns.id, campaigns.name, campaigns.description, COUNT (campaign_id) as count FROM campaigns JOIN donations ON (campaigns.id = donations.campaign_id) WHERE category_id = @CategoryId group by campaigns.id, campaigns.name, campaigns.description ORDER BY count DESC;", DB.GetConnection());
 
       cmd.Parameters.Add(new SqlParameter("@CategoryId", this.Id));
       SqlDataReader rdr = cmd.ExecuteReader();
